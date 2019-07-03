@@ -10,7 +10,7 @@ const clienteModel = {};
  */
 clienteModel.addFactura = (facturaData, callback) => {
 	const db = db_tools.getDBConection();
-	db.collection('factura').add({
+	db.collection('factura').doc(facturaData.facturaID).set({
 			cliente: facturaData.cliente,
 			operario: facturaData.operario,
 			service: facturaData.service,

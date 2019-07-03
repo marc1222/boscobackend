@@ -3,6 +3,7 @@
 const db_tools = require("../utils/db");
 const gcs_tools = require("../utils/gcs");
 const fs = require('fs');
+var weekIdentifier = require('week-identifier');
 
 const serviceModel = {};
 
@@ -60,7 +61,7 @@ serviceModel.getserviceOpen = (uid, callback) => {
 	if (uid !== undefined) {
 		const db = db_tools.getDBConection();
 		var allAlerts = [];
-		db.collection('servicio').where('status', '==', 'obert')
+		db.collection('servicio').where('status', '==', 'open')
 			.where('operario', '==', uid).get()
 			.then(snapshot => {
 				let i = 0;
@@ -80,23 +81,45 @@ serviceModel.getserviceOpen = (uid, callback) => {
  * @param uid - USER IDENTIFIER
  * @param callback
  */
-serviceModel.getserviceClose = (uid, callback) => {
-	if (uid !== undefined) {
+serviceModel.getserviceClose = (uid, limitData, callback) => {
 		const db = db_tools.getDBConection();
-		var allAlerts = [];
-		db.collection('servicio').where('status', '==', 'tancat').get()
+		var allPeriods = {};
+		db.collection('operario').doc(uid).collection('facturacion').orderBy('order','desc').limit(Number(limitData.max)).get()
 			.then(snapshot => {
-				let i = 0;
-				snapshot.forEach(doc => {
-					allAlerts.push({id: doc.id, data: doc.data()});
-					i++;
-				});
-				callback(null, allAlerts);
+				var docs = snapshot._docs();
+				var servicesRefs = [];
+				for (let i = Number(limitData.min); i < docs.length; ++i) {
+					const data = docs[i].data();
+					const services = data.services;
+					for (let j = 0; j < services.length; ++j) {
+						let ref = db.collection('servicio').doc(services[j]);
+						servicesRefs.push(ref);
+					}
+					let period = {};
+					period.id = data.order;
+					period.services = [];
+					period.pagado = data.pagado;
+					allPeriods[period.id] = period;
+				}
+				if (servicesRefs.length > 0) {
+					db.getAll.apply(db, servicesRefs)
+						.then (docs => {
+							for (let i = 0; i < docs.length; ++i) {
+								let service = {};
+								const data = docs[i].data();
+								service = {id: docs[i].id, data: data};
+								if (data.period !== undefined) {
+									allPeriods[data.period].services.push(service);
+								}
+							}
+							callback(null, allPeriods);
+						}).catch (err => {
+						callback(500, err);
+					});
+				} else callback(null, allPeriods);
 			}).catch(err => {
 			callback(500, err);
 		});
-	}
-	else callback(500, "Error getting alerts");
 };
 
 /**
@@ -149,9 +172,10 @@ serviceModel.serviceAccept = (serviceData, callback) => {
 				else {
 					const data = doc.data();
 					if (data.operario !== serviceData.uid) callback(500, "No permissions on this document");
+					else if (data.status !== 'noaccept') callback(500, "Serivce actual status doesn't allow acceptance");
 					else {
 						doc.ref.update({
-							status: 'obert'
+							status: 'open'
 						});
 						callback(null, "updated ok");
 					}
@@ -196,31 +220,57 @@ serviceModel.serviceDeny = (serviceData, callback) => {
  * @param callback
  */
 serviceModel.serviceEnd = (serviceData, callback) => {
-	if (serviceData.uid !== undefined && serviceData.service !== undefined) {
-		const db = db_tools.getDBConection();
-		db.collection('servicio').doc(serviceData.service).get()
-			.then(doc => {
-				if (!doc.exists) callback(500, "No document found");
-				else {
-					const data = doc.data();
-					if (data.operario !== serviceData.uid) callback(500, "No permissions on this document");
-					else if (data.status === 'close') callback(500, "Service already closed");
-					else {
-						doc.ref.update({
-							status: 'close'
-						});
-						callback(null, {
-							cliente: data.cliente,
-							operario: data.operario,
-							total_price: data.total_price,
-							costs_price: data.costs_price
-						});
-					}
-				}
-			}).catch(err => {
-			callback(500, err);
-		});
-	} else callback(500, "Error ending service");
+    const db = db_tools.getDBConection();
+    db.collection('servicio').doc(serviceData.service).get()
+        .then(doc => {
+            if (!doc.exists) callback(500, "No document found");
+            else {
+                const data = doc.data();
+				const actWeek = weekIdentifier(new Date());
+                if (data.operario !== serviceData.uid) callback(500, "No permissions on this document");
+                else if (data.status === 'close') callback(500, "Service already closed");
+                else if (data.status === 'noaccept') callback(500, "Service is not accepted yet");
+                else {
+                    doc.ref.update({
+                        status: 'close',
+						period: actWeek
+                    });
+                    db.collection('operario').doc(serviceData.uid).collection('facturacion').doc(String(actWeek)).get()
+                        .then( fact => {
+                            var updatedata;
+                            var serviceList = [];
+                            if (!fact.exists) {
+                                serviceList[0] = serviceData.service;
+                                updatedata = {
+                                    pagado: false,
+                                    services: serviceList,
+									order: actWeek
+                                };
+                                fact.ref.set(updatedata);
+                            } else { //exists
+                                const datafact = fact.data();
+                                if (datafact.pagado === true) return callback(500, "Not possible to add service cause period is already paid");
+                                else {
+                                    serviceList = datafact.services;
+                                    serviceList.push(serviceData.service);
+                                    updatedata = {services: serviceList};
+                                    fact.ref.update(updatedata);
+                                }
+                            }
+                            callback(null, {
+                                cliente: data.cliente,
+                                operario: data.operario,
+                                total_price: data.total_price,
+                                costs_price: data.costs_price
+                            });
+                        }).catch( err => {
+                            callback(500, "error ocurred while inserting to facturacion" + err);
+                        });
+                }
+            }
+        }).catch(err => {
+            callback(500, err);
+        });
 };
 
 /**
@@ -276,6 +326,27 @@ serviceModel.setLastPosition = (lastPositionData, callback) => {
 				callback(null, "updated ok");
 			}
 		}).catch((err)=> {
+			callback(500, err);
+		});
+};
+
+serviceModel.payPeriod = (periodData, callback) => {
+	const db = db_tools.getDBConection();
+	db.collection('operario').doc(periodData.operario).collection('facturacion').doc(periodData.periode).get()
+		.then (doc => {
+			if (!doc.exists) callback(500, "No document found");
+			else {
+				const data = doc.data();
+				if (weekIdentifier(new Date()) === periodData.periode) callback(500, "Period not closed yet");
+				else if (data.pagado === true) callback(500, "Period already paid");
+				else {
+					doc.ref.update({
+						pagado: true
+					});
+					callback(null, "updated ok");
+				}
+			}
+		}).catch( err => {
 			callback(500, err);
 		});
 };

@@ -28,7 +28,7 @@ operarioModel.addOperario = (operarioData, callback) => {
                 lastname: operarioData.lastname,
                 nombre: operarioData.name,
                 phone: operarioData.phone,
-                chatToken: '',
+                chatToken: 'null',
                 color: 	randomHex.generate()
         }).then(  result => {
                 callback(null, {
@@ -91,17 +91,19 @@ operarioModel.getOnlineOperaris = (callback) => {
             let lastPosition;
             let limitime;
             for (let i = 0; i < docs.length; ++i) {
-                lastPosition = docs[i].data().lastPositionData;
-                if (lastPosition !== undefined) {
+                const data = docs[i].data();
+                lastPosition = data.lastPositionData;
+                if (lastPosition !== undefined && data.chatToken !== 'null') {
                     limitime = Number(lastPosition[2]) + Number(5*3600*1000);
                     if (limitime > Date.now()) { //aun no han pasado 5 horas des de la ultima conextion
-                        allOnline.push(docs[i].id);
+                        allOnline.push({id: docs[i].id,
+                                        data: docs[i].data()});
                     }
                 }
             }
             callback(null, allOnline);
         }).catch( err => {
-        callback(500, err);
-    });
+            callback(500, err);
+        });
 };
 module.exports = operarioModel;

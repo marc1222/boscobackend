@@ -47,27 +47,23 @@ api.get('/serviceOpenUser', middleware.ensureAuth, function(req, res) {
 		else res.status(error).send({success: false, result: result});
 	});
 });
-//
-// /**
-// *	Get closed services by User ID
-// */
-// api.get('/serviceCloseUser', function(req, res) {
-// 	const token = req.header('token');
-// 	if (token !== undefined) {
-// 		auth.validateToken(token, (error, data) => { //on data.result on success = user uid
-// 			if (error === null) {
-// 				serviceModel.getserviceClose(data, (error, result ) => {
-// 					if (error === null) {
-// 						  res.status(200).send({success: true, result: result});
-// 					}
-// 					else res.status(error).send({success: false, result: result});
-// 				});
-// 			} else {
-// 				 res.status(400).send({success: false, result: data});
-// 			}
-// 		});
-// 	} else res.status(400).send({success: false, result: "No token"});
-// });
+
+/**
+*	Get closed services by User ID
+*/
+api.get('/serviceCloseUser', middleware.ensureAuth ,function(req, res) {
+    const limitData = {
+        max: req.query.max,
+        min: req.query.min
+    };
+	if (req.query.max !== undefined && req.query.min !== undefined && limitData.min < limitData.max) {
+		serviceModel.getserviceClose(req.uid, limitData, (error, result ) => {
+			if (error === null) res.status(200).send({success: true, result: result});
+			else res.status(error).send({success: false, result: result});
+		});
+	} else res.status(400).send({success: false, result: "Bad request"});
+
+});
 /**
  * OPERARIO
  */
@@ -78,7 +74,7 @@ api.get('/downloadServiceOperario', middleware.ensureAuth, function (req, res) {
 			if (error === null) res.status(200).send({success: true, result: data});
 			else res.status(error).send({success: false, result: data});
 		});
-	}
+	} else res.status(400).send({success: false, result: "Bad request"});
 });
 /**
  * ADMIN
@@ -90,7 +86,7 @@ api.get('/downloadServiceAdmin', middleware.ensureAdminAuth, function (req, res)
 			if (error === null) res.status(200).send({success: true, result: data});
 			else res.status(error).send({success: false, result: data});
 		});
-	}
+	} else res.status(400).send({success: false, result: "Bad request"});
 });
 
 
@@ -195,17 +191,18 @@ api.put('/serviceEnd', middleware.ensureAuth, function(req, res) {
 					created_at: Date.now(),
 					total: result.total_price,
 					pay: clean*(1-comisionpart),
-					comision: clean*comisionpart
+					comision: clean*comisionpart,
+					facturaID: service
 				};
 				facturaModel.addFactura(facturaData, (error, result) => {
 					if (error === null) res.status(200).send({success: true, result: result});
-					else res.status(500).send({success: false, result: "service ended correctly but factura creation has failed"});
+					else res.status(error).send({success: false, result: "service ended correctly but factura creation has failed"});
 				});
 			}
 			else res.status(error).send({success:false, result: result});
 		});
 	} else {
-		res.status(500).send({success: false, result: "No service"});
+		res.status(400).send({success: false, result: "Bad request"});
 	}
 });
 
@@ -259,6 +256,21 @@ api.put('/lastPosition', middleware.ensureAuth, function (req, res) {
 			if (error === null) res.status(200).send({success: true, result: data});
 			else res.status(error).send({success: false, result: data});
 		});
-	}
+	} else res.status(400).send({success: false, result: "Bad request"});
+});
+/**
+ * ADMIN: validar que un operario ha pagado un periodo
+ */
+api.put('payPeriod', middleware.ensureAdminAuth, function(req, res) {
+	if (req.body.periode !== undefined && req.body.operario !== undefined) {
+		const periodData = {
+			periode: req.body.periode,
+			operario: req.body.operario
+		};
+		serviceModel.payPeriod(periodData, (error, result) => {
+			if (error === null) res.status(200).send({success: true, result: result});
+			else res.status(error).send({success: false, result: result});
+		});
+	} else res.status(400).send({success: false, result: "Bad request"});
 });
 module.exports = api;

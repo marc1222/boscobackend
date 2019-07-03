@@ -7,6 +7,97 @@ const fs = require('fs');
 
 
 const chatModel = {};
+
+/**
+ ***************************** GETTERS *****************************
+ */
+
+/**
+ * Get admin chat token to send token to them
+ * @param callback - return array where a pos is like: [i] -> {chatToken: xxx_chatTokenValue_xxx}
+ */
+chatModel.adminChatToken = (callback) => {
+    const db = db_tools.getDBConection();
+    var adminChatToken;
+    db.collection('admin').get()
+        .then(snapshot => {
+            snapshot.forEach(doc => {
+                adminChatToken = doc.data().chatToken;
+            });
+            callback(null, adminChatToken);
+        }).catch(err => {
+        callback(500, err.message);
+    });
+};
+/**
+ *
+ * @param uid - uid of user to get chatToken
+ * @param callback - return chatToken, or error
+ */
+chatModel.operarioChatToken = (uid, callback) => {
+    if (uid !== null) {
+        const db = db_tools.getDBConection();
+        db.collection('operario').doc(uid).get()
+            .then(user => {
+                callback(null, user.data().chatToken);
+            }).catch(err => {
+                callback(500, err.message);
+            });
+    } else callback(500, "No uid defined when getting operario chat token");
+};
+
+/**
+ *
+ * @param chatData
+ * @param callback
+ */
+chatModel.getChat = (chatData, callback) => {
+    const first = Number(chatData.first);
+    var last = Number(chatData.last);
+    const operarioUID = chatData.uid;
+    var messages = [];
+    const db = db_tools.getDBConection();
+    db.collection('operario').doc(operarioUID).collection('chat').orderBy('date','desc').limit(last).get()
+        .then( snapshot => {
+            var docs = snapshot._docs();
+            let doc;
+            for (var i = first; last !== first; ++i) {
+                doc = docs[i];
+                if (doc) {
+                    messages.push(doc.data());
+                }
+                last--;
+            }
+            callback(null, messages);
+        }).catch (err => {
+        callback(500, "error getting messages" + err);
+    });
+
+};
+
+/**
+ *
+ * @param uid
+ * @param callback
+ */
+chatModel.getAdminLastRead = function (uid, callback) {
+    const db = db_tools.getDBConection();
+    db.collection('admin').doc(uid).get()
+        .then(doc => {
+            callback(null, doc.data().lastRead);
+        }).catch(err => {
+        callback(500, err);
+    });
+};
+
+/**
+ ***************************** POST *****************************
+ */
+
+/**
+ ***************************** UPDATES *****************************
+ */
+
 /**
  * Fa update del usuari amb uid del token .chattoken
  * @param chatData -> .uid && .chattoken
@@ -18,12 +109,12 @@ chatModel.updateToken = (chatData, callback) => {
         db.collection('operario').doc(chatData.uid).get()
             .then(user => {
                 user.ref.update({
-                   chatToken: chatData.chatToken
+                    chatToken: chatData.chatToken
                 });
                 callback(null, "chat token updated ok");
             }).catch( err => {
-                callback(err.code, err.message);
-            });
+            callback(err.code, err.message);
+        });
     } else callback(500, "Error updating chat token");
 };
 /**
@@ -47,39 +138,37 @@ chatModel.updateAdminToken = (chatData, callback) => {
     } else callback(500, "Error updating chat token");
 };
 /**
- * Get admin chat token to send token to them
- * @param callback - return array where a pos is like: [i] -> {chatToken: xxx_chatTokenValue_xxx}
- */
-chatModel.adminChatToken = (callback) => {
-    const db = db_tools.getDBConection();
-    var adminChatToken;
-    db.collection('admin').get()
-        .then(snapshot => {
-            snapshot.forEach(doc => {
-                adminChatToken = doc.data().chatToken;
-            });
-            callback(null, adminChatToken);
-        }).catch(err => {
-            callback(500, err.message);
-        });
-};
-/**
  *
- * @param uid - uid of user to get chatToken
- * @param callback - return chatToken, or error
+ * @param uid
+ * @param callback
  */
-chatModel.operarioChatToken = (uid, callback) => {
-    if (uid !== null) {
-        const db = db_tools.getDBConection();
-        db.collection('operario').doc(uid).get()
-            .then(user => {
-                callback(null, user.data().chatToken);
-            }).catch(err => {
-                callback(500, err.message);
-            });
-    } else callback(500, "No uid defined when getting operario chat token");
+chatModel.setAdminlastRead = function (uid, callback){
+    const db = db_tools.getDBConection();
+    db.collection('admin').doc(uid).get()
+        .then( (doc) => {
+            if (!doc.exists) callback(500, "No document found");
+            else {
+                doc.ref.update({
+                    lastRead: Date.now()
+                });
+                callback(null, "updated ok");
+            }
+        }).catch( (err) => {
+        callback(500, err);
+    });
 };
 
+/**
+ ***************************** GOOGLE CLOUD RELATED *****************************
+ */
+
+/**
+ *
+ * @param msg
+ * @param image
+ * @param adminToken
+ * @param operarioUID
+ */
 chatModel.sendPushToAdmin = (msg, image, adminToken, operarioUID) => {
     //SAVE MESSAGE TO DB
     const db = db_tools.getDBConection();
@@ -104,7 +193,13 @@ chatModel.sendPushToAdmin = (msg, image, adminToken, operarioUID) => {
     pushMessaging.sendPushNotificationFCM(adminToken, payload);
 };
 
-chatModel.sendMsgToOperario = (msg, destToken, operarioUID) => {
+/**
+ *
+ * @param msg
+ * @param destToken
+ * @param operarioUID
+ */
+chatModel.sendMsgToOperario = (msg, image, destToken, operarioUID) => {
     //SAVE MESSAGE TO DB
     const db = db_tools.getDBConection();
     const now = Date.now();
@@ -112,7 +207,8 @@ chatModel.sendMsgToOperario = (msg, destToken, operarioUID) => {
         .add({
             admin: true,
             date: now,
-            message: msg
+            message: msg,
+            image: image
         });
 
     const pushMessage = {
@@ -121,46 +217,29 @@ chatModel.sendMsgToOperario = (msg, destToken, operarioUID) => {
         body: "Nuevo mensaje de Bosco",
         data: { type: "chat",
                 message: msg,
-                date: String(now)
-              }
+                date: String(now),
+                image: image
+        }
     };
     //SEND PUSH MESSAGE VIA EXPO -> to operario
      pushMessaging.sendPushNotificationExpo(pushMessage);
 };
 
-chatModel.getChat = (chatData, callback) => {
-    const first = Number(chatData.first);
-    var last = Number(chatData.last);
-    const operarioUID = chatData.uid;
-    var messages = [];
-    const db = db_tools.getDBConection();
-    db.collection('operario').doc(operarioUID).collection('chat').orderBy('date','desc').limit(last).get()
-        .then( snapshot => {
-            var docs = snapshot._docs();
-            let doc;
-            for (var i = first; last !== first; ++i) {
-               doc = docs[i];
-               if (doc) {
-                   messages.push(doc.data());
-               }
-               //console.log(doc.data().date);
-               last--;
-            }
-            callback(null, messages);
-        }).catch (err => {
-            callback(500, "error getting messages" + err);
-        });
-
-};
-
-chatModel.uploadToChatGCS = (image, operarioID, admin, callback) => {
+/**
+ *
+ * @param image
+ * @param operarioID
+ * @param admin
+ * @param callback
+ */
+chatModel.uploadToChatGCS = (image, operarioID, toAdmin, callback) => {
     const path = image.path;
     var name = path.replace('uploads\\chat\\','');
     name = name.replace('uploads/chat/','');
     const bucket = gcs_tools.getBucketConection();
     bucket.upload(path, {public: false, destination: "chat/"+name})
         .then(file => {
-            if (admin) {
+            if (toAdmin) {
                 chatModel.adminChatToken( (error, adminChatToken) => {
                     if (error === null) {
                         chatModel.sendPushToAdmin((file[0].name).replace('chat/',''), "true", adminChatToken, operarioID);
@@ -173,15 +252,15 @@ chatModel.uploadToChatGCS = (image, operarioID, admin, callback) => {
                     }
                 });
             } else {
-                chatModel.operarioChatToken(operarioID, (error, oprarioChatToken) => {
+                chatModel.operarioChatToken(operarioID, (error, operarioChatToken) => {
                    if (error === null) {
-                       chatModel.sendMsgToOperario((file[0].name).replace('chat/',''), "true", oprarioChatToken, operarioID);
+                       chatModel.sendMsgToOperario((file[0].name).replace('chat/',''), "true", operarioChatToken, operarioID);
                        callback(null, {
                            status: "uploaded ok and sent push to operario",
                            imageName: (file[0].name).replace('chat/','')
-                       });
+                   });
                    } else {
-                       callback(500, error + oprarioChatToken);
+                       callback(500, error + operarioChatToken);
                    }
                 });
             }
@@ -190,6 +269,12 @@ chatModel.uploadToChatGCS = (image, operarioID, admin, callback) => {
         });
 };
 
+/**
+ *
+ * @param name
+ * @param callback
+ * @returns {Promise<any | never>}
+ */
 chatModel.downlaodFromChatGCS = (name, callback) => {
     const path = './downloads/chat/'+name;
     return new Promise ((resolve, reject) => {
@@ -227,30 +312,5 @@ chatModel.downlaodFromChatGCS = (name, callback) => {
     });
 };
 
-chatModel.setAdminlastRead = function (uid, callback){
-    const db = db_tools.getDBConection();
-    db.collection('admin').doc(uid).get()
-        .then( (doc) => {
-            if (!doc.exists) callback(500, "No document found");
-            else {
-                doc.ref.update({
-                   lastRead: Date.now()
-                });
-                callback(null, "updated ok");
-            }
-        }).catch( (err) => {
-            callback(500, err);
-        });
-};
-
-chatModel.getAdminLastRead = function (uid, callback) {
-    const db = db_tools.getDBConection();
-    db.collection('admin').doc(uid).get()
-        .then(doc => {
-            callback(null, doc.data().lastRead);
-        }).catch(err => {
-            callback(500, err);
-        });
-};
 
 module.exports = chatModel;
