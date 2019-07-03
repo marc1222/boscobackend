@@ -35,6 +35,19 @@ api.get('/operario', middleware.ensureAdminAuth, function(req, res) {
     });
 });
 
+/**
+ * Get operario by id
+ */
+api.get('/operarioById', middleware.ensureAuth, function(req, res) {
+    if (req.query.operario !== undefined) {
+        opererioModel.getOperarioById(req.query.operario, (error, result) => {
+            if (error === null) res.status(200).send({success: true, result: result});
+            else res.status(error).send({success: false, result: result});
+        });
+    } else res.status(400).send({success: false, result: "Bad request"});
+
+});
+
 api.put('/operario', middleware.ensureAdminAuth, function(req, res) {
     const params = req.body;
     if (params.email !== undefined && params.name !== undefined && params.lastname !== undefined && params.phone !== undefined && params.operario !== undefined) {

@@ -44,6 +44,19 @@ clienteModel.getAllCliente = (callback) => {
 		});
 };
 
+clienteModel.getClienteById = (cliente, callback) => {
+	const db = db_tools.getDBConection();
+	db.collection('cliente').doc(cliente).get()
+		.then( doc => {
+			if (!doc.exists) callback(500, "No document found");
+			else {
+				callback(null, doc.data());
+			}
+		}).catch (err => {
+			callback(500, "error getting client"+err);
+		});
+};
+
 clienteModel.updateCliente = (clienteData, callback) => {
     const db = db_tools.getDBConection();
     db.collection('cliente').doc(clienteData.document).get()

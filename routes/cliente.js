@@ -22,7 +22,7 @@ api.post('/cliente',  middleware.ensureAdminAuth, function(req, res) {
         };
         clienteModel.addCliente(clientData, (error, result) => {
            if (error === null) res.status(200).send({success: true, result: "inserted correctly"});
-           else res.status(error).send({success: true, result: result});
+           else res.status(error).send({success: false, result: result});
         });
     } else res.status(400).send({success: false, result: "Bad request"});
 });
@@ -33,10 +33,25 @@ api.post('/cliente',  middleware.ensureAdminAuth, function(req, res) {
 api.get('/cliente', middleware.ensureAdminAuth, function(req, res) {
     clienteModel.getAllCliente((error, result) => {
         if (error === null) res.status(200).send({success: true, result: result});
-        else res.status(error).send({success: true, result: result});
+        else res.status(error).send({success: false, result: result});
     });
 });
 
+/**
+ * Get cliente by id
+ */
+api.get('/clienteById', middleware.ensureAuth, function(req, res) {
+    if (req.query.cliente !== undefined) {
+        clienteModel.getClienteById(req.query.cliente, (error, result) => {
+            if (error === null) res.status(200).send({success: true, result: result});
+            else res.status(error).send({success: false, result: result});
+        });
+    } else res.status(400).send({success: false, result: "Bad request"});
+});
+
+/**
+ * Update cliente
+ */
 api.put('/cliente', middleware.ensureAdminAuth, function(req, res) {
     const params = req.body;
     if (params.email !== undefined && params.address !== undefined && params.cp !== undefined && params.nombre !== undefined && params.lastname !== undefined && params.phone !== undefined && params.cliente !== undefined) {

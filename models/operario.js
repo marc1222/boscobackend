@@ -62,6 +62,19 @@ operarioModel.getAllOperario = (callback) => {
     });
 };
 
+operarioModel.getOperarioById = (operario, callback) => {
+    const db = db_tools.getDBConection();
+    db.collection('operario').doc(operario).get()
+        .then( doc => {
+            if (!doc.exists) callback(500, "No document found");
+            else {
+                callback(null, doc.data());
+            }
+        }).catch (err => {
+            callback(500, "error getting operario"+err);
+        });
+};
+
 operarioModel.updateOperario = (operarioData, callback) => {
     const db = db_tools.getDBConection();
     db.collection('operario').doc(operarioData.uid).get()
