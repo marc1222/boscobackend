@@ -116,7 +116,7 @@ api.post('/service',  middleware.ensureAdminAuth, function(req, res) {
 			isBudget: params.isBudget
 		};
 		serviceModel.addService(serviceData, (error, result) => {
-			if (error === null) res.status(200).send({success: true, result: "inserted correctly"});
+			if (error === null) res.status(200).send({success: true, result: result});
 			else res.status(error).send({success: true, result: result});
 		});
 	} else res.status(400).send({success: false, result: "Bad request"});
@@ -126,6 +126,21 @@ api.post('/service',  middleware.ensureAdminAuth, function(req, res) {
 /**
  ******************************** UPDATES *******************************
  */
+/**
+ * ADMIN: Reasign service by providing service document identifier and new operario doc id
+ */
+api.put('/reasignService', middleware.ensureAdminAuth, function (req, res) {
+   if (req.body.service !== undefined && req.body.operario !== undefined) {
+        const reasignData = {
+            service: req.body.service,
+            newOperario: req.body.operario
+        };
+        serviceModel.reasignService(reasignData, (error, result) => {
+            if (error === null) res.status(200).send({success: true, result: result});
+            else res.status(error).send({success: true, result: result});
+        });
+   } else res.status(400).send({success: false, result: "Bad request"});
+});
 
 /**
  *	OPERARIO: Accept service by Service ID

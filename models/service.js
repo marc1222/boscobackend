@@ -2,6 +2,8 @@
 
 const db_tools = require("../utils/db");
 const gcs_tools = require("../utils/gcs");
+const pushMessaging = require('../utils/sendpush');
+
 const fs = require('fs');
 var weekIdentifier = require('week-identifier');
 
@@ -127,7 +129,7 @@ serviceModel.getserviceClose = (uid, limitData, callback) => {
  */
 /**
  * Add a service to firestore
- * @param clientData
+ * @param serviceData
  * @param callback
  */
 serviceModel.addService = (serviceData, callback) => {
@@ -149,7 +151,12 @@ serviceModel.addService = (serviceData, callback) => {
 		costs_price: -1,
 		isBudget: serviceData.isBudget
 	}).then(  result => {
-		callback(null, "ok");
+		pushMessaging.operarioChatToken(serviceData.operario, (error, operario_token) => {
+			if (error === null) {
+				serviceModel.sendMsgToOperario(operario_token, result.id);
+				callback(null, "service created ok");
+			} else callback(500, "error getting operario token");
+		});
 	}).catch(err => {
 		callback(500, "error inserting: "+err);
 	});
@@ -158,32 +165,62 @@ serviceModel.addService = (serviceData, callback) => {
 /**
  * UPDATES
  */
+
+/**
+ *
+ * @param reasignData
+ * @param callback
+ */
+serviceModel.reasignService = function(reasignData, callback) {
+	const db = db_tools.getDBConection();
+	db.collection('servicio').doc(reasignData.service).get()
+		.then( doc => {
+			if (!doc.exists) callback(500, "No document found");
+			else {
+				const data = doc.data();
+				if (data.operario === reasignData.newOperario) callback(500, "Este opeario ya tiene asignado este servicio");
+				else if (data.status === 'close')  callback(500, "Este servicio ya está cerrado");
+				else {
+					doc.ref.update({
+						operario: reasignData.newOperario
+					});
+					pushMessaging.operarioChatToken(reasignData.newOperario, (error, operario_token) => {
+						if (error === null) {
+							serviceModel.sendMsgToOperario(operario_token, reasignData.service);
+							callback(null, "service reasinged ok");
+						} else callback(500, "error getting operario token");
+					});
+				}
+			}
+		}).catch( err => {
+			callback(500, "error getting service");
+		});
+};
+
 /**
  * Accept del servei per l'operari -> Si tot OK, es fa update del valor status del serviceData.service document i es seteja a "obert"
  * @param serviceData - SERVICE DOCUMENT - USER IDENTIFIER
  * @param callback
  */
 serviceModel.serviceAccept = (serviceData, callback) => {
-	if (serviceData.uid !== undefined && serviceData.service !== undefined) {
-		const db = db_tools.getDBConection();
-		db.collection('servicio').doc(serviceData.service).get()
-			.then(doc => {
-				if (!doc.exists) callback(500, "No document found");
+	const db = db_tools.getDBConection();
+	db.collection('servicio').doc(serviceData.service).get()
+		.then(doc => {
+			if (!doc.exists) callback(500, "No document found");
+			else {
+				const data = doc.data();
+				if (data.operario !== serviceData.uid) callback(500, "No permissions on this document");
+				else if (data.status !== 'noaccept') callback(500, "Serivce actual status doesn't allow acceptance");
 				else {
-					const data = doc.data();
-					if (data.operario !== serviceData.uid) callback(500, "No permissions on this document");
-					else if (data.status !== 'noaccept') callback(500, "Serivce actual status doesn't allow acceptance");
-					else {
-						doc.ref.update({
-							status: 'open'
-						});
-						callback(null, "updated ok");
-					}
+					doc.ref.update({
+						status: 'open'
+					});
+					callback(null, "updated ok");
 				}
-			}).catch(err => {
-			callback(500, err);
-		});
-	} else callback(500, "Error accepting service");
+			}
+		}).catch(err => {
+		callback(500, err);
+	});
 };
 
 /**
@@ -192,26 +229,30 @@ serviceModel.serviceAccept = (serviceData, callback) => {
  * @param callback
  */
 serviceModel.serviceDeny = (serviceData, callback) => {
-	if (serviceData.uid !== undefined && serviceData.service !== undefined) {
-		const db = db_tools.getDBConection();
-		db.collection('servicio').doc(serviceData.service).get()
-			.then(doc => {
-				if (!doc.exists) callback(500, "No document found");
+	const db = db_tools.getDBConection();
+	db.collection('servicio').doc(serviceData.service).get()
+		.then(doc => {
+			if (!doc.exists) callback(500, "No document found");
+			else {
+				const data = doc.data();
+				if (data.operario !== serviceData.uid) callback(500, "No permissions on this document");
 				else {
-					const data = doc.data();
-					if (data.operario !== serviceData.uid) callback(500, "No permissions on this document");
-					else {
-						doc.ref.update({
-							status: 'noaccept',
-							operario: 'nuloperario'
-						});
-						callback(null, "updated ok");
-					}
+					doc.ref.update({
+						status: 'noaccept',
+						operario: 'nuloperario'
+					});
+					pushMessaging.adminChatToken( (error, admin_token) => {
+						if (error === null) {
+							serviceModel.sendPushToAdmin(serviceData.service, admin_token, serviceData.uid);
+							callback(null, "updated ok");
+						} else callback(500, "error getting admin push token" + error);
+					});
+
 				}
-			}).catch(err => {
-			callback(500, err);
-		});
-	} else callback(500, "Error denying service");
+			}
+		}).catch(err => {
+		callback(500, err);
+	});
 };
 
 /**
@@ -355,6 +396,47 @@ serviceModel.payPeriod = (periodData, callback) => {
  * GOOGLE CLOUD RELATED
  */
 
+/**
+ *
+ * @param serviceID
+ * @param adminToken
+ * @param operarioUID
+ */
+serviceModel.sendPushToAdmin = (serviceID, adminToken, operarioUID) => {
+	const db = db_tools.getDBConection();
+	db.collection('operario').doc(operarioUID).get()
+		.then (doc => {
+			const payload = {
+				data: {
+					type: "Servicio denegado",
+					service: serviceID,
+					operario: operarioUID,
+					name: doc.data().nombre
+				}
+			};
+			//SEND PUSH MESSAGE VIA FCM -> to admin
+			pushMessaging.sendPushNotificationFCM(adminToken, payload);
+		});
+};
+
+/**
+ *
+ * @param destToken
+ * @param serviceId
+ */
+serviceModel.sendMsgToOperario = (destToken, serviceId) => {
+	const pushMessage = {
+		to: destToken,
+		sound: 'default',
+		body: "Nuevo servicio disponible",
+		data: {
+			type: "new service",
+			service: serviceId
+		}
+	};
+	//SEND PUSH MESSAGE VIA EXPO -> to operario
+	pushMessaging.sendPushNotificationExpo(pushMessage);
+};
 /**
  * Upload multiple images to GCS
  * @param files --> files to upload, which name is imagen0, imagen1 ... imagenN-1 if uploadNumber equals N

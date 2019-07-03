@@ -5,6 +5,7 @@ const api = express.Router();
 
 const chatModel = require('../models/chat');
 const middleware = require('../middlewares/authenticated');
+const pushMessaging = require('../utils/sendpush');
 
 const multipart = require('connect-multiparty');
 const md_upload = multipart({uploadDir: './uploads/chat'});
@@ -116,7 +117,7 @@ api.post('/uploadChatAdmin', [middleware.ensureAdminAuth, md_upload], function (
 api.post('/sendMsgOperario', middleware.ensureAuth, function(req, res) {
     const msg = req.body.message;
     if (msg !== undefined) {
-        chatModel.adminChatToken( (error, adminChatToken) => {
+        pushMessaging.adminChatToken( (error, adminChatToken) => {
             if (error === null) {
                 //SEND  PUSH TO ADMIN VIA FCM
                 console.log(adminChatToken);
@@ -138,7 +139,7 @@ api.post('/sendMsgAdmin', middleware.ensureAdminAuth, function(req, res) {
     const Operario = req.body.operario;
     const msg = req.body.message;
     if (Operario !== undefined && msg !== undefined) {
-        chatModel.operarioChatToken(Operario, (error, dest_token) => {
+        pushMessaging.operarioChatToken(Operario, (error, dest_token) => {
             if (error === null) {
                 chatModel.sendMsgToOperario(msg, "false", dest_token, Operario);
                 res.status(200).send({success: true, result: "ok"});

@@ -12,39 +12,7 @@ const chatModel = {};
  ***************************** GETTERS *****************************
  */
 
-/**
- * Get admin chat token to send token to them
- * @param callback - return array where a pos is like: [i] -> {chatToken: xxx_chatTokenValue_xxx}
- */
-chatModel.adminChatToken = (callback) => {
-    const db = db_tools.getDBConection();
-    var adminChatToken;
-    db.collection('admin').get()
-        .then(snapshot => {
-            snapshot.forEach(doc => {
-                adminChatToken = doc.data().chatToken;
-            });
-            callback(null, adminChatToken);
-        }).catch(err => {
-        callback(500, err.message);
-    });
-};
-/**
- *
- * @param uid - uid of user to get chatToken
- * @param callback - return chatToken, or error
- */
-chatModel.operarioChatToken = (uid, callback) => {
-    if (uid !== null) {
-        const db = db_tools.getDBConection();
-        db.collection('operario').doc(uid).get()
-            .then(user => {
-                callback(null, user.data().chatToken);
-            }).catch(err => {
-                callback(500, err.message);
-            });
-    } else callback(500, "No uid defined when getting operario chat token");
-};
+
 
 /**
  *
@@ -170,32 +138,36 @@ chatModel.setAdminlastRead = function (uid, callback){
  * @param operarioUID
  */
 chatModel.sendPushToAdmin = (msg, image, adminToken, operarioUID) => {
+    const now = Date.now();
     //SAVE MESSAGE TO DB
     const db = db_tools.getDBConection();
-    const now = Date.now();
-    db.collection('operario').doc(operarioUID).collection('chat')
-        .add({
-            admin: false,
-            date: now,
-            message: msg,
-            image: image
+    db.collection('operario').doc(operarioUID).get()
+        .then (doc => {
+            const payload = {
+                data: {
+                    type: "chat",
+                    message: msg,
+                    operario: operarioUID,
+                    date: String(now),
+                    image: image,
+                    name: doc.data().nombre
+                }
+            };
+            //SEND PUSH MESSAGE VIA FCM -> to admin
+            pushMessaging.sendPushNotificationFCM(adminToken, payload);
+            doc.ref.collection('chat').add({
+                admin: false,
+                date: now,
+                message: msg,
+                image: image
+            });
         });
-    const payload = {
-        data: {
-            type: "chat",
-            message: msg,
-            operario: operarioUID,
-            date: String(now),
-            image: image
-        }
-    };
-    //SEND PUSH MESSAGE VIA FCM -> to admin
-    pushMessaging.sendPushNotificationFCM(adminToken, payload);
 };
 
 /**
  *
  * @param msg
+ * @param image
  * @param destToken
  * @param operarioUID
  */
@@ -240,7 +212,7 @@ chatModel.uploadToChatGCS = (image, operarioID, toAdmin, callback) => {
     bucket.upload(path, {public: false, destination: "chat/"+name})
         .then(file => {
             if (toAdmin) {
-                chatModel.adminChatToken( (error, adminChatToken) => {
+                pushMessaging.adminChatToken( (error, adminChatToken) => {
                     if (error === null) {
                         chatModel.sendPushToAdmin((file[0].name).replace('chat/',''), "true", adminChatToken, operarioID);
                         callback(null, {
@@ -252,7 +224,7 @@ chatModel.uploadToChatGCS = (image, operarioID, toAdmin, callback) => {
                     }
                 });
             } else {
-                chatModel.operarioChatToken(operarioID, (error, operarioChatToken) => {
+                pushMessaging.operarioChatToken(operarioID, (error, operarioChatToken) => {
                    if (error === null) {
                        chatModel.sendMsgToOperario((file[0].name).replace('chat/',''), "true", operarioChatToken, operarioID);
                        callback(null, {

@@ -1,5 +1,7 @@
 'use strict';
 
+const db_tools = require("../utils/db");
+
 const { Expo } = require('expo-server-sdk');
 
 const admin = require('firebase-admin');
@@ -7,6 +9,40 @@ const admin = require('firebase-admin');
 var fcm_messaging;
 
 var expo_messaging;
+
+/**
+ * Get admin chat token to send token to them
+ * @param callback - return array where a pos is like: [i] -> {chatToken: xxx_chatTokenValue_xxx}
+ */
+exports.adminChatToken = (callback) => {
+    const db = db_tools.getDBConection();
+    var adminChatToken;
+    db.collection('admin').get()
+        .then(snapshot => {
+            snapshot.forEach(doc => {
+                adminChatToken = doc.data().chatToken;
+            });
+            callback(null, adminChatToken);
+        }).catch(err => {
+        callback(500, err.message);
+    });
+};
+/**
+ *
+ * @param uid - uid of user to get chatToken
+ * @param callback - return chatToken, or error
+ */
+exports.operarioChatToken = (uid, callback) => {
+    if (uid !== null) {
+        const db = db_tools.getDBConection();
+        db.collection('operario').doc(uid).get()
+            .then(user => {
+                callback(null, user.data().chatToken);
+            }).catch(err => {
+            callback(500, err.message);
+        });
+    } else callback(500, "No uid defined when getting operario chat token");
+};
 
 /**
  *
