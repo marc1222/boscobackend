@@ -57,6 +57,24 @@ clienteModel.getClienteById = (cliente, callback) => {
 		});
 };
 
+clienteModel.getShortClienteById = (cliente, callback) => {
+	const db = db_tools.getDBConection();
+	db.collection('cliente').doc(cliente).get()
+		.then( doc => {
+			if (!doc.exists) callback(500, "No document found");
+			else {
+				const data = doc.data();
+				callback(null, {
+					name: data.nombre,
+					lastname: data.lastname,
+					phone: data.phone
+				});
+			}
+		}).catch (err => {
+		callback(500, "error getting client"+err);
+	});
+};
+
 clienteModel.updateCliente = (clienteData, callback) => {
     const db = db_tools.getDBConection();
     db.collection('cliente').doc(clienteData.document).get()

@@ -28,7 +28,7 @@ api.post('/cliente',  middleware.ensureAdminAuth, function(req, res) {
 });
 
 /**
- * Get all clientes
+ * ADMIN: Get all clientes
  */
 api.get('/cliente', middleware.ensureAdminAuth, function(req, res) {
     clienteModel.getAllCliente((error, result) => {
@@ -38,9 +38,9 @@ api.get('/cliente', middleware.ensureAdminAuth, function(req, res) {
 });
 
 /**
- * Get cliente by id
+ * ADMIN: Get cliente by id
  */
-api.get('/clienteById', middleware.ensureAuth, function(req, res) {
+api.get('/clienteById', middleware.ensureAdminAuth, function(req, res) {
     if (req.query.cliente !== undefined) {
         clienteModel.getClienteById(req.query.cliente, (error, result) => {
             if (error === null) res.status(200).send({success: true, result: result});
@@ -48,9 +48,20 @@ api.get('/clienteById', middleware.ensureAuth, function(req, res) {
         });
     } else res.status(400).send({success: false, result: "Bad request"});
 });
+/**
+ * OPERARI: GET short (name, lastanem, phone) client By id
+ */
+api.get('/shortClienteById', middleware.ensureAuth, function(req, res) {
+    if (req.query.cliente !== undefined) {
+        clienteModel.getShortClienteById(req.query.cliente, (error, result) => {
+            if (error === null) res.status(200).send({success: true, result: result});
+            else res.status(error).send({success: false, result: result});
+        });
+    } else res.status(400).send({success: false, result: "Bad request"});
+});
 
 /**
- * Update cliente
+ * ADMIN: Update cliente
  */
 api.put('/cliente', middleware.ensureAdminAuth, function(req, res) {
     const params = req.body;

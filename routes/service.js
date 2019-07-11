@@ -23,6 +23,18 @@ api.get('/service', middleware.ensureAdminAuth, function(req, res) {
 });
 
 /**
+ * ADMIN: Get service by ID
+ */
+api.get('/serviceById', middleware.ensureAdminAuth, function(req, res) {
+	if (req.query.service !== undefined) {
+		serviceModel.getServiceById(req.query.service, (error, result) => {
+			if (error === null) res.status(200).send({success: true, result: result});
+			else res.status(error).send({success: true, result: result});
+		});
+	} else res.status(400).send({success: false, result: "Bad request"});
+});
+
+/**
  *	OPERARIO: Get alerts by User ID
  */
 api.get('/alertsUser', middleware.ensureAuth, function(req, res) {
@@ -189,10 +201,11 @@ api.put('/serviceDeny', middleware.ensureAuth, function(req, res) {
  */
 api.put('/serviceEnd', middleware.ensureAuth, function(req, res) {
 	const service = req.body.service;
-	if (service !== undefined) {
+	if (service !== undefined && req.body.nota !== undefined) {
 		const params = {
 			service: service,
-			uid: req.uid
+			uid: req.uid,
+			nota: req.body.nota
 		};
 		serviceModel.serviceEnd(params, (error, result ) => {
 			if (error === null) {
@@ -256,23 +269,6 @@ api.put('/uploadServiceOperario', [middleware.ensureAuth, md_upload], function (
 	}
 });
 
-/**
- * OPERARIO: update last position & last position time
- */
-api.put('/lastPosition', middleware.ensureAuth, function (req, res) {
-	if (req.body.lat !== undefined && req.body.lon !== undefined) {
-		const uploadData = {
-			lat: req.body.lat,
-			lon: req.body.lon,
-			time: Date.now(),
-			operario: req.uid
-		};
-		serviceModel.setLastPosition(uploadData, (error, data) => {
-			if (error === null) res.status(200).send({success: true, result: data});
-			else res.status(error).send({success: false, result: data});
-		});
-	} else res.status(400).send({success: false, result: "Bad request"});
-});
 /**
  * ADMIN: validar que un operario ha pagado un periodo
  */

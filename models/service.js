@@ -31,6 +31,23 @@ serviceModel.getAllService = (callback) => {
 	});
 };
 /**
+ * Get service by ID
+ * @param service
+ * @param callback
+ */
+serviceModel.getServiceById = (service, callback) => {
+    const db = db_tools.getDBConection();
+    db.collection('servicio').doc(service).get()
+        .then(doc => {
+           if (!doc.exists) callback(500, "No document found");
+           else {
+               callback(null, doc.data());
+           }
+        }).catch(err => {
+        callback(500, err);
+    });
+};
+/**
  *	Retorna totes les alertes de un operari especififcat per le parametre uid
  * @param uid - USER IDENTIFIER
  * @param callback
@@ -153,8 +170,8 @@ serviceModel.addService = (serviceData, callback) => {
 	}).then(  result => {
 		pushMessaging.operarioChatToken(serviceData.operario, (error, operario_token) => {
 			if (error === null) {
-				serviceModel.sendMsgToOperario(operario_token, result.id);
-				callback(null, "service created ok");
+				serviceModel.sendMsgToOperario(operario_token, result.id, "Nuevo servicio disponible", "new service" );
+				callback(null, {service: result.id });
 			} else callback(500, "error getting operario token");
 		});
 	}).catch(err => {
@@ -181,12 +198,20 @@ serviceModel.reasignService = function(reasignData, callback) {
 				if (data.operario === reasignData.newOperario) callback(500, "Este opeario ya tiene asignado este servicio");
 				else if (data.status === 'close')  callback(500, "Este servicio ya está cerrado");
 				else {
+                    const old_operari = data.operario;
 					doc.ref.update({
 						operario: reasignData.newOperario
 					});
+					if (old_operari !== "nulloperari") {
+                        pushMessaging.operarioChatToken(reasignData.newOperario, (error, old_operario_token) => {
+                            if (error === null) {
+                                serviceModel.sendMsgToOperario(old_operario_token, reasignData.service, "Servicio retirado por admin", "service denied");
+                            }
+                        });
+                    }
 					pushMessaging.operarioChatToken(reasignData.newOperario, (error, operario_token) => {
 						if (error === null) {
-							serviceModel.sendMsgToOperario(operario_token, reasignData.service);
+							serviceModel.sendMsgToOperario(operario_token, reasignData.service, "Nuevo servicio disponible", "new service");
 							callback(null, "service reasinged ok");
 						} else callback(500, "error getting operario token");
 					});
@@ -215,7 +240,12 @@ serviceModel.serviceAccept = (serviceData, callback) => {
 					doc.ref.update({
 						status: 'open'
 					});
-					callback(null, "updated ok");
+                    pushMessaging.adminChatToken( (error, admin_token) => {
+                        if (error === null) {
+                            serviceModel.sendPushToAdmin(serviceData.service, admin_token, serviceData.uid, "Servicio aceptado");
+                            callback(null, "updated ok");
+                        } else callback(500, "error getting admin push token" + error);
+                    });
 				}
 			}
 		}).catch(err => {
@@ -243,11 +273,10 @@ serviceModel.serviceDeny = (serviceData, callback) => {
 					});
 					pushMessaging.adminChatToken( (error, admin_token) => {
 						if (error === null) {
-							serviceModel.sendPushToAdmin(serviceData.service, admin_token, serviceData.uid);
+							serviceModel.sendPushToAdmin(serviceData.service, admin_token, serviceData.uid, "Servicio denegado");
 							callback(null, "updated ok");
 						} else callback(500, "error getting admin push token" + error);
 					});
-
 				}
 			}
 		}).catch(err => {
@@ -274,7 +303,8 @@ serviceModel.serviceEnd = (serviceData, callback) => {
                 else {
                     doc.ref.update({
                         status: 'close',
-						period: actWeek
+						period: actWeek,
+                        nota: serviceData.nota
                     });
                     db.collection('operario').doc(serviceData.uid).collection('facturacion').doc(String(actWeek)).get()
                         .then( fact => {
@@ -298,12 +328,18 @@ serviceModel.serviceEnd = (serviceData, callback) => {
                                     fact.ref.update(updatedata);
                                 }
                             }
-                            callback(null, {
-                                cliente: data.cliente,
-                                operario: data.operario,
-                                total_price: data.total_price,
-                                costs_price: data.costs_price
+                            pushMessaging.adminChatToken( (error, admin_token) => {
+                                if (error === null) {
+                                    serviceModel.sendPushToAdmin(serviceData.service, admin_token, serviceData.uid, "Servicio finalizado");
+                                }
+                                callback(null, {
+                                    cliente: data.cliente,
+                                    operario: data.operario,
+                                    total_price: data.total_price,
+                                    costs_price: data.costs_price
+                                });
                             });
+
                         }).catch( err => {
                             callback(500, "error ocurred while inserting to facturacion" + err);
                         });
@@ -334,42 +370,19 @@ serviceModel.setBudget = (serviceId, budgetData, callback) => {
 						costs_price: budgetData.costs_price,
 						isBudget: false
 					});
-					callback(null, "updated ok");
+                    pushMessaging.adminChatToken( (error, admin_token) => {
+                        if (error === null) {
+                            serviceModel.sendPushToAdmin(serviceData.service, admin_token, serviceData.uid, "Presupuesto actualizado");
+                        }
+                        callback(null, "updated ok");
+                    });
 				}
 			}
 		}).catch(err => {
 		callback(500, err);
 	});
 };
-/**
- * Update operario last Position vector
- * @param lastPositionData = {
-				lat: req.body.lat,
-				lon: req.body.lon,
-				time: Date.now(),
-				operario: req.uid
-			};
- * @param callback
- */
-serviceModel.setLastPosition = (lastPositionData, callback) => {
-	const db = db_tools.getDBConection();
-	db.collection('operario').doc(lastPositionData.operario).get()
-		.then( (doc)=> {
-			if (!doc.exists) callback(500, "No document found");
-			else {
-				let positionUpdate = [];
-				positionUpdate[0] = lastPositionData.lat;
-				positionUpdate[1] = lastPositionData.lon;
-				positionUpdate[2] = lastPositionData.time;
-				doc.ref.update({
-					lastPositionData: positionUpdate
-				});
-				callback(null, "updated ok");
-			}
-		}).catch((err)=> {
-			callback(500, err);
-		});
-};
+
 
 serviceModel.payPeriod = (periodData, callback) => {
 	const db = db_tools.getDBConection();
@@ -402,13 +415,13 @@ serviceModel.payPeriod = (periodData, callback) => {
  * @param adminToken
  * @param operarioUID
  */
-serviceModel.sendPushToAdmin = (serviceID, adminToken, operarioUID) => {
+serviceModel.sendPushToAdmin = (serviceID, adminToken, operarioUID, type) => {
 	const db = db_tools.getDBConection();
 	db.collection('operario').doc(operarioUID).get()
 		.then (doc => {
 			const payload = {
 				data: {
-					type: "Servicio denegado",
+					type: type,
 					service: serviceID,
 					operario: operarioUID,
 					name: doc.data().nombre
@@ -424,13 +437,13 @@ serviceModel.sendPushToAdmin = (serviceID, adminToken, operarioUID) => {
  * @param destToken
  * @param serviceId
  */
-serviceModel.sendMsgToOperario = (destToken, serviceId) => {
+serviceModel.sendMsgToOperario = (destToken, serviceId, body, type) => {
 	const pushMessage = {
 		to: destToken,
 		sound: 'default',
-		body: "Nuevo servicio disponible",
+		body: body,
 		data: {
-			type: "new service",
+			type: type,
 			service: serviceId
 		}
 	};
@@ -521,6 +534,7 @@ serviceModel.downlaodFromServiceGCS = (name, callback) => {
 	return new Promise ((resolve, reject) => {
 		fs.exists(path, function(exists) {
 			if (exists) {  //file exists
+			    console.log("file exists - resolved");
 				resolve();
 			} else { //file not exists
 				const bucket = gcs_tools.getBucketConection();
@@ -529,12 +543,15 @@ serviceModel.downlaodFromServiceGCS = (name, callback) => {
 				};
 				bucket.file('service/'+name).download(options)
 					.then(file =>  {
+					    console.log("file downlaoded correctly - resolved");
 						resolve();
 					}).catch(err => {
-					fs.unlink(path, (error) => {
-						reject(err);
-					});
-				});
+                        console.log("file NOT downlaoded correctly - rejected");
+                        fs.unlink(path, (error) => {
+                            console.log("unlink error", error);
+                            reject(err);
+                        });
+				    });
 			}
 		});
 	}).then (() => {
@@ -549,7 +566,7 @@ serviceModel.downlaodFromServiceGCS = (name, callback) => {
 			}
 		});
 	}).catch((err) => {
-		callback(500, err);
+		callback(500, "promise rejected", err);
 	});
 };
 

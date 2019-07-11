@@ -61,7 +61,11 @@ operarioModel.getAllOperario = (callback) => {
         callback(500, err);
     });
 };
-
+/**
+ *
+ * @param operario
+ * @param callback
+ */
 operarioModel.getOperarioById = (operario, callback) => {
     const db = db_tools.getDBConection();
     db.collection('operario').doc(operario).get()
@@ -75,6 +79,11 @@ operarioModel.getOperarioById = (operario, callback) => {
         });
 };
 
+/**
+ *
+ * @param operarioData
+ * @param callback
+ */
 operarioModel.updateOperario = (operarioData, callback) => {
     const db = db_tools.getDBConection();
     db.collection('operario').doc(operarioData.uid).get()
@@ -94,7 +103,10 @@ operarioModel.updateOperario = (operarioData, callback) => {
             callback(500, err );
         });
 };
-
+/**
+ *
+ * @param callback
+ */
 operarioModel.getOnlineOperaris = (callback) => {
     const db = db_tools.getDBConection();
     var allOnline = [];
@@ -116,6 +128,52 @@ operarioModel.getOnlineOperaris = (callback) => {
             }
             callback(null, allOnline);
         }).catch( err => {
+            callback(500, err);
+        });
+};
+/**
+ * Update operario last Position vector
+ * @param lastPositionData = {
+				lat: req.body.lat,
+				lon: req.body.lon,
+				time: Date.now(),
+				operario: req.uid
+			};
+ * @param callback
+ */
+operarioModel.setLastPosition = (lastPositionData, callback) => {
+    const db = db_tools.getDBConection();
+    db.collection('operario').doc(lastPositionData.operario).get()
+        .then( (doc)=> {
+            if (!doc.exists) callback(500, "No document found");
+            else {
+                let positionUpdate = [];
+                positionUpdate[0] = lastPositionData.lat;
+                positionUpdate[1] = lastPositionData.lon;
+                positionUpdate[2] = lastPositionData.time;
+                doc.ref.update({
+                    lastPositionData: positionUpdate
+                });
+                callback(null, "updated ok");
+            }
+        }).catch((err)=> {
+            callback(500, err);
+        });
+};
+/**
+ *
+ * @param uid
+ * @param callback
+ */
+operarioModel.getCurrentOperario = (uid, callback) => {
+    const db = db_tools.getDBConection();
+    db.collection('operario').doc(uid).get()
+        .then (doc => {
+            if (!doc.exists) callback(500, "No doc found");
+            else {
+                callback(null, doc.data());
+            }
+        }).catch (err => {
             callback(500, err);
         });
 };

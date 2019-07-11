@@ -2,13 +2,13 @@
 
 const db_tools = require("../utils/db");
 
-const clienteModel = {};
+const facturaModel = {};
 /**
  * Add a client to firestore
  * @param facturaData
  * @param callback
  */
-clienteModel.addFactura = (facturaData, callback) => {
+facturaModel.addFactura = (facturaData, callback) => {
 	const db = db_tools.getDBConection();
 	db.collection('factura').doc(facturaData.facturaID).set({
 			cliente: facturaData.cliente,
@@ -28,7 +28,7 @@ clienteModel.addFactura = (facturaData, callback) => {
  * Get all clients from firestore collection cliente
  * @param callback
  */
-clienteModel.getAllFactura = (callback) => {
+facturaModel.getAllFactura = (callback) => {
 	const db = db_tools.getDBConection();
 	var allFacturas = [];
 	db.collection('factura').get()
@@ -42,4 +42,45 @@ clienteModel.getAllFactura = (callback) => {
 		});
 };
 
-module.exports = clienteModel;
+/**
+ * Get factura by ID
+ * @param factura
+ * @param callback
+ */
+facturaModel.getFacturaById = (factura, callback) => {
+	const db = db_tools.getDBConection();
+	const factPromise = new Promise((resolve, reject) => {
+		db.collection('factura').doc(factura).get()
+			.then(fact => {
+				if (!fact.exists) callback(500, "No document found");
+				else {
+					resolve(fact.data());
+				}
+			}).catch(err => {
+				reject(err);
+			});
+	});
+	const servPromise = new Promise((resolve, reject) => {
+		db.collection('servicio').doc(factura).get()
+			.then(serv => {
+				if (!serv.exists) callback(500, "No document found");
+				else {
+					resolve(serv.data());
+				}
+			}).catch(err => {
+				reject(err);
+			});
+	});
+	const promises = [factPromise, servPromise];
+	Promise.all(promises)
+		.then( () => {
+			callback(null, {
+				factura: promises[0],
+				servicio: promises[1]
+			});
+		}).catch( err => {
+			callback(500, err);
+		});
+};
+
+module.exports = facturaModel;
