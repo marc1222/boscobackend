@@ -97,7 +97,7 @@ api.put('/lastPosition', middleware.ensureAuth, function (req, res) {
             time: Date.now(),
             operario: req.uid
         };
-        serviceModel.setLastPosition(uploadData, (error, data) => {
+        opererioModel.setLastPosition(uploadData, (error, data) => {
             if (error === null) res.status(200).send({success: true, result: data});
             else res.status(error).send({success: false, result: data});
         });

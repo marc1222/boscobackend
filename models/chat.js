@@ -258,7 +258,7 @@ chatModel.downlaodFromChatGCS = (name, callback) => {
                 const options = {
                     destination: path
                 };
-                bucket.file('chat/'+name).download(options)
+                bucket.file('/chat/'+name).download(options)
                     .then(file =>  {
                         resolve();
                     }).catch(err => {

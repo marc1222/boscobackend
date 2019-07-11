@@ -534,21 +534,17 @@ serviceModel.downlaodFromServiceGCS = (name, callback) => {
 	return new Promise ((resolve, reject) => {
 		fs.exists(path, function(exists) {
 			if (exists) {  //file exists
-			    console.log("file exists - resolved");
 				resolve();
 			} else { //file not exists
 				const bucket = gcs_tools.getBucketConection();
 				const options = {
 					destination: path
 				};
-				bucket.file('service/'+name).download(options)
+				bucket.file('/service/'+name).download(options)
 					.then(file =>  {
-					    console.log("file downlaoded correctly - resolved");
 						resolve();
 					}).catch(err => {
-                        console.log("file NOT downlaoded correctly - rejected");
                         fs.unlink(path, (error) => {
-                            console.log("unlink error", error);
                             reject(err);
                         });
 				    });
@@ -566,7 +562,7 @@ serviceModel.downlaodFromServiceGCS = (name, callback) => {
 			}
 		});
 	}).catch((err) => {
-		callback(500, "promise rejected", err);
+		callback(500, err);
 	});
 };
 

@@ -7,14 +7,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ed79abe9-e12f-46ab-a771-37d00527b6da" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/cliente.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/cliente.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/factura.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/factura.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/operario.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/operario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/downloads/K5FbU5NB1xo4xHM8tw8vuOpY.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/chat.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/cliente.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/cliente.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/factura.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/factura.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/operario.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/operario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/service.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,15 +24,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="24" selection-start-line="24" selection-end-line="34" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/factura.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="263">
@@ -45,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="568" column="42" selection-start-line="568" selection-start-column="42" selection-end-line="568" selection-end-column="42" />
+            <state relative-caret-position="26">
+              <caret line="543" column="63" lean-forward="true" selection-start-line="543" selection-start-column="63" selection-end-line="543" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -66,8 +53,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/operario.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="159" column="12" selection-start-line="159" selection-start-column="12" selection-end-line="159" selection-end-column="12" />
+            <state relative-caret-position="280">
+              <caret line="155" column="19" lean-forward="true" selection-start-line="155" selection-start-column="19" selection-end-line="155" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -84,8 +71,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/operario.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="586">
-              <caret line="105" column="21" lean-forward="true" selection-start-line="105" selection-start-column="21" selection-end-line="105" selection-end-column="21" />
+            <state relative-caret-position="212">
+              <caret line="98" column="10" lean-forward="true" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -95,6 +82,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
               <caret line="21" column="21" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/models/chat.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="260" column="60" lean-forward="true" selection-start-line="260" selection-start-column="60" selection-end-line="260" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -156,15 +152,15 @@
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/utils/sendpush.js" />
         <option value="$PROJECT_DIR$/routes/chat.js" />
-        <option value="$PROJECT_DIR$/models/chat.js" />
         <option value="$PROJECT_DIR$/routes/cliente.js" />
         <option value="$PROJECT_DIR$/models/cliente.js" />
-        <option value="$PROJECT_DIR$/routes/operario.js" />
         <option value="$PROJECT_DIR$/routes/service.js" />
         <option value="$PROJECT_DIR$/routes/factura.js" />
         <option value="$PROJECT_DIR$/models/operario.js" />
         <option value="$PROJECT_DIR$/models/factura.js" />
         <option value="$PROJECT_DIR$/models/service.js" />
+        <option value="$PROJECT_DIR$/routes/operario.js" />
+        <option value="$PROJECT_DIR$/models/chat.js" />
       </list>
     </option>
   </component>
@@ -218,7 +214,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562845283192" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562847752619" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.3.1" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -290,12 +286,12 @@
       <workItem from="1561981791922" duration="808000" />
       <workItem from="1562052584374" duration="12150000" />
       <workItem from="1562138648184" duration="7744000" />
-      <workItem from="1562835253532" duration="8415000" />
+      <workItem from="1562835253532" duration="10719000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163800000" />
+    <option name="totallyTimeSpent" value="166104000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -310,7 +306,7 @@
     <frame x="1912" y="177" width="1456" height="886" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.59683794" weight="0.21489972" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.59683794" visible="true" weight="0.21489972" />
       <window_info id="Image Layers" order="1" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -327,7 +323,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49928367" weight="0.36387783" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49928367" visible="true" weight="0.36387783" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5007163" side_tool="true" weight="0.4236388" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -411,13 +407,6 @@
     <entry file="file://$PROJECT_DIR$/app.yaml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="46" column="57" selection-start-line="46" selection-start-column="57" selection-end-line="46" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/operator.js" />
     <entry file="file://$PROJECT_DIR$/models/cliente" />
     <entry file="file://$PROJECT_DIR$/routes/auth.js">
@@ -500,13 +489,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/gcs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="39" column="22" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/chat.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="592">
@@ -514,45 +496,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/chat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="260" column="58" selection-start-line="260" selection-start-column="51" selection-end-line="260" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/cliente.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="67" column="38" lean-forward="true" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/operario.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="586">
-          <caret line="105" column="21" lean-forward="true" selection-start-line="105" selection-start-column="21" selection-end-line="105" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="24" selection-start-line="24" selection-end-line="34" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/factura.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="21" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/operario.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="159" column="12" selection-start-line="159" selection-start-column="12" selection-end-line="159" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -570,10 +517,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/utils/gcs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/factura.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="21" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/cliente.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="67" column="38" lean-forward="true" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/operario.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="155" column="19" lean-forward="true" selection-start-line="155" selection-start-column="19" selection-end-line="155" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/operario.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="98" column="10" lean-forward="true" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models/service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="568" column="42" selection-start-line="568" selection-start-column="42" selection-end-line="568" selection-end-column="42" />
+        <state relative-caret-position="26">
+          <caret line="543" column="63" lean-forward="true" selection-start-line="543" selection-start-column="63" selection-end-line="543" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="46" column="57" selection-start-line="46" selection-start-column="57" selection-end-line="46" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/chat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="260" column="60" lean-forward="true" selection-start-line="260" selection-start-column="60" selection-end-line="260" selection-end-column="60" />
         </state>
       </provider>
     </entry>
