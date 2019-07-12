@@ -372,7 +372,7 @@ serviceModel.setBudget = (serviceId, budgetData, callback) => {
 					});
                     pushMessaging.adminChatToken( (error, admin_token) => {
                         if (error === null) {
-                            serviceModel.sendPushToAdmin(serviceData.service, admin_token, serviceData.uid, "Presupuesto actualizado");
+                            serviceModel.sendPushToAdmin(serviceId, admin_token, budgetData.uid, "Presupuesto actualizado");
                         }
                         callback(null, "updated ok");
                     });
@@ -540,7 +540,7 @@ serviceModel.downlaodFromServiceGCS = (name, callback) => {
 				const options = {
 					destination: path
 				};
-				bucket.file('/service/'+name).download(options)
+				bucket.file('service/'+name).download(options)
 					.then(file =>  {
 						resolve();
 					}).catch(err => {

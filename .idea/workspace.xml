@@ -7,10 +7,121 @@
   <component name="ChangeListManager">
     <list default="true" id="ed79abe9-e12f-46ab-a771-37d00527b6da" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/downloads/K5FbU5NB1xo4xHM8tw8vuOpY.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/downloads/chat/LKNaJJLo06ejRvTRXzSzyRo6.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/models/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/chat.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/operario.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/operario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/chat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/1NyuFMQMeBpLV4-4QLvFPHWt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/5E_pn1LtUpMTP415eRd62gpc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/Atc8_NF6o_qse_ZpEb87Yz6K.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/LKNaJJLo06ejRvTRXzSzyRo6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/QlC2pfbaDIAHNGwjjyO8oiiy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/RF-pdcHMA5Xli6TjwU_vvtp1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/RWbjatZPiIIrynyZKHZOKdfh.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/SLHVsPZsEiz4rHhbiXSjmRGS" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/UWyQdtSm7JK_utQpc0K1MI-K" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/Xm6N5ge1Hqgk78oeHygUBO2-" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/bDxzUhpFqr3F7YOyo-n_ROWr.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/fxN5Fx0j-MPHvjSkYgYf2p0A" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/im5LIiXvsEq5qH9WTs_G214E" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/kXAtXTT-1goIbosRB1HvHj9J.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/lOLq5xGzJ80rM6p9PeEb9lHq" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/lRndahuv-N5bYJMyrrH8dJTv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/mbgmQ4-TIXNZBPg6iu5y7FtQ" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/n9b5-VN4y6HmbHdQUniKShdq.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/qQGXPNs-GmPu2UoDVEMfTupb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/rLpSb0-E0fCLiI88oOLmOZPe.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/soPqzyS5Wy-IcYyjpvTGij0w.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/tr3sry9Lqk5avAWruFgsPyjY" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/uzUb-Iojd8FYlvCybSNDkjKq.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/vfH1T2yILF_aBIaJRS_TANmU" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/chat/zbOWgUx8AkHBhcOigGaAdmrG.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/-MI2FLXwnX-kOSyfr590vRan.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/05lbcaVVxluLLDPPi3DVghzn.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/1AVf415n1-2vKrTTgO3y_4eI.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/3ry8Cv0Q_Njxu1YS3_nT88_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/4NzOQnpl1vV_F32kF3XUPxRX.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/4iQEvzpbLNuO2ZEsAde3KOtx.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/5If-f4Ii4zLW2jseTnd1DB20.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/5TPInoWGOQ2TBqN0wofqqzk4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/6mNhtn236AyfVmZySIfaXl3l.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/7GkWgAM2JiXV3nsc1pkb8Jpb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/90INJZ0H519ffq2-oT3lqJWe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/9nlsEHbK6eoc-qdBn7lwkXE3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/A1dtqcxhzCGfrAQKCo7qEmp4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/Brz6zoaVcHk9Up-vvV3peWN2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/BxOCjXxHUTGr8I_1YrkGC0GH.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/EHcTN5oEVVyLmNZZCOq5t1Ex.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/ETEZtu8xEId2vR2HkQon3AKz.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/F-raYJtrYnooEtqTaAZMxDYS.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/G7O3johNjz1DJvgHr0G-aCTI.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/I-1V78PFuNNveI8PChokld3K.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/IPbYxh7dBTODwyEPug1iLOL1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/Is7XHzeSzfu4E0xKqUNz5B4W.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/J73pdoEqSR-FDL5y6106QA-K.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/KWeLsoG2lja8WrmJLTSZdxGU.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/LPqXMWF9qnHlTDi7niEvmvmJ.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/MPnDjAYAYfywiemgp-nqXsGm.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/MwcPsbNjG8w_yP5pzguOE8r0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/NaH-ljJyhPf7rD7qrg2_m4o_" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/OWgJ0X2tPK-5x3bsqBi6ePHW.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/OoOG_drQ0I3q36mCiG9dnHCd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/OzKpQRv7TodqCEmw2W2d_KXe.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/Qi2FAzbdBXNgaxa4aUh2jHgN.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/RKCi88qBqMLP7Y8-GvxHHtZ5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/RfOATdFCSPCnnEQzuwfQqYV-.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/SRRADSmtS802CVaS8x-xFlFA.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/THoCFWFRq0fperUPAh4yw4uS.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/U7oU-1ffn08GehoX2dMlCW3F.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/VB0fsyCe0oL0lmN00ONILfkC.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/VH0wf338TwhI-BV9b-qygKyv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/VKeb5w33Cd6zeVYLF4ZUsZwG.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/VT1Q-muzVIl0i5AwvOqA4UBM.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/WEzcvpWixOgM982K0ZxvYraG.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/WNlj94zCQ2T95IveCPt2Tawc.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/WfVWd_UnnJbrtVA8uFC9MsNQ" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/WqphAk3imQvnZeQf-hn0UL9X.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/X7M-MLrKLqfd2cuRh4CDfrvF.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/XZ7PV6ds_PRkUehjKSYe6kXF.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/XyaQ73LPNppdOQEWDHoYnkcE.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/Y3Nqpp4wA3TFSv-MyakzutSH.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/Y3lGrNQ7GVThw-JuIzkdTByM.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/ZwWTLjHNyC7sgEwH9AkF_IAu" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/aDfNrYbImLG4022Asq9bS_5U.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/asHxwbRSpk4TWY7Z_oYtQdtj.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/csxbSzqDWbaeEE1lyXnnPgxw.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/d35C0DYyxfEiBYxT6VweTp1X.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/e6x27lE_4iV-UU9KV_5iTnSY" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/e8Qo3hB8MrNqOgB1QM0UIF7g.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/fR4hQXUxREZTZSq28q9SzijL.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/hLswFg0gqmxZ5jqpOiA6Getk.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/hQSFVW5F0lv4ZHmWCfHWY8Uf.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/hY1QhwOJLPNgYWvzb5_3nmFV.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/hiUd-MsOdQQmrRfjthJS8u3e.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/huRky-ogCU9nlVGzUVeLJ7UQ.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/iLFpd7C-B9-z2R-fV8eoOPHv.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/iMbrBha0gYr1OPneGnO7cpeT.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/k7C06BdZhWcROBB4emmK2CNP.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/l0gP9yPHUO3Hg5O7g9neS-d7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/mFdkoMQ-8XoMh3DT-9gGcfXQ.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/nOOOx_sbw3iIK2a4mUkp_DrK.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/nWw6Fj1i4ASmMxiH--qN1Vm9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/oRPdzTpuUeI6h7gXTWvS6wvh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/oaM8H23-rv6xuZJAMReZ2V8G.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/pmjchrsmHyTzHiT23zOoKriP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/pskOM0Jq7XSeMGZtpAF0z7_f.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/qfevGxHA5TLN16q-zQ7OmIFh.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/s2c9-HCrQ7vZQ7KO_a6siQGd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/sc8cBVUjOx2KtB-JcNFMG1v0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/ss1VAioAb7ZEuveUNXtGBOky.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/tvgLedmpcoYt8QewtgJqH9Qf.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/uWSmjzkvmEiBKuNLGMiLwmMc.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/urBLAlOjZrzo2ZsMdOzI9lQj.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/x2P8zsJJDldjk-Sm1TyOh_95.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/xP_rwilT3e0b5g8uDkT83vSk.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/xiY-1kbFypvBqUu8fbMbXo4B.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/service/y4XtLDhqPJB2PWZOsoNCNLFU.jpg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,28 +135,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/factura.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="77" column="37" lean-forward="true" selection-start-line="77" selection-start-column="37" selection-end-line="77" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="26">
-              <caret line="543" column="63" lean-forward="true" selection-start-line="543" selection-start-column="63" selection-end-line="543" selection-end-column="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/cliente.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9">
-              <caret line="45" column="56" selection-start-line="45" selection-start-column="56" selection-end-line="45" selection-end-column="56" />
+            <state relative-caret-position="303">
+              <caret line="370" column="39" lean-forward="true" selection-start-line="370" selection-start-column="39" selection-end-line="370" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -53,8 +146,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/operario.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="155" column="19" lean-forward="true" selection-start-line="155" selection-start-column="19" selection-end-line="155" selection-end-column="19" />
+            <state relative-caret-position="2635">
+              <caret line="155" column="19" selection-start-line="155" selection-start-column="19" selection-end-line="155" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -62,8 +155,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/cliente.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="67" column="38" lean-forward="true" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
+            <state relative-caret-position="1139">
+              <caret line="67" column="38" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -72,7 +165,16 @@
         <entry file="file://$PROJECT_DIR$/routes/operario.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="212">
-              <caret line="98" column="10" lean-forward="true" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="10" />
+              <caret line="98" column="10" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/service.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="309">
+              <caret line="247" column="28" selection-start-line="247" selection-start-column="28" selection-end-line="247" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -89,8 +191,35 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/chat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="260" column="60" lean-forward="true" selection-start-line="260" selection-start-column="60" selection-end-line="260" selection-end-column="60" />
+            <state relative-caret-position="150">
+              <caret line="206" column="46" selection-start-line="206" selection-start-column="36" selection-end-line="206" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/sendpush.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="157">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/chat.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="109" column="27" lean-forward="true" selection-start-line="109" selection-start-column="27" selection-end-line="109" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/gcs.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="64" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -125,6 +254,7 @@
       <find>last</find>
       <find>service</find>
       <find>sendMsgToOperario</find>
+      <find>upload</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -148,19 +278,19 @@
         <option value="$PROJECT_DIR$/models/storage.js" />
         <option value="$PROJECT_DIR$/routes/storage.js" />
         <option value="$PROJECT_DIR$/utils/gcs" />
-        <option value="$PROJECT_DIR$/utils/gcs.js" />
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/utils/sendpush.js" />
-        <option value="$PROJECT_DIR$/routes/chat.js" />
         <option value="$PROJECT_DIR$/routes/cliente.js" />
         <option value="$PROJECT_DIR$/models/cliente.js" />
-        <option value="$PROJECT_DIR$/routes/service.js" />
         <option value="$PROJECT_DIR$/routes/factura.js" />
         <option value="$PROJECT_DIR$/models/operario.js" />
         <option value="$PROJECT_DIR$/models/factura.js" />
-        <option value="$PROJECT_DIR$/models/service.js" />
         <option value="$PROJECT_DIR$/routes/operario.js" />
         <option value="$PROJECT_DIR$/models/chat.js" />
+        <option value="$PROJECT_DIR$/utils/gcs.js" />
+        <option value="$PROJECT_DIR$/routes/service.js" />
+        <option value="$PROJECT_DIR$/models/service.js" />
+        <option value="$PROJECT_DIR$/routes/chat.js" />
       </list>
     </option>
   </component>
@@ -176,6 +306,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -208,13 +339,12 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562847752619" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562920185021" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.3.1" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -286,12 +416,13 @@
       <workItem from="1561981791922" duration="808000" />
       <workItem from="1562052584374" duration="12150000" />
       <workItem from="1562138648184" duration="7744000" />
-      <workItem from="1562835253532" duration="10719000" />
+      <workItem from="1562835253532" duration="11422000" />
+      <workItem from="1562917596313" duration="2431000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166104000" />
+    <option name="totallyTimeSpent" value="169238000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -306,7 +437,7 @@
     <frame x="1912" y="177" width="1456" height="886" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.59683794" visible="true" weight="0.21489972" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.59683794" visible="true" weight="0.21776505" />
       <window_info id="Image Layers" order="1" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -323,7 +454,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49928367" visible="true" weight="0.36387783" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49928367" visible="true" weight="0.33864543" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5007163" side_tool="true" weight="0.4236388" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -482,45 +613,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/sendpush.js">
+    <entry file="file://$PROJECT_DIR$/models/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="22" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/chat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="140" column="54" lean-forward="true" selection-start-line="140" selection-start-column="54" selection-end-line="140" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="24" selection-start-line="24" selection-end-line="34" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/cliente.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9">
-          <caret line="45" column="56" selection-start-line="45" selection-start-column="56" selection-end-line="45" selection-end-column="56" />
+        <state relative-caret-position="170">
+          <caret line="46" column="57" selection-start-line="46" selection-start-column="57" selection-end-line="46" selection-end-column="57" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/factura.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="77" column="37" lean-forward="true" selection-start-line="77" selection-start-column="37" selection-end-line="77" selection-end-column="37" />
+        <state relative-caret-position="1309">
+          <caret line="77" column="37" selection-start-line="77" selection-start-column="37" selection-end-line="77" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/gcs.js">
+    <entry file="file://$PROJECT_DIR$/routes/cliente.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="765">
+          <caret line="45" column="56" selection-start-line="45" selection-start-column="56" selection-end-line="45" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/operario.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2635">
+          <caret line="155" column="19" selection-start-line="155" selection-start-column="19" selection-end-line="155" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/cliente.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="67" column="38" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -531,45 +655,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/cliente.js">
+    <entry file="file://$PROJECT_DIR$/utils/gcs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="67" column="38" lean-forward="true" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/operario.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="155" column="19" lean-forward="true" selection-start-line="155" selection-start-column="19" selection-end-line="155" selection-end-column="19" />
+        <state relative-caret-position="153">
+          <caret line="9" column="64" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="64" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/operario.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
-          <caret line="98" column="10" lean-forward="true" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="10" />
+          <caret line="98" column="10" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="543" column="63" lean-forward="true" selection-start-line="543" selection-start-column="63" selection-end-line="543" selection-end-column="63" />
+        <state relative-caret-position="303">
+          <caret line="370" column="39" lean-forward="true" selection-start-line="370" selection-start-column="39" selection-end-line="370" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/auth.js">
+    <entry file="file://$PROJECT_DIR$/utils/sendpush.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="46" column="57" selection-start-line="46" selection-start-column="57" selection-end-line="46" selection-end-column="57" />
+        <state relative-caret-position="157">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="247" column="28" selection-start-line="247" selection-start-column="28" selection-end-line="247" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/chat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="109" column="27" lean-forward="true" selection-start-line="109" selection-start-column="27" selection-end-line="109" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/chat.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="260" column="60" lean-forward="true" selection-start-line="260" selection-start-column="60" selection-end-line="260" selection-end-column="60" />
+        <state relative-caret-position="150">
+          <caret line="206" column="46" selection-start-line="206" selection-start-column="36" selection-end-line="206" selection-end-column="46" />
         </state>
       </provider>
     </entry>

@@ -201,7 +201,7 @@ chatModel.sendMsgToOperario = (msg, image, destToken, operarioUID) => {
  *
  * @param image
  * @param operarioID
- * @param admin
+ * @param toAdmin
  * @param callback
  */
 chatModel.uploadToChatGCS = (image, operarioID, toAdmin, callback) => {
@@ -258,7 +258,7 @@ chatModel.downlaodFromChatGCS = (name, callback) => {
                 const options = {
                     destination: path
                 };
-                bucket.file('/chat/'+name).download(options)
+                bucket.file('chat/'+name).download(options)
                     .then(file =>  {
                         resolve();
                     }).catch(err => {

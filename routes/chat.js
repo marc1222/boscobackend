@@ -58,7 +58,8 @@ api.get('/downloadChatOperario', middleware.ensureAuth, function (req, res) {
             if (error === null) res.status(200).send({success: true, result: data});
             else res.status(error).send({success: false, result: data});
         });
-    }
+    } else res.status(400).send({success: false, result: "Bad request"});
+
 });
 /**
  *
@@ -70,7 +71,8 @@ api.get('/downloadChatAdmin', middleware.ensureAdminAuth, function (req, res) {
             if (error === null) res.status(200).send({success: true, result: data});
             else res.status(error).send({success: false, result: data});
         });
-    }
+    } else res.status(400).send({success: false, result: "Bad request"});
+
 });
 
 /**
@@ -96,7 +98,8 @@ api.post('/uploadChatOperario', [middleware.ensureAuth, md_upload], function (re
             if (error === null) res.status(200).send({success: true, result: data});
             else res.status(error).send({success: false, result: data});
         });
-    }
+    } else res.status(400).send({success: false, result: "Bad request"});
+
 });
 
 /**
@@ -108,7 +111,8 @@ api.post('/uploadChatAdmin', [middleware.ensureAdminAuth, md_upload], function (
             if (error === null) res.status(200).send({success: true, result: data});
             else res.status(error).send({success: false, result: data});
         });
-    }
+    } else res.status(400).send({success: false, result: "Bad request"});
+
 });
 
 /**
@@ -128,7 +132,7 @@ api.post('/sendMsgOperario', middleware.ensureAuth, function(req, res) {
             }
         });
     } else {
-        res.status(500).send({success: false, result: "Bad request"});
+        res.status(400).send({success: false, result: "Bad request"});
     }
 });
 

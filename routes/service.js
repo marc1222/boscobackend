@@ -266,7 +266,7 @@ api.put('/uploadServiceOperario', [middleware.ensureAuth, md_upload], function (
 			if (error === null) res.status(200).send({success: true, result: data});
 			else res.status(error).send({success: false, result: data});
 		});
-	}
+	} else res.status(400).send({success: false, result: "Bad request"});
 });
 
 /**
