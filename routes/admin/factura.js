@@ -1,15 +1,16 @@
 'use strict';
-const express = require('express');
 
-const api = express.Router();
-const middleware = require('../middlewares/authenticated');
-const facturaModel = require('../models/factura');
+const config = require('../../config');
+const api = config.getExpress();
+
+const middleware = require('../../middlewares/admin_auth');
+const facturaModel = require('../../core/factura');
 
 
 /**
- * Get all facturas
+ * Get all facturas admin call
  */
-api.get('/factura', middleware.ensureAdminAuth, function(req, res) {
+api.get('/factura', middleware.ensureAuth, function(req, res) {
     facturaModel.getAllFactura((error, result) => {
         if (error === null) res.status(200).send({success: true, result: result});
         else res.status(error).send({success: true, result: result});
@@ -17,7 +18,7 @@ api.get('/factura', middleware.ensureAdminAuth, function(req, res) {
 });
 
 /**
- * ADMIN: Get factura by Id
+ * Get factura by Id
  */
 api.get('/facturaById', middleware.ensureAuth, function(req, res) {
     if (req.query.factura !== undefined) {

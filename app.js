@@ -1,19 +1,31 @@
-'use strict'
+'use strict';
 
 const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
 
+const admin = require('firebase-admin');
+const serviceAccount = require('./Key.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
 //cargar rutas
-//var auth_route = require('./routes/auth');
-const service_route = require('./routes/service');
-const auth_route = require('./routes/auth');
-const chat_route = require('./routes/chat');
-const cliente_route = require('./routes/cliente');
-const operario_route = require('./routes/operario');
-const factura_route = require('./routes/factura');
-const storage_route = require('./routes/storage');
+//ADMIN ROUTES FILES
+const admin_service_route = require('./routes/admin/servicio');
+const admin_auth_route = require('./routes/admin/auth');
+const admin_chat_route = require('./routes/admin/chat');
+const admin_cliente_route = require('./routes/admin/cliente');
+const admin_operario_route = require('./routes/admin/operario');
+const admin_factura_route = require('./routes/admin/factura');
+//USER ROUTES FILES
+const user_service_route = require('./routes/user/servicio');
+const user_chat_route = require('./routes/user/chat');
+const user_cliente_route = require('./routes/user/cliente');
+const user_operario_route = require('./routes/user/operario');
+
 
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(bodyParser.json({limit: '50mb', extended: true}));
@@ -29,22 +41,16 @@ app.use((req, res, next) => {
   next();
 });
 
-//rutas base
+app.use('/api', admin_service_route);
+app.use('/api', admin_chat_route);
+app.use('/api', admin_auth_route);
+app.use('/api', admin_cliente_route);
+app.use('/api', admin_operario_route);
+app.use('/api', admin_factura_route);
 
-app.use('/api', service_route);
-app.use('/api', chat_route);
-app.use('/api', auth_route);
-app.use('/api', cliente_route);
-app.use('/api', operario_route);
-app.use('/api', factura_route);
-app.use('/api', storage_route);
-
-const admin = require('firebase-admin');
-const serviceAccount = require('./Key.json');
-
-admin.initializeApp({
-	credential: admin.credential.cert(serviceAccount)
-});
-
+app.use('/api', user_service_route);
+app.use('/api', user_chat_route);
+app.use('/api', user_cliente_route);
+app.use('/api', user_operario_route);
 
 module.exports = app;

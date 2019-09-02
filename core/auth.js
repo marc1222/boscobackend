@@ -1,40 +1,7 @@
-'use strict'
+'use strict';
 
 var authModel = {};
-
-
 var admin = require('firebase-admin');
-/**
- * Valida un token d'un operari
- * @param token
- * @param callback
- */
-// authModel.validateToken = (token, callback) => {
-// 	const idToken = token;
-// 	admin.auth().verifyIdToken(idToken).then((decodedToken) => {
-// 	    var uid = decodedToken.uid;
-// 	    callback(null, uid);
-//   }).catch(function(error) {
-// 		callback(500, error.message);
-//   });
-// };
-// /**
-//  * Valida el token d'uin admin
-//  * @param token
-//  * @param callback
-//  */
-// authModel.validateAdminToken = (token, callback) => {
-// 	const idToken = token;
-// 	if (idToken !== undefined) {
-// 		admin.auth().verifyIdToken(idToken).then((decodedToken) => {
-// 			const uid = decodedToken.uid;
-// 			if (decodedToken.adminUser ===  true) callback(null, uid);
-// 			else  callback(400, "Not admin token");
-// 		}).catch(function(error) {
-// 			callback(500, error.message);
-// 		});
-// 	}	else callback(500, "No token");
-// };
 
 /**
  * Valida que l'admin sigui ell, i ho retonra
@@ -54,6 +21,7 @@ authModel.validateAdmin = (token, callback) => {
 		callback(500, error.message);
 	});
 };
+
 /**
  * Crea un token d'admin i el retorna en el callback
  * @param uid
@@ -68,8 +36,9 @@ authModel.createAdminCustomToken = (uid, callback) => {
 			.then( customToken => {
 				callback(null, customToken);
 			}).catch(err => {
-			callback(500, err.message);
-		});
+				callback(400, err.message);
+			});
 	} else callback(500, "No token");
 };
+
 module.exports = authModel;

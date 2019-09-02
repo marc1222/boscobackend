@@ -1,58 +1,23 @@
 'use strict';
-const express = require('express');
-const api = express.Router();
 
-const serviceModel = require('../models/service');
-const facturaModel = require('../models/factura');
-const middleware = require('../middlewares/authenticated');
+const config = require('../../config');
+const api = config.getExpress();
+
+const middleware = require('../../middlewares/user_auth');
+const serviceModel = require('../../core/servicio');
+const facturaModel = require('../../core/factura');
 
 const multipart = require('connect-multiparty');
 const md_upload = multipart({uploadDir: './uploads/service'});
-/**
- ******************************** GETTERS ********************************
- */
+
+//--------------------------------------------------------------------------//
 
 /**
- * ADMIN: Get all services
- */
-api.get('/service', middleware.ensureAdminAuth, function(req, res) {
-	serviceModel.getAllService((error, result) => {
-		if (error === null) res.status(200).send({success: true, result: result});
-		else res.status(error).send({success: true, result: result});
-	});
-});
-
-/**
- * ADMIN: Get service by ID
- */
-api.get('/serviceById', middleware.ensureAdminAuth, function(req, res) {
-	if (req.query.service !== undefined) {
-		serviceModel.getServiceById(req.query.service, (error, result) => {
-			if (error === null) res.status(200).send({success: true, result: result});
-			else res.status(error).send({success: true, result: result});
-		});
-	} else res.status(400).send({success: false, result: "Bad request"});
-});
-
-/**
- *	OPERARIO: Get alerts by User ID
+ *	Operario call to Get ALERTS by User ID
+ *	Required params: -
  */
 api.get('/alertsUser', middleware.ensureAuth, function(req, res) {
 	serviceModel.getAlerts(req.uid, (error, result ) => {
-		if (error === null) {
-			res.status(200).send({success: true, result: result});
-		}
-		else {
-			res.status(error).send({success: false, result: result});
-		}
-	});
-});
-
-/**
- *	OPERARIO: Get open services by User ID
- */
-api.get('/serviceOpenUser', middleware.ensureAuth, function(req, res) {
-	serviceModel.getserviceOpen(req.uid, (error, result ) => {
 		if (error === null) {
 			res.status(200).send({success: true, result: result});
 		}
@@ -61,8 +26,22 @@ api.get('/serviceOpenUser', middleware.ensureAuth, function(req, res) {
 });
 
 /**
-*	Get closed services by User ID
-*/
+ *	Operario call to Get OPEN services by operario ID
+ *	Required params: -
+ */
+api.get('/serviceOpenUser', middleware.ensureAuth, function(req, res) {
+	serviceModel.getServiceOpen(req.uid, (error, result ) => {
+		if (error === null) {
+			res.status(200).send({success: true, result: result});
+		}
+		else res.status(error).send({success: false, result: result});
+	});
+});
+
+/**
+ *	Operario call to Get CLOSED services by operario ID
+ *	Required params: min & max (periods)
+ */
 api.get('/serviceCloseUser', middleware.ensureAuth ,function(req, res) {
     const limitData = {
         max: req.query.max,
@@ -74,10 +53,11 @@ api.get('/serviceCloseUser', middleware.ensureAuth ,function(req, res) {
 			else res.status(error).send({success: false, result: result});
 		});
 	} else res.status(400).send({success: false, result: "Bad request"});
-
 });
+
 /**
- * OPERARIO
+ * Operario call to download a document from /service/ folder from google storage
+ * Required parmas: image name
  */
 api.get('/downloadServiceOperario', middleware.ensureAuth, function (req, res) {
 	const name = req.query.name;
@@ -88,74 +68,12 @@ api.get('/downloadServiceOperario', middleware.ensureAuth, function (req, res) {
 		});
 	} else res.status(400).send({success: false, result: "Bad request"});
 });
-/**
- * ADMIN
- */
-api.get('/downloadServiceAdmin', middleware.ensureAdminAuth, function (req, res) {
-	const name = req.query.name;
-	if (name !== undefined) {
-		serviceModel.downlaodFromServiceGCS(name, (error, data) => {
-			if (error === null) res.status(200).send({success: true, result: data});
-			else res.status(error).send({success: false, result: data});
-		});
-	} else res.status(400).send({success: false, result: "Bad request"});
-});
 
+//--------------------------------------------------------------------------//
 
 /**
- * *************************** POSTS *******************************
- */
-
-/**
- * ADMIN: Creates a new service
- */
-api.post('/service',  middleware.ensureAdminAuth, function(req, res) {
-	const params = req.body;
-	if (params.address !== undefined && params.budget !== undefined && params.cliente !== undefined && params.note !== undefined && params.priority !== undefined
-		&& params.title !== undefined && params.type !== undefined && params.operario !== undefined && params.isBudget !== undefined) {
-		let scheduled_date = '';
-		if (params.scheduled_date !== undefined) scheduled_date = params.scheduled_date;
-		const serviceData = {
-			address: params.address,
-			budget: params.budget,
-			cliente: params.cliente,
-			note: params.note,
-			priority: params.priority,
-			title: params.title,
-			type: params.type,
-			operario: params.operario,
-			scheduled_date: scheduled_date,
-			isBudget: params.isBudget
-		};
-		serviceModel.addService(serviceData, (error, result) => {
-			if (error === null) res.status(200).send({success: true, result: result});
-			else res.status(error).send({success: true, result: result});
-		});
-	} else res.status(400).send({success: false, result: "Bad request"});
-});
-
-
-/**
- ******************************** UPDATES *******************************
- */
-/**
- * ADMIN: Reasign service by providing service document identifier and new operario doc id
- */
-api.put('/reasignService', middleware.ensureAdminAuth, function (req, res) {
-   if (req.body.service !== undefined && req.body.operario !== undefined) {
-        const reasignData = {
-            service: req.body.service,
-            newOperario: req.body.operario
-        };
-        serviceModel.reasignService(reasignData, (error, result) => {
-            if (error === null) res.status(200).send({success: true, result: result});
-            else res.status(error).send({success: true, result: result});
-        });
-   } else res.status(400).send({success: false, result: "Bad request"});
-});
-
-/**
- *	OPERARIO: Accept service by Service ID
+ *	Operario call that ACCEPT service by Service ID
+ *	Required params: service UID
  */
 api.put('/serviceAccept',  middleware.ensureAuth, function(req, res) {
 	const service = req.body.service;
@@ -176,7 +94,8 @@ api.put('/serviceAccept',  middleware.ensureAuth, function(req, res) {
 });
 
 /**
- *	OPERARIO: Deny service by Service ID
+ *	Operario call that DENY service by Service ID
+ *	Required params: service UID
  */
 api.put('/serviceDeny', middleware.ensureAuth, function(req, res) {
 	const service = req.body.service;
@@ -197,7 +116,8 @@ api.put('/serviceDeny', middleware.ensureAuth, function(req, res) {
 });
 
 /**
- *	OPERARIO: End service by Service ID
+ *	Operario call that ENDS service by Service ID
+ *	Required params: service UID, nota
  */
 api.put('/serviceEnd', middleware.ensureAuth, function(req, res) {
 	const service = req.body.service;
@@ -229,13 +149,12 @@ api.put('/serviceEnd', middleware.ensureAuth, function(req, res) {
 			}
 			else res.status(error).send({success:false, result: result});
 		});
-	} else {
-		res.status(400).send({success: false, result: "Bad request"});
-	}
+	} else res.status(400).send({success: false, result: "Bad request"});
 });
 
 /**
- * OPERARIO: Register new budget for a specified service, called by operario
+ * Operario call that Register a new budget for a specified service
+ * Required params: total_price, costs_price, service UID
  */
 api.put('/registerBudget', middleware.ensureAuth, function(req, res) {
 	const params = req.body;
@@ -253,7 +172,8 @@ api.put('/registerBudget', middleware.ensureAuth, function(req, res) {
 });
 
 /**
- * OPERARIO: upload multiple files operario
+ * Operario call to upload N files to /service/ folder from google storage
+ * Required params: files to upload (imagen_0, imagen_1, ...), service UID, number of files to upload
  */
 api.put('/uploadServiceOperario', [middleware.ensureAuth, md_upload], function (req, res) {
 	if (req.files && req.body.service !== undefined && req.body.files !== undefined) {
@@ -269,19 +189,4 @@ api.put('/uploadServiceOperario', [middleware.ensureAuth, md_upload], function (
 	} else res.status(400).send({success: false, result: "Bad request"});
 });
 
-/**
- * ADMIN: validar que un operario ha pagado un periodo
- */
-api.put('payPeriod', middleware.ensureAdminAuth, function(req, res) {
-	if (req.body.periode !== undefined && req.body.operario !== undefined) {
-		const periodData = {
-			periode: req.body.periode,
-			operario: req.body.operario
-		};
-		serviceModel.payPeriod(periodData, (error, result) => {
-			if (error === null) res.status(200).send({success: true, result: result});
-			else res.status(error).send({success: false, result: result});
-		});
-	} else res.status(400).send({success: false, result: "Bad request"});
-});
 module.exports = api;

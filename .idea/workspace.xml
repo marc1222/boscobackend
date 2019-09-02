@@ -1,127 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/models/service.js" line="262" />
-    <bookmark url="file://$PROJECT_DIR$/models/factura.js" line="75" mnemonic="8" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="ed79abe9-e12f-46ab-a771-37d00527b6da" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/auth.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/chat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/cliente.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/factura.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/operario.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/middlewares/admin_auth.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/middlewares/user_auth.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orm/chat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orm/general_model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orm/operario.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orm/servicio.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/admin/chat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/admin/servicio.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/user/chat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/user/cliente.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/user/factura.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/user/operario.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/PushNotifications/EXPOpush.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/PushNotifications/FCMpush.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/PushNotifications/PushUtils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/downloads/chat/LKNaJJLo06ejRvTRXzSzyRo6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/chat.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/chat.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/1NyuFMQMeBpLV4-4QLvFPHWt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/5E_pn1LtUpMTP415eRd62gpc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/Atc8_NF6o_qse_ZpEb87Yz6K.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/LKNaJJLo06ejRvTRXzSzyRo6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/QlC2pfbaDIAHNGwjjyO8oiiy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/RF-pdcHMA5Xli6TjwU_vvtp1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/RWbjatZPiIIrynyZKHZOKdfh.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/SLHVsPZsEiz4rHhbiXSjmRGS" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/UWyQdtSm7JK_utQpc0K1MI-K" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/Xm6N5ge1Hqgk78oeHygUBO2-" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/bDxzUhpFqr3F7YOyo-n_ROWr.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/fxN5Fx0j-MPHvjSkYgYf2p0A" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/im5LIiXvsEq5qH9WTs_G214E" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/kXAtXTT-1goIbosRB1HvHj9J.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/lOLq5xGzJ80rM6p9PeEb9lHq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/lRndahuv-N5bYJMyrrH8dJTv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/mbgmQ4-TIXNZBPg6iu5y7FtQ" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/n9b5-VN4y6HmbHdQUniKShdq.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/qQGXPNs-GmPu2UoDVEMfTupb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/rLpSb0-E0fCLiI88oOLmOZPe.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/soPqzyS5Wy-IcYyjpvTGij0w.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/tr3sry9Lqk5avAWruFgsPyjY" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/uzUb-Iojd8FYlvCybSNDkjKq.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/vfH1T2yILF_aBIaJRS_TANmU" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/chat/zbOWgUx8AkHBhcOigGaAdmrG.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/-MI2FLXwnX-kOSyfr590vRan.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/05lbcaVVxluLLDPPi3DVghzn.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/1AVf415n1-2vKrTTgO3y_4eI.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/3ry8Cv0Q_Njxu1YS3_nT88_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/4NzOQnpl1vV_F32kF3XUPxRX.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/4iQEvzpbLNuO2ZEsAde3KOtx.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/5If-f4Ii4zLW2jseTnd1DB20.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/5TPInoWGOQ2TBqN0wofqqzk4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/6mNhtn236AyfVmZySIfaXl3l.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/7GkWgAM2JiXV3nsc1pkb8Jpb.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/90INJZ0H519ffq2-oT3lqJWe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/9nlsEHbK6eoc-qdBn7lwkXE3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/A1dtqcxhzCGfrAQKCo7qEmp4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/Brz6zoaVcHk9Up-vvV3peWN2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/BxOCjXxHUTGr8I_1YrkGC0GH.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/EHcTN5oEVVyLmNZZCOq5t1Ex.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/ETEZtu8xEId2vR2HkQon3AKz.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/F-raYJtrYnooEtqTaAZMxDYS.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/G7O3johNjz1DJvgHr0G-aCTI.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/I-1V78PFuNNveI8PChokld3K.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/IPbYxh7dBTODwyEPug1iLOL1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/Is7XHzeSzfu4E0xKqUNz5B4W.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/J73pdoEqSR-FDL5y6106QA-K.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/KWeLsoG2lja8WrmJLTSZdxGU.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/LPqXMWF9qnHlTDi7niEvmvmJ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/MPnDjAYAYfywiemgp-nqXsGm.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/MwcPsbNjG8w_yP5pzguOE8r0.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/NaH-ljJyhPf7rD7qrg2_m4o_" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/OWgJ0X2tPK-5x3bsqBi6ePHW.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/OoOG_drQ0I3q36mCiG9dnHCd.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/OzKpQRv7TodqCEmw2W2d_KXe.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/Qi2FAzbdBXNgaxa4aUh2jHgN.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/RKCi88qBqMLP7Y8-GvxHHtZ5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/RfOATdFCSPCnnEQzuwfQqYV-.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/SRRADSmtS802CVaS8x-xFlFA.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/THoCFWFRq0fperUPAh4yw4uS.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/U7oU-1ffn08GehoX2dMlCW3F.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/VB0fsyCe0oL0lmN00ONILfkC.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/VH0wf338TwhI-BV9b-qygKyv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/VKeb5w33Cd6zeVYLF4ZUsZwG.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/VT1Q-muzVIl0i5AwvOqA4UBM.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/WEzcvpWixOgM982K0ZxvYraG.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/WNlj94zCQ2T95IveCPt2Tawc.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/WfVWd_UnnJbrtVA8uFC9MsNQ" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/WqphAk3imQvnZeQf-hn0UL9X.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/X7M-MLrKLqfd2cuRh4CDfrvF.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/XZ7PV6ds_PRkUehjKSYe6kXF.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/XyaQ73LPNppdOQEWDHoYnkcE.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/Y3Nqpp4wA3TFSv-MyakzutSH.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/Y3lGrNQ7GVThw-JuIzkdTByM.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/ZwWTLjHNyC7sgEwH9AkF_IAu" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/aDfNrYbImLG4022Asq9bS_5U.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/asHxwbRSpk4TWY7Z_oYtQdtj.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/csxbSzqDWbaeEE1lyXnnPgxw.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/d35C0DYyxfEiBYxT6VweTp1X.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/e6x27lE_4iV-UU9KV_5iTnSY" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/e8Qo3hB8MrNqOgB1QM0UIF7g.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/fR4hQXUxREZTZSq28q9SzijL.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/hLswFg0gqmxZ5jqpOiA6Getk.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/hQSFVW5F0lv4ZHmWCfHWY8Uf.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/hY1QhwOJLPNgYWvzb5_3nmFV.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/hiUd-MsOdQQmrRfjthJS8u3e.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/huRky-ogCU9nlVGzUVeLJ7UQ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/iLFpd7C-B9-z2R-fV8eoOPHv.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/iMbrBha0gYr1OPneGnO7cpeT.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/k7C06BdZhWcROBB4emmK2CNP.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/l0gP9yPHUO3Hg5O7g9neS-d7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/mFdkoMQ-8XoMh3DT-9gGcfXQ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/nOOOx_sbw3iIK2a4mUkp_DrK.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/nWw6Fj1i4ASmMxiH--qN1Vm9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/oRPdzTpuUeI6h7gXTWvS6wvh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/oaM8H23-rv6xuZJAMReZ2V8G.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/pmjchrsmHyTzHiT23zOoKriP" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/pskOM0Jq7XSeMGZtpAF0z7_f.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/qfevGxHA5TLN16q-zQ7OmIFh.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/s2c9-HCrQ7vZQ7KO_a6siQGd.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/sc8cBVUjOx2KtB-JcNFMG1v0.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/ss1VAioAb7ZEuveUNXtGBOky.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/tvgLedmpcoYt8QewtgJqH9Qf.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/uWSmjzkvmEiBKuNLGMiLwmMc.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/urBLAlOjZrzo2ZsMdOzI9lQj.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/x2P8zsJJDldjk-Sm1TyOh_95.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/xP_rwilT3e0b5g8uDkT83vSk.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/xiY-1kbFypvBqUu8fbMbXo4B.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/service/y4XtLDhqPJB2PWZOsoNCNLFU.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middlewares/authenticated.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/auth.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/chat.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/cliente.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/factura.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/operario.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/servicio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/storage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/chat.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/cliente.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin/cliente.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/factura.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin/factura.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/operario.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin/operario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/user/servicio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/storage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/db.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/gcs.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/filtetype.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/sendpush.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -129,120 +51,131 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+            <file pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/orm/chat.js">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="1292">
+                    <caret line="76" selection-start-line="76" selection-end-line="76" selection-end-column="30" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/orm/general_model.js">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="724">
+                    <caret line="76" column="8" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="8" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/orm/servicio.js">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="707">
+                    <caret line="75" column="23" lean-forward="true" selection-start-line="75" selection-start-column="23" selection-end-line="75" selection-end-column="23" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="backend2" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/service.js">
+        <entry file="file://$PROJECT_DIR$/routes/admin/chat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="370" column="39" lean-forward="true" selection-start-line="370" selection-start-column="39" selection-end-line="370" selection-end-column="39" />
+            <state relative-caret-position="986">
+              <caret line="58" column="11" selection-start-line="58" selection-end-line="59" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/operario.js">
+        <entry file="file://$PROJECT_DIR$/core/chat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2635">
-              <caret line="155" column="19" selection-start-line="155" selection-start-column="19" selection-end-line="155" selection-end-column="19" />
+            <state relative-caret-position="1394">
+              <caret line="82" selection-start-line="82" selection-end-line="121" selection-end-column="11" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/cliente.js">
+        <entry file="file://$PROJECT_DIR$/core/cliente.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1139">
-              <caret line="67" column="38" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
+            <state relative-caret-position="391">
+              <caret line="23" column="51" selection-start-line="23" selection-start-column="51" selection-end-line="23" selection-end-column="51" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/operario.js">
+        <entry file="file://$PROJECT_DIR$/core/factura.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="98" column="10" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="10" />
+            <state relative-caret-position="374">
+              <caret line="22" column="28" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/service.js">
+        <entry file="file://$PROJECT_DIR$/core/operario.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="247" column="28" selection-start-line="247" selection-start-column="28" selection-end-line="247" selection-end-column="28" />
+            <state relative-caret-position="1836">
+              <caret line="108" column="2" selection-start-line="108" selection-start-column="2" selection-end-line="108" selection-end-column="2" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/factura.js">
+        <entry file="file://$PROJECT_DIR$/core/auth.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="21" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="21" />
+            <state relative-caret-position="493">
+              <caret line="29" column="55" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="55" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/models/chat.js">
+        <entry file="file://$PROJECT_DIR$/core/servicio.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="206" column="46" selection-start-line="206" selection-start-column="36" selection-end-line="206" selection-end-column="46" />
+            <state relative-caret-position="39">
+              <caret line="330" column="18" lean-forward="true" selection-start-line="330" selection-start-column="18" selection-end-line="330" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/sendpush.js">
+        <entry file="file://$PROJECT_DIR$/utils/PushNotifications/FCMpush.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="34" selection-start-line="34" selection-end-line="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/chat.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="109" column="27" lean-forward="true" selection-start-line="109" selection-start-column="27" selection-end-line="109" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/gcs.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="64" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="64" />
+            <state relative-caret-position="323">
+              <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>serviceAccount</find>
-      <find>services</find>
-      <find>validateToken</find>
-      <find>validate</find>
-      <find>uploadToGCS</find>
-      <find>getAllService</find>
-      <find>downlaodFromServiceGCS</find>
-      <find>chatToken</find>
-      <find>admin</find>
-      <find>closeUs</find>
-      <find>getCh</find>
-      <find>sendPushNotificationFCM</find>
-      <find>push</find>
-      <find>operarioChatToken</find>
-      <find>deny</find>
       <find>adminChatToken</find>
       <find>toOperario</find>
       <find>/service</find>
@@ -250,11 +183,29 @@
       <find>open</find>
       <find>serviceEnd</find>
       <find>SERVICEeN</find>
-      <find>sendPushToAdmin</find>
       <find>last</find>
       <find>service</find>
       <find>sendMsgToOperario</find>
       <find>upload</find>
+      <find>weekIdentifier</find>
+      <find>serviceAdminCloseUser</find>
+      <find>updateToken</find>
+      <find>update</find>
+      <find>sendMshToOp</find>
+      <find>sendMsgToOp</find>
+      <find>sendMsg</find>
+      <find>sendChatMsgToAdmin</find>
+      <find>sendChat</find>
+      <find>gcs_tools</find>
+      <find>filetype</find>
+      <find>uploadToChatGCS</find>
+      <find>getCurrentOperario</find>
+      <find>pushEXPO</find>
+      <find>addGenericDoc</find>
+      <find>nulloperari</find>
+      <find>toAdmin</find>
+      <find>sendPushToOperario</find>
+      <find>sendPushToAdmin</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -263,42 +214,64 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/db.js" />
-        <option value="$PROJECT_DIR$/fbcontroller/generalAPI.js" />
-        <option value="$PROJECT_DIR$/utils/db.js" />
-        <option value="$PROJECT_DIR$/middlewares/authenticated.js" />
-        <option value="$PROJECT_DIR$/routes/auth.js" />
-        <option value="$PROJECT_DIR$/routes/operator.js" />
-        <option value="$PROJECT_DIR$/Key.json" />
-        <option value="$PROJECT_DIR$/models/auth.js" />
-        <option value="$PROJECT_DIR$/routes/operador.js" />
-        <option value="$PROJECT_DIR$/models/upload.js" />
         <option value="$PROJECT_DIR$/routes/storage" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/models/storage.js" />
         <option value="$PROJECT_DIR$/routes/storage.js" />
         <option value="$PROJECT_DIR$/utils/gcs" />
-        <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/utils/sendpush.js" />
         <option value="$PROJECT_DIR$/routes/cliente.js" />
-        <option value="$PROJECT_DIR$/models/cliente.js" />
         <option value="$PROJECT_DIR$/routes/factura.js" />
         <option value="$PROJECT_DIR$/models/operario.js" />
         <option value="$PROJECT_DIR$/models/factura.js" />
         <option value="$PROJECT_DIR$/routes/operario.js" />
-        <option value="$PROJECT_DIR$/models/chat.js" />
-        <option value="$PROJECT_DIR$/utils/gcs.js" />
-        <option value="$PROJECT_DIR$/routes/service.js" />
-        <option value="$PROJECT_DIR$/models/service.js" />
         <option value="$PROJECT_DIR$/routes/chat.js" />
+        <option value="$PROJECT_DIR$/models/chat.js" />
+        <option value="$PROJECT_DIR$/models/service.js" />
+        <option value="$PROJECT_DIR$/routes/service.js" />
+        <option value="$PROJECT_DIR$/models/auth.js" />
+        <option value="$PROJECT_DIR$/models/cliente.js" />
+        <option value="$PROJECT_DIR$/utils/db.js" />
+        <option value="$PROJECT_DIR$/utils/gcs.js" />
+        <option value="$PROJECT_DIR$/utils/PushNotifications/SendPush.js" />
+        <option value="$PROJECT_DIR$/utils/PushNotifications/EXPOpush.js" />
+        <option value="$PROJECT_DIR$/utils/PushNotifications/GCSpush.js" />
+        <option value="$PROJECT_DIR$/middlewares/authenticated.js" />
+        <option value="$PROJECT_DIR$/middlewares/admin_auth.js" />
+        <option value="$PROJECT_DIR$/middlewares/user_auth.js" />
+        <option value="$PROJECT_DIR$/routes/admin/factura.js" />
+        <option value="$PROJECT_DIR$/routes/admin/operario.js" />
+        <option value="$PROJECT_DIR$/routes/user/factura.js" />
+        <option value="$PROJECT_DIR$/routes/user/cliente.js" />
+        <option value="$PROJECT_DIR$/routes/admin/cliente.js" />
+        <option value="$PROJECT_DIR$/routes/admin/auth.js" />
+        <option value="$PROJECT_DIR$/routes/admin/service.js" />
+        <option value="$PROJECT_DIR$/routes/user/service.js" />
+        <option value="$PROJECT_DIR$/core/auth.js" />
+        <option value="$PROJECT_DIR$/orm/chat" />
+        <option value="$PROJECT_DIR$/core/chat2.js" />
+        <option value="$PROJECT_DIR$/core/service.js" />
+        <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/config.js" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/orm/chat.js" />
+        <option value="$PROJECT_DIR$/routes/user/chat.js" />
+        <option value="$PROJECT_DIR$/routes/admin/chat.js" />
+        <option value="$PROJECT_DIR$/core/chat.js" />
+        <option value="$PROJECT_DIR$/routes/user/operario.js" />
+        <option value="$PROJECT_DIR$/core/operario.js" />
+        <option value="$PROJECT_DIR$/core/cliente.js" />
+        <option value="$PROJECT_DIR$/core/factura.js" />
+        <option value="$PROJECT_DIR$/orm/operario.js" />
+        <option value="$PROJECT_DIR$/orm/general_model.js" />
+        <option value="$PROJECT_DIR$/orm/servicio.js" />
+        <option value="$PROJECT_DIR$/core/servicio.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2095" />
-    <option name="y" value="249" />
-    <option name="width" value="1296" />
-    <option name="height" value="1010" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="width" value="1456" />
+    <option name="height" value="886" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -307,46 +280,69 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="backend2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend2" type="462c0819:PsiDirectoryNode" />
+              <item name="backend_ref" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend_ref" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="backend2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend2" type="462c0819:PsiDirectoryNode" />
+              <item name="backend_ref" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend_ref" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="backend_ref" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend_ref" type="462c0819:PsiDirectoryNode" />
               <item name="middlewares" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="backend2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend2" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="backend_ref" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend_ref" type="462c0819:PsiDirectoryNode" />
+              <item name="orm" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="backend2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend2" type="462c0819:PsiDirectoryNode" />
+              <item name="backend_ref" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend_ref" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="backend2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend2" type="462c0819:PsiDirectoryNode" />
+              <item name="backend_ref" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend_ref" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="backend_ref" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend_ref" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="backend_ref" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend_ref" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="backend_ref" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend_ref" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="PushNotifications" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562920185021" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1567166359403" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.3.1" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../motormueve/elmotormueve" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -354,7 +350,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -417,12 +413,23 @@
       <workItem from="1562052584374" duration="12150000" />
       <workItem from="1562138648184" duration="7744000" />
       <workItem from="1562835253532" duration="11422000" />
-      <workItem from="1562917596313" duration="2431000" />
+      <workItem from="1562917596313" duration="3106000" />
+      <workItem from="1562924382184" duration="51000" />
+      <workItem from="1563796510919" duration="1881000" />
+      <workItem from="1563953880246" duration="1200000" />
+      <workItem from="1566552743329" duration="1872000" />
+      <workItem from="1566811240307" duration="9324000" />
+      <workItem from="1566897808956" duration="1717000" />
+      <workItem from="1566899659558" duration="2408000" />
+      <workItem from="1566902828483" duration="20000" />
+      <workItem from="1567069417213" duration="8803000" />
+      <workItem from="1567151562256" duration="14215000" />
+      <workItem from="1567418124882" duration="2048000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="169238000" />
+    <option name="totallyTimeSpent" value="213452000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -434,10 +441,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="177" width="1456" height="886" extended-state="6" />
+    <frame x="-8" y="0" width="1456" height="886" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.59683794" visible="true" weight="0.21776505" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.59683794" visible="true" weight="0.33954155" />
       <window_info id="Image Layers" order="1" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -445,7 +452,7 @@
       <window_info id="Structure" order="5" sideWeight="0.40273038" side_tool="true" weight="0.16260745" />
       <window_info id="Favorites" order="6" sideWeight="0.40316206" side_tool="true" weight="0.16260745" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32934928" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32934928" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.45816734" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997344" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -454,7 +461,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49928367" visible="true" weight="0.33864543" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49928367" visible="true" weight="0.16998672" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5007163" side_tool="true" weight="0.4236388" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -469,7 +476,7 @@
       <window_info anchor="right" id="Database" order="9" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.59683794" visible="true" weight="0.21489972" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.59683794" visible="true" weight="0.31088826" />
       <window_info id="Image Layers" order="1" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -486,7 +493,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49928367" weight="0.3647343" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49928367" weight="0.15541264" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5007163" side_tool="true" weight="0.4236388" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -505,55 +512,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fbcontroller/generalAPI.js" />
-    <entry file="file://$PROJECT_DIR$/domain/service.js" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/nodejs/12.3.1/core-modules/_http_server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="219" column="10" selection-start-line="219" selection-start-column="10" selection-end-line="219" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/express/lib/router/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="457" selection-start-line="457" selection-end-line="457" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/nodejs/12.3.1/core-modules/internal/process/task_queues.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="88" column="4" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/express/lib/response.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="161" selection-start-line="161" selection-end-line="162" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.yaml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/operator.js" />
-    <entry file="file://$PROJECT_DIR$/models/cliente" />
-    <entry file="file://$PROJECT_DIR$/routes/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/express/lib/router/route.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="136" column="12" selection-start-line="136" selection-start-column="12" selection-end-line="136" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Key.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -564,20 +522,6 @@
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/storage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/storage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="50" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/nodejs/12.3.1/core-modules/fs.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -585,122 +529,231 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/routes/operario.js" />
+    <entry file="file://$PROJECT_DIR$/routes/storage.js" />
+    <entry file="file://$PROJECT_DIR$/models/storage.js" />
+    <entry file="file://$PROJECT_DIR$/models/factura.js" />
+    <entry file="file://$PROJECT_DIR$/models/operario.js" />
+    <entry file="file://$PROJECT_DIR$/routes/service.js" />
+    <entry file="file://$PROJECT_DIR$/routes/factura.js" />
+    <entry file="file://$PROJECT_DIR$/models/chat.js" />
+    <entry file="file://$PROJECT_DIR$/models/service.js" />
+    <entry file="file://$PROJECT_DIR$/models/auth.js" />
+    <entry file="file://$PROJECT_DIR$/routes/chat.js" />
+    <entry file="file://$PROJECT_DIR$/models/cliente.js" />
+    <entry file="file://$PROJECT_DIR$/utils/GCSpush.js" />
+    <entry file="file://$PROJECT_DIR$/utils/db.js" />
+    <entry file="file://$PROJECT_DIR$/utils/PushNotifications/EXPOpush.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="58" selection-start-line="18" selection-start-column="58" selection-end-line="18" selection-end-column="58" />
+        <state relative-caret-position="400">
+          <caret line="29" column="96" selection-start-line="29" selection-start-column="96" selection-end-line="29" selection-end-column="96" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/db.js">
+    <entry file="file://$PROJECT_DIR$/middlewares/authenticated.js" />
+    <entry file="file://$PROJECT_DIR$/routes/cliente.js" />
+    <entry file="file://$PROJECT_DIR$/utils/filtetype.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+        <state relative-caret-position="34">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/auth.js" />
+    <entry file="file://$PROJECT_DIR$/utils/PushNotifications/PushUtils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="23" lean-forward="true" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/admin/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="40" lean-forward="true" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/admin/cliente.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1360">
+          <caret line="80" column="73" lean-forward="true" selection-start-line="80" selection-start-column="73" selection-end-line="80" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/admin/factura.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="32" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/user/cliente.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/user/factura.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orm/chat" />
+    <entry file="file://$PROJECT_DIR$/routes/user/servicio.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="66" selection-start-line="18" selection-start-column="66" selection-end-line="18" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/middlewares/admin_auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/middlewares/user_auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="2" lean-forward="true" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
+        <state relative-caret-position="119">
+          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/middlewares/authenticated.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="46" column="57" selection-start-line="46" selection-start-column="57" selection-end-line="46" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/factura.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1309">
-          <caret line="77" column="37" selection-start-line="77" selection-start-column="37" selection-end-line="77" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/cliente.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="45" column="56" selection-start-line="45" selection-start-column="56" selection-end-line="45" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/operario.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2635">
-          <caret line="155" column="19" selection-start-line="155" selection-start-column="19" selection-end-line="155" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/cliente.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1139">
-          <caret line="67" column="38" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/factura.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="21" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/gcs.js">
+    <entry file="file://$PROJECT_DIR$/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="9" column="64" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="64" />
+          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/operario.js">
+    <entry file="file://$PROJECT_DIR$/routes/user/chat.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="98" column="10" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="10" />
+        <state relative-caret-position="224">
+          <caret line="69" column="26" selection-start-line="69" selection-start-column="18" selection-end-line="69" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/service.js">
+    <entry file="file://$PROJECT_DIR$/routes/user/operario.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="370" column="39" lean-forward="true" selection-start-line="370" selection-start-column="39" selection-end-line="370" selection-end-column="39" />
+        <state relative-caret-position="182">
+          <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/sendpush.js">
+    <entry file="file://$PROJECT_DIR$/routes/admin/operario.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        <state relative-caret-position="535">
+          <caret line="77" column="3" lean-forward="true" selection-start-line="77" selection-start-column="3" selection-end-line="77" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/service.js">
+    <entry file="file://$PROJECT_DIR$/routes/admin/servicio.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="247" column="28" selection-start-line="247" selection-start-column="28" selection-end-line="247" selection-end-column="28" />
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/chat.js">
+    <entry file="file://$PROJECT_DIR$/orm/operario.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="109" column="27" lean-forward="true" selection-start-line="109" selection-start-column="27" selection-end-line="109" selection-end-column="27" />
+        <state relative-caret-position="442">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/chat.js">
+    <entry file="file://$PROJECT_DIR$/routes/admin/chat.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="206" column="46" selection-start-line="206" selection-start-column="36" selection-end-line="206" selection-end-column="46" />
+        <state relative-caret-position="986">
+          <caret line="58" column="11" selection-start-line="58" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/chat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1394">
+          <caret line="82" selection-start-line="82" selection-end-line="121" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/cliente.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="51" selection-start-line="23" selection-start-column="51" selection-end-line="23" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/factura.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="28" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/operario.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1836">
+          <caret line="108" column="2" selection-start-line="108" selection-start-column="2" selection-end-line="108" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="55" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/PushNotifications/FCMpush.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orm/chat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="76" selection-start-line="76" selection-end-line="76" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orm/general_model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="724">
+          <caret line="76" column="8" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orm/servicio.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="707">
+          <caret line="75" column="23" lean-forward="true" selection-start-line="75" selection-start-column="23" selection-end-line="75" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/servicio.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="330" column="18" lean-forward="true" selection-start-line="330" selection-start-column="18" selection-end-line="330" selection-end-column="18" />
         </state>
       </provider>
     </entry>

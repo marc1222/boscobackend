@@ -1,10 +1,11 @@
 'use strict';
 
-const express = require('express');
+const config = require('../../config');
+const api = config.getExpress();
 
-const auth = require('../models/auth');
-const api = express.Router();
+const auth = require('../../core/auth');
 
+//--------------------------------------------------------------------------//
 
 api.post('/authAdmin', function (req,res) {
     const token = req.header('token');

@@ -1,18 +1,5 @@
 'use strict';
 
-const admin = require('firebase-admin');
-
-var bucket;
-
-exports.getBucketConection = function () {
-    if (bucket) return bucket;
-    else {
-        bucket = admin.storage().bucket("gs://bosco2.appspot.com");
-        if (bucket) return bucket;
-    }
-    console.log("NO STORAGE!!!");
-};
-
 exports.ext = function () {
     const extTypes = {
         "doc"   : "application/msword"
