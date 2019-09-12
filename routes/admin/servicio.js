@@ -2,9 +2,9 @@
 
 const config = require('../../config');
 const api = config.getExpress();
+const serviceModel = require('../../core/servicio');
 
 const middleware = require('../../middlewares/admin_auth');
-const serviceModel = require('../../core/servicio');
 //const facturaModel = require('../../core/factura');
 
 //--------------------------------------------------------------------------//
@@ -14,8 +14,8 @@ const serviceModel = require('../../core/servicio');
  */
 api.get('/service', middleware.ensureAuth, function(req, res) {
 	serviceModel.getAllService((error, result) => {
-		if (error === null) res.status(200).send({success: true, result: result});
-		else res.status(error).send({success: true, result: result});
+		if (error) res.status(error).send({success: false, result: result});
+		else res.status(200).send({success: true, result: result});
 	});
 });
 
@@ -27,7 +27,7 @@ api.get('/serviceById', middleware.ensureAuth, function(req, res) {
 	if (req.query.service !== undefined) {
 		serviceModel.getServiceById(req.query.service, (error, result) => {
 			if (error === null) res.status(200).send({success: true, result: result});
-			else res.status(error).send({success: true, result: result});
+			else res.status(error).send({success: false, result: result});
 		});
 	} else res.status(400).send({success: false, result: "Bad request"});
 });
@@ -72,11 +72,13 @@ api.get('/downloadServiceAdmin', middleware.ensureAuth, function (req, res) {
 api.post('/service',  middleware.ensureAuth, function(req, res) {
 	const params = req.body;
 	if (params.address !== undefined && params.budget !== undefined && params.cliente !== undefined && params.note !== undefined && params.priority !== undefined
-		&& params.title !== undefined && params.type !== undefined && params.operario !== undefined && params.isBudget !== undefined) {
+		&& params.title !== undefined && params.coordX !== undefined && params.coordY !== undefined && params.type !== undefined && params.operario !== undefined && params.isBudget !== undefined) {
 		let scheduled_date = '';
 		if (params.scheduled_date !== undefined) scheduled_date = params.scheduled_date;
 		const serviceData = {
 			address: params.address,
+			coordX: params.coordX,
+			coordY: params.coordY,
 			budget: params.budget,
 			cliente: params.cliente,
 			note: params.note,
@@ -108,7 +110,7 @@ api.put('/reasignService', middleware.ensureAuth, function (req, res) {
         };
         serviceModel.reasignService(reasignData, (error, result) => {
             if (error === null) res.status(200).send({success: true, result: result});
-            else res.status(error).send({success: true, result: result});
+            else res.status(error).send({success: false, result: result});
         });
    } else res.status(400).send({success: false, result: "Bad request"});
 });

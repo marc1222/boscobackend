@@ -28,7 +28,7 @@ generalQueryModel.getCollection = function(collection, callback) {
     var allDocs = [];
     db.collection(collection).get()
         .then(snapshot => {
-            for (const doc in snapshot) {
+            for (let doc in snapshot) {
                 allDocs.push({id: doc.id, data: doc.data()});
             }
             callback(null, allDocs);

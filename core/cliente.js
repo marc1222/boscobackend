@@ -21,7 +21,7 @@ clienteModel.addCliente = (clientData, callback) => {
 	};
 	db_general.addGenericDoc('cliente', NewClient, (error, result) => {
 		if (error) callback(error, result);
-		else callback(null, "added doc id: "+result);
+		else callback(null, {insertedId: result});
 	});
 };
 /**

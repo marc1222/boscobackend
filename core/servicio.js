@@ -26,7 +26,7 @@ const serviceModel = {};
  * @param callback
  */
 serviceModel.getAllService = (callback) => {
-	db_general.getCollection('servicio', (error, result) => {
+	db_servicio.getServicesWithNames((error, result) => {
 		if (error) callback(error, result);
 		else callback(null, result);
 	});
@@ -119,6 +119,8 @@ serviceModel.getserviceClose = (uid, limitData, callback) => {
 serviceModel.addService = (serviceData, callback) => {
 	const NewService = {
 		address: serviceData.address,
+		coordX: serviceData.coordX,
+		coordY: serviceData.coordY,
 		budget: serviceData.budget,
 		cliente: serviceData.cliente,
 		note: serviceData.note,
@@ -212,7 +214,7 @@ serviceModel.serviceDeny = (serviceData, callback) => {
 			const data = service;
 			if (data.operario !== serviceData.uid) callback(500, "No tienes permisos sobre este documento");
 			else {
-				const updateData = {status: 'noaccept', operario: 'nuloperario'};
+				const updateData = {status: 'noaccept', operario: 'nulloperario'};
 				db_general.genericUpdate('servicio', serviceData.service, updateData, (error, result) => {
 					if (error) callback(error, result);
 					else {
@@ -440,8 +442,8 @@ serviceModel.uploadToServiceGCS = (files, uploadData, callback) => {
 								.then(file => {
 									resolve(name);
 								}).catch( err => {
-								reject(err);
-							});
+									reject(err);
+								});
 						} else reject("no imagen"+i);
 					});
 					promises.push(promise);

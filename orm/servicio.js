@@ -80,4 +80,72 @@ ORMservicioModel.getFacturationWeekRef = function(operarioID, week, callback) {
         });
 };
 
+ORMservicioModel.getServicesWithNames = function(callback) {
+    db.collection('servicio').get()
+        .then( snapshot => {
+           var allServices = {};
+           var allOperario = [];
+           var allClient = [];
+           const docs = snapshot._docs();
+           for (let i = 0; i < docs.length; ++i) {
+                const doc = docs[i];
+                const data =  doc.data();
+                allServices[doc.id] = {};
+                allServices[doc.id] = data;
+                if (data.operario !== "nulloperario" && data.operario !== "nuloperario" && data.operario !== undefined) {
+                    let operario = db.collection('operario').doc(data.operario);
+                    allOperario.push(operario);
+                }
+                if (data.cliente !== undefined) {
+                    let client = db.collection('cliente').doc(data.cliente);
+                    allClient.push(client);
+                }
+            }
+            let clientPromise = new Promise((resolve, reject)  => {
+                db.getAll.apply(db, allClient)
+                    .then (docs => {
+                        var mappedClients = {};
+                        for (let i = 0; i < docs.length; ++i) {
+                            const cliDoc = docs[i];
+                            mappedClients[cliDoc.id] = cliDoc.data().nombre;
+                        }
+                        resolve(mappedClients);
+                    }).catch(err => {
+                        reject(err);
+                    });
+            });
+            let operarioPromise = new Promise((resolve, reject)  => {
+                db.getAll.apply(db, allOperario)
+                    .then (docs => {
+                        var mappedOperario = {};
+                        for (let i = 0; i < docs.length; ++i) {
+                            const opDoc = docs[i];
+                            mappedOperario[String(opDoc.id)] = opDoc.data().nombre;
+                        }
+                        resolve(mappedOperario);
+                    }).catch(err => {
+                        reject(err);
+                    });
+            });
+
+            let promises = [clientPromise, operarioPromise];
+            Promise.all(promises)
+            .then(resolved => {
+                const client = resolved[0];
+                const operario = resolved[1];
+                for (let service in allServices) {
+                    if (service.operario !== "nulloperario" && service.operario !== "nuloperario") allServices[service].OpNombre = operario[allServices[service].operario]; //or there is an operario or value is nulloperario
+                    allServices[service].CliNombre = client[allServices[service].cliente]; //always there is a client
+                }
+                console.log(allServices);
+                callback(null, allServices);
+            }).catch(err => {
+                console.log(err);
+                callback(500, err);
+            });
+        }).catch( err => {
+            callback(500, err);
+        });
+};
+
 module.exports = ORMservicioModel;
