@@ -15,6 +15,8 @@ const weekIdentifier = require('week-identifier');
 const db_general = require('../orm/general_model');
 const db_servicio = require('../orm/servicio');
 
+const stats = require('./stats');
+
 
 
 const serviceModel = {};
@@ -190,9 +192,11 @@ serviceModel.serviceAccept = (serviceData, callback) => {
 			if (data.operario !== serviceData.uid) callback(500, "No tienes permisos sobre este documento");
 			else if (data.status !== 'noaccept') callback(500, "El estado del servicio no permite que este pueda ser aceptado");
 			else {
-				db_general.genericUpdate('servicio', serviceData.service, {status: 'open'}, (error, result) => {
+				const now = Date.now();
+				db_general.genericUpdate('servicio', serviceData.service, {status: 'open', start_date: now}, (error, result) => {
 					if (error) callback(error, result);
 					else {
+						stats.addServicioStat({event: 'accept', date: now, operario: data.operario});
 						serviceModel.sendPushToAdmin(serviceData.service, serviceData.uid, "Servicio aceptado");
 						callback(null, "accepted ok");
 					}
@@ -241,6 +245,7 @@ serviceModel.serviceEnd = (serviceData, callback) => {
 			else if (data.status === 'close') callback(500, "Service already closed");
 			else if (data.status === 'noaccept') callback(500, "Service is not accepted yet");
 			else {
+				stats.addServicioStat({event: 'end', date: data.start_date, operario: data.operario});
 				const actWeek = weekIdentifier(new Date());
 				const updateData = {status: 'close', period: actWeek, nota: serviceData.nota};
 				db_general.genericUpdate('servicio', serviceData.service, updateData, (error, result) => {
@@ -278,6 +283,7 @@ serviceModel.serviceEnd = (serviceData, callback) => {
 								}
 								promise.then( () => {
 									serviceModel.sendPushToAdmin(serviceData.service, serviceData.uid, "Servicio finalizado");
+									stats.addFacturaStat({total: data.total_price, material: data.costs_price, date: data.start_date, operario: data.operario});
 									callback(null, {
 										cliente: data.cliente,
 										operario: data.operario,

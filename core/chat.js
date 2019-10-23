@@ -9,7 +9,7 @@ const db_chat = require("../orm/chat");
 const filetype = require("../utils/filtetype");
 const pushMessaging = require('../utils/PushNotifications/PushUtils');
 const pushExpo = require('../utils/PushNotifications/EXPOpush');
-const pushFCM = require('../utils/PushNotifications/FCMPush');
+const pushFCM = require('../utils/PushNotifications/FCMpush');
 const fs = require('fs');
 
 

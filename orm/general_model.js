@@ -28,11 +28,13 @@ generalQueryModel.getCollection = function(collection, callback) {
     var allDocs = [];
     db.collection(collection).get()
         .then(snapshot => {
-            for (let doc in snapshot) {
+            const docs = snapshot._docs();
+            for (let doc of docs) {
                 allDocs.push({id: doc.id, data: doc.data()});
             }
             callback(null, allDocs);
         }).catch(err => {
+            console.log(err);
             callback(500, err);
         });
 };
