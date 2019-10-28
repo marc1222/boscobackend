@@ -1,11 +1,12 @@
 'use strict';
 
 const randomString = require('random-string');
-const config = require("../config");
 const admin = require('firebase-admin');
 
 const db_general = require('../orm/general_model');
 const db_operario = require('../orm/operario');
+
+const constant = require("../utils/define");
 
 const operarioModel = {};
 /**
@@ -47,7 +48,7 @@ operarioModel.addOperario = (operarioData, callback) => {
  * @param callback
  */
 operarioModel.getAllOperario = (callback) => {
-    db_general.getCollection('operario', (error, result) => {
+    db_general.getCollection(constant.OperarioCollection, (error, result) => {
         if (error) callback(error, result);
         else callback(null, result);
     });
@@ -58,7 +59,7 @@ operarioModel.getAllOperario = (callback) => {
  * @param callback
  */
 operarioModel.getOperarioById = (operario, callback) => {
-    db_general.getGenericDoc('operario', operario, (error, result) => {
+    db_general.getGenericDoc(constant.OperarioCollection, operario, (error, result) => {
         if (error) callback(error, result);
         else callback(null, result);
     });
@@ -76,7 +77,7 @@ operarioModel.updateOperario = (operarioData, callback) => {
         name: operarioData.name,
         phone: operarioData.phone
     };
-    db_general.genericUpdate('operario', operarioData.uid, updateOperarioData, (error, result) => {
+    db_general.genericUpdate(constant.OperarioCollection, operarioData.uid, updateOperarioData, (error, result) => {
         if (error) callback(error, result);
         else callback(null, result);
     });
@@ -87,7 +88,7 @@ operarioModel.updateOperario = (operarioData, callback) => {
  */
 operarioModel.getOnlineOperaris = (callback) => {
     var allOnline = [];
-    db_general.getCollectionSnapshot('operario', (error, snapshot) => {
+    db_general.getCollectionSnapshot(constant.OperarioCollection, (error, snapshot) => {
        if (error) callback(error, snapshot);
        else {
            const docs = snapshot._docs();

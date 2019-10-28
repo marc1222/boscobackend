@@ -2,12 +2,13 @@
 
 const config = require('../config');
 const db = config.getDBConection();
+const constant = require("../utils/define");
 
 var ORMservicioModel = {};
 
 ORMservicioModel.getStatusServices = function(status, operarioUID, callback) {
     var allServices = [];
-    db.collection('servicio').where('status', '==', status).where('operario', '==', operarioUID).get()
+    db.collection(constant.ServicioCollection).where('status', '==', status).where('operario', '==', operarioUID).get()
         .then( snapshot => {
             const docs = snapshot._docs();
             for (const doc of docs) {
@@ -43,7 +44,7 @@ ORMservicioModel.fillPeriodsWithServicesData = function(references, periods, cal
  * @param callback
  */
 ORMservicioModel.getFacturationSnapshot = function(operarioID, max, callback) {
-    db.collection('operario').doc(operarioID).collection('facturacion').orderBy('order','desc').limit(Number(max)).get()
+    db.collection(constant.OperarioCollection).doc(operarioID).collection(constant.FacturacionCollection).orderBy('order','desc').limit(Number(max)).get()
         .then( snapshot => {
             callback(null, snapshot);
         }).catch( err => {
@@ -73,7 +74,7 @@ ORMservicioModel.getFacturationSnapshot = function(operarioID, max, callback) {
 // };
 
 ORMservicioModel.getFacturationWeekRef = function(operarioID, week, callback) {
-    db.collection('operario').doc(operarioID).collection('facturacion').doc(String(week)).get()
+    db.collection(constant.OperarioCollection).doc(operarioID).collection(constant.FacturacionCollection).doc(String(week)).get()
         .then(fact => {
             callback(null, fact);
         }).catch( err => {
@@ -82,7 +83,7 @@ ORMservicioModel.getFacturationWeekRef = function(operarioID, week, callback) {
 };
 
 ORMservicioModel.getServicesWithNames = function(callback) {
-    db.collection('servicio').get()
+    db.collection(constant.ServicioCollection).get()
         .then( snapshot => {
            var allServices = {};
            var allOperario = [];
@@ -93,12 +94,12 @@ ORMservicioModel.getServicesWithNames = function(callback) {
                 const data =  doc.data();
                 allServices[doc.id] = {};
                 allServices[doc.id] = data;
-                if (data.operario !== "nulloperari" && data.operario !== "nulloperario" && data.operario !== "nuloperario" && data.operario !== undefined) {
-                    let operario = db.collection('operario').doc(data.operario);
+                if (data.operario !== constant.NullOperario && data.operario !== "nulloperario" && data.operario !== "nuloperario" && data.operario !== undefined) {
+                    let operario = db.collection(constant.OperarioCollection).doc(data.operario);
                     allOperario.push(operario);
                 }
                 if (data.cliente !== undefined) {
-                    let client = db.collection('cliente').doc(data.cliente);
+                    let client = db.collection(constant.ClientCollection).doc(data.cliente);
                     allClient.push(client);
                 }
             }
@@ -135,7 +136,7 @@ ORMservicioModel.getServicesWithNames = function(callback) {
                 const client = resolved[0];
                 const operario = resolved[1];
                 for (let service in allServices) {
-                    if (service.operario !== "nulloperario" && service.operario !== "nuloperario") allServices[service].OpNombre = operario[allServices[service].operario]; //or there is an operario or value is nulloperario
+                    if (service.operario !== constant.NullOperario && service.operario !== "nulloperario" && service.operario !== "nuloperario") allServices[service].OpNombre = operario[allServices[service].operario]; //or there is an operario or value is nulloperario
                     allServices[service].CliNombre = client[allServices[service].cliente]; //always there is a client
                 }
                 console.log(allServices);

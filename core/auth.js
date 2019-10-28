@@ -2,7 +2,7 @@
 
 var authModel = {};
 var admin = require('firebase-admin');
-
+const constant = require("../utils/define");
 /**
  * Valida que l'admin sigui ell, i ho retonra
  * @param token
@@ -11,7 +11,7 @@ var admin = require('firebase-admin');
 authModel.validateAdmin = (token, callback) => {
 	const idToken = token;
 	admin.auth().verifyIdToken(idToken).then((decodedToken) => {
-		const admin_uid = "CVvefgI67mZVUAXmcoLNBZuWRwF3";
+		const admin_uid = constant.FULLADMINID;
 		const uid = decodedToken.uid;
 		if (uid === admin_uid) {
 			callback(null, uid);

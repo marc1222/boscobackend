@@ -2,6 +2,7 @@
 
 const config = require('../config');
 const db = config.getDBConection();
+const constant = require("../utils/define");
 
 var ORMchatModel = {};
 /**
@@ -14,7 +15,7 @@ var ORMchatModel = {};
 ORMchatModel.getChatMessages = function (operarioUID, first, last, callback) {
     var messages = [];
     if (db) {
-        db.collection('operario').doc(operarioUID).collection('chat').orderBy('date','desc').limit(last).get()
+        db.collection(constant.OperarioCollection).doc(operarioUID).collection(constant.ChatCollection).orderBy('date','desc').limit(last).get()
             .then( snapshot => {
                 var docs = snapshot._docs();
                 let doc;
@@ -37,7 +38,7 @@ ORMchatModel.getChatMessages = function (operarioUID, first, last, callback) {
  * @param callback
  */
 ORMchatModel.getLastRead = function(adminUID, callback) {
-    db.collection('admin').doc(adminUID).get()
+    db.collection(constant.AdminCollection).doc(adminUID).get()
         .then(doc => {
             callback(null, doc.data().lastRead);
         }).catch(err => {
@@ -46,6 +47,7 @@ ORMchatModel.getLastRead = function(adminUID, callback) {
 };
 /**
  *
+ * @param collection
  * @param uid
  * @param chatToken
  * @param callback
@@ -61,7 +63,7 @@ ORMchatModel.updateChatToken = function(collection, uid, chatToken, callback) {
 };
 
 ORMchatModel.updateLastRead = function(uid, callback) {
-    db.collection('admin').doc(uid).update({
+    db.collection(constant.AdminCollection).doc(uid).update({
         lastRead: Date.now()
     }).then( () => {
         callback(null, "updated ok");
@@ -71,7 +73,7 @@ ORMchatModel.updateLastRead = function(uid, callback) {
 };
 
 ORMchatModel.addChatEntry = function(operarioUID, chatMessage) {
-  db.collection('operario').doc(operarioUID).collection('chat').add(chatMessage);
+  db.collection(constant.OperarioCollection).doc(operarioUID).collection(constant.ChatCollection).add(chatMessage);
 };
 
 module.exports = ORMchatModel;

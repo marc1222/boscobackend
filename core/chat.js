@@ -7,6 +7,8 @@ const db_general = require('../orm/general_model');
 const db_chat = require("../orm/chat");
 
 const filetype = require("../utils/filtetype");
+const constant = require("../utils/define");
+
 const pushMessaging = require('../utils/PushNotifications/PushUtils');
 const pushExpo = require('../utils/PushNotifications/EXPOpush');
 const pushFCM = require('../utils/PushNotifications/FCMpush');
@@ -81,7 +83,7 @@ chatModel.setAdminlastRead = function (uid, callback){
 chatModel.sendChatMsgToAdmin = (msg, image, operarioUID, callback) => {
     const now = Date.now();
     let promise1 = new Promise ( (resolve, reject) => {
-        db_general.getGenericDoc('operario', operarioUID, (error, doc) => {
+        db_general.getGenericDoc(constant.OperarioCollection, operarioUID, (error, doc) => {
             if (error) reject(error);
             else {
                 const ChatPayload = {

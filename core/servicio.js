@@ -4,6 +4,7 @@ const config = require("../config");
 const bucket = config.getBucketConection();
 
 const filetype = require("../utils/filtetype");
+const constant = require("../utils/define");
 
 const pushMessaging = require('../utils/PushNotifications/PushUtils');
 const pushEXPO = require('../utils/PushNotifications/EXPOpush');
@@ -40,7 +41,7 @@ serviceModel.getAllService = (callback) => {
  * @param callback
  */
 serviceModel.getServiceById = (servicio, callback) => {
-	db_general.getGenericDoc('servicio', servicio, (error, result) => {
+	db_general.getGenericDoc(constant.ServicioCollection, servicio, (error, result) => {
 		if (error) callback(error, result);
 		else callback(null, result);
 	});
@@ -52,7 +53,7 @@ serviceModel.getServiceById = (servicio, callback) => {
  */
 serviceModel.getAlerts = (uid, callback) => {
 	if (uid !== undefined) {
-		db_servicio.getStatusServices('noaccept', uid, (error, result) => {
+		db_servicio.getStatusServices(constant.ServiceNoAccept, uid, (error, result) => {
 			if (error) callback(error, result);
 			else callback(null, result);
 		});
@@ -66,7 +67,7 @@ serviceModel.getAlerts = (uid, callback) => {
  */
 serviceModel.getServiceOpen = (uid, callback) => {
 	if (uid !== undefined) {
-		db_servicio.getStatusServices('open', uid, (error, result) => {
+		db_servicio.getStatusServices(constant.ServiceOpen, uid, (error, result) => {
 			if (error) callback(error, result);
 			else callback(null, result);
 		});
@@ -92,7 +93,7 @@ serviceModel.getserviceClose = (uid, limitData, callback) => {
 				const data = docs[i].data();
 				const services = data.services;
 				for (let j = 0; j < services.length; ++j) {
-					let ref = db.collection('servicio').doc(services[j]);
+					let ref = db.collection(constant.ServicioCollection).doc(services[j]);
 					servicesRefs.push(ref);
 				}
 				let period = {};
@@ -129,7 +130,7 @@ serviceModel.addService = (serviceData, callback) => {
 		priority: serviceData.priority,
 		title: serviceData.title,
 		operario: serviceData.operario,
-		status: 'noaccept',
+		status: constant.ServiceNoAccept,
 		created_at: Date.now(),
 		scheduled_date: serviceData.scheduled_date,
 		start_date: '',
@@ -137,7 +138,7 @@ serviceModel.addService = (serviceData, callback) => {
 		costs_price: -1,
 		isBudget: serviceData.isBudget
 	};
-	db_general.addGenericDoc('servicio', NewService, (error, result) => {
+	db_general.addGenericDoc(constant.ServicioCollection, NewService, (error, result) => {
 		if (error) callback(error, result);
 		else {
 			const serviceID = result;
@@ -155,18 +156,18 @@ serviceModel.addService = (serviceData, callback) => {
  * @param callback
  */
 serviceModel.reasignService = function(reasignData, callback) {
-	db_general.getGenericDoc('servicio', reasignData.service, (error, data) => {
+	db_general.getGenericDoc(constant.ServicioCollection, reasignData.service, (error, data) => {
 		if (error) callback(error, data);
 		else {
-			if (reasignData.newOperario !== 'nulloperari' && data.operario === reasignData.newOperario) callback(500, "Este operario ya tiene asignado este servicio");
-			else if (data.status === 'close')  callback(500, "Este servicio ya está cerrado");
+			if (reasignData.newOperario !== constant.NullOperario && data.operario === reasignData.newOperario) callback(500, "Este operario ya tiene asignado este servicio");
+			else if (data.status === constant.ServiceClose)  callback(500, "Este servicio ya está cerrado");
 			else {
 				const old_operari = data.operario;
-				db_general.genericUpdate('servicio', reasignData.service, {operario: reasignData.newOperario, motivoAnulacion: reasignData.motivoAnulacion}, (error, result) => {
+				db_general.genericUpdate(constant.ServicioCollection, reasignData.service, {operario: reasignData.newOperario, motivoAnulacion: reasignData.motivoAnulacion}, (error, result) => {
 					if (error) callback(error, result);
 					else {
-						if (reasignData.newOperario !== "nulloperari") {
-							if (old_operari !== "nulloperari") {
+						if (reasignData.newOperario !== constant.NullOperario) {
+							if (old_operari !== constant.NullOperario) {
 								serviceModel.sendPushToOperario(old_operari, reasignData.service, "Servicio retirado por admin", "service denied");
 							}
 							serviceModel.sendPushToOperario(reasignData.newOperario, reasignData.service, "Nuevo servicio disponible", "new service");
@@ -185,18 +186,18 @@ serviceModel.reasignService = function(reasignData, callback) {
  * @param callback
  */
 serviceModel.serviceAccept = (serviceData, callback) => {
-	db_general.getGenericDoc('servicio', serviceData.service, (error, service) => {
+	db_general.getGenericDoc(constant.ServicioCollection, serviceData.service, (error, service) => {
 		if (error) callback(error, service);
 		else {
 			const data = service;
 			if (data.operario !== serviceData.uid) callback(500, "No tienes permisos sobre este documento");
-			else if (data.status !== 'noaccept') callback(500, "El estado del servicio no permite que este pueda ser aceptado");
+			else if (data.status !== constant.ServiceNoAccept) callback(500, "El estado del servicio no permite que este pueda ser aceptado");
 			else {
 				const now = Date.now();
-				db_general.genericUpdate('servicio', serviceData.service, {status: 'open', start_date: now}, (error, result) => {
+				db_general.genericUpdate(constant.ServicioCollection, serviceData.service, {status: constant.ServiceOpen, start_date: now}, (error, result) => {
 					if (error) callback(error, result);
 					else {
-						stats.addServicioStat( {event: 'accept', date: now, operario: data.operario});
+						stats.addServicioStat( {event: constant.AcceptEvent, date: now, operario: data.operario});
 						serviceModel.sendPushToAdmin(serviceData.service, serviceData.uid, "Servicio aceptado");
 						callback(null, "accepted ok");
 					}
@@ -212,13 +213,13 @@ serviceModel.serviceAccept = (serviceData, callback) => {
  * @param callback
  */
 serviceModel.serviceDeny = (serviceData, callback) => {
-	db_general.getGenericDoc('servicio', serviceData.service, (error, data) => {
+	db_general.getGenericDoc(constant.ServicioCollection, serviceData.service, (error, data) => {
 		if (error) callback(error, data);
 		else {
 			if (data.operario !== serviceData.uid) callback(500, "No tienes permisos sobre este documento");
 			else {
-				const updateData = {status: 'noaccept', operario: 'nulloperario'};
-				db_general.genericUpdate('servicio', serviceData.service, updateData, (error, result) => {
+				const updateData = {status: constant.ServiceNoAccept, operario: constant.NullOperario};
+				db_general.genericUpdate(constant.ServicioCollection, serviceData.service, updateData, (error, result) => {
 					if (error) callback(error, result);
 					else {
 						serviceModel.sendPushToAdmin(serviceData.service, serviceData.uid, "Servicio denegado");
@@ -236,17 +237,17 @@ serviceModel.serviceDeny = (serviceData, callback) => {
  * @param callback
  */
 serviceModel.serviceEnd = (serviceData, callback) => {
-	db_general.getGenericDoc('servicio', serviceData.service, (error, service) => {
+	db_general.getGenericDoc(constant.ServicioCollection, serviceData.service, (error, service) => {
 		if (error) callback(error, service);
 		else {
 			const data = service;
 			if (data.operario !== serviceData.uid) callback(500, "No permissions on this document");
-			else if (data.status === 'close') callback(500, "Service already closed");
-			else if (data.status === 'noaccept') callback(500, "Service is not accepted yet");
+			else if (data.status === constant.ServiceClose) callback(500, "Service already closed");
+			else if (data.status === constant.ServiceNoAccept) callback(500, "Service is not accepted yet");
 			else {
 				const actWeek = weekIdentifier(new Date());
-				const updateData = {status: 'close', period: actWeek, noteOperario: serviceData.noteOperario};
-				db_general.genericUpdate('servicio', serviceData.service, updateData, (error, result) => {
+				const updateData = {status: constant.ServiceClose, period: actWeek, noteOperario: serviceData.noteOperario};
+				db_general.genericUpdate(constant.ServicioCollection, serviceData.service, updateData, (error, result) => {
 					if (error) callback(error, result);
 					else {
 						db_servicio.getFacturationWeekRef(serviceData.uid, actWeek, (error, fact) => {
@@ -281,7 +282,7 @@ serviceModel.serviceEnd = (serviceData, callback) => {
 								}
 								promise.then( () => {
 									serviceModel.sendPushToAdmin(serviceData.service, serviceData.uid, "Servicio finalizado");
-									stats.addServicioStat( {event: 'end', date: data.start_date, operario: data.operario});
+									stats.addServicioStat( {event: constant.EndEvent, date: data.start_date, operario: data.operario});
 									stats.addFacturaStat({total: data.total_price, material: data.costs_price, date: data.start_date, operario: data.operario});
 									callback(null, {
 										cliente: data.cliente,
@@ -308,7 +309,7 @@ serviceModel.serviceEnd = (serviceData, callback) => {
  * @param callback
  */
 serviceModel.setBudget = (serviceId, budgetData, callback) => {
-	db_general.getGenericDoc('servicio', serviceId, (error, doc) => {
+	db_general.getGenericDoc(constant.ServicioCollection, serviceId, (error, doc) => {
 		if (error) callback(error, doc);
 		else {
 			if (doc.operario !== budgetData.uid) callback(500, "No permissions on this document");
@@ -362,7 +363,7 @@ serviceModel.payPeriod = (periodData, callback) => {
  */
 serviceModel.confirmBudget = function(action, service, uid, callback) {
 	if (action) { //Budget accepted
-		db_general.genericUpdate('servicio', service, {isBudget: 2}, (error, result) => {
+		db_general.genericUpdate(constant.ServicioCollection, service, {isBudget: 2}, (error, result) => {
 			if (error) callback(error, result);
 			else {
 				serviceModel.sendPushToAdmin(service, uid, "Presupuesto confirmado");
@@ -384,7 +385,7 @@ serviceModel.confirmBudget = function(action, service, uid, callback) {
  */
 serviceModel.sendPushToAdmin = (serviceID, operarioUID, type) => {
 	let promise1 = new Promise ( (resolve, reject) => {
-		db_general.getGenericDoc('operario', operarioUID, (error, doc) => {
+		db_general.getGenericDoc(constant.OperarioCollection, operarioUID, (error, doc) => {
 			if (error) reject(error);
 			else {
 				const ServicePayload = {
@@ -446,7 +447,7 @@ serviceModel.sendPushToOperario = (uid, serviceId, body, type) => {
  * @param callback
  */
 serviceModel.uploadToServiceGCS = (files, uploadData, callback) => {
-	db_general.getGenericDoc('servicio', uploadData.service, (error, data) => {
+	db_general.getGenericDoc(constant.ServicioCollection, uploadData.service, (error, data) => {
 		if (error) callback(error, data);
 		else {
 			if (data.operario !== uploadData.uid) callback(500, "No permissions on this service");
@@ -491,7 +492,7 @@ serviceModel.uploadToServiceGCS = (files, uploadData, callback) => {
 							}
 						}
 						//proceed insert db image names that uploaded correctly
-						db_general.genericUpdate('servicio', uploadData.service, {images: images}, (error, result) => {
+						db_general.genericUpdate(constant.ServicioCollection, uploadData.service, {images: images}, (error, result) => {
 							if (error) callback(error, result);
 							else {
 								callback(null, {numFailed: failed, failed_id: failed_id});

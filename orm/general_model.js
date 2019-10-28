@@ -2,6 +2,7 @@
 
 const config = require('../config');
 const db = config.getDBConection();
+const constant = require("../utils/define");
 
 var generalQueryModel = {};
 

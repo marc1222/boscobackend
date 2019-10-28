@@ -2,11 +2,12 @@
 
 const config = require('../config');
 const db = config.getDBConection();
+const constant = require("../utils/define");
 
 var ORMoperarioModel = {};
 
 ORMoperarioModel.addOperario = function(operarioData, operarioID, callback) {
-    db.collection('operario').doc(operarioID).set(operarioData)
+    db.collection(constant.OperarioCollection).doc(operarioID).set(operarioData)
         .then(  result => {
         callback(null, "added ok");
         }).catch(err => {
@@ -15,7 +16,7 @@ ORMoperarioModel.addOperario = function(operarioData, operarioID, callback) {
 };
 
 ORMoperarioModel.updatePosition = function(lastPosition, docID, callback) {
-    db.collection('operario').doc(docID).update({
+    db.collection(constant.OperarioCollection).doc(docID).update({
         lastPositionData: lastPosition
     }).then( () => {
         callback(null, "updated ok");

@@ -2,7 +2,7 @@
 
 const db_general = require('../orm/general_model');
 const db_stats = require('../orm/stats');
-
+const constant = require("../utils/define");
 const statsModel = {};
 
 statsModel.addServicioStat = function(statsData) {
@@ -11,7 +11,7 @@ statsModel.addServicioStat = function(statsData) {
         event: statsData.event,
         date: statsData.date
     };
-    db_stats.addDoc2Stats('servicio', statsData.operario, NewStat, (error, result) => {
+    db_stats.addDoc2Stats(constant.ServicioCollection, statsData.operario, NewStat, (error, result) => {
         if (error) console.log("Error saving SERVICIO stats!!!");
     });
 };
@@ -23,7 +23,7 @@ statsModel.addFacturaStat = function(statsData) {
         material: statsData.material,
         date: statsData.date
     };
-    db_stats.addDoc2Stats('factura', statsData.operario, NewStat, (error, result) => {
+    db_stats.addDoc2Stats(constant.FacturaCollection, statsData.operario, NewStat, (error, result) => {
             if (error) console.log("Error saving FACTURA stats!!!");
     });
 };
@@ -35,7 +35,7 @@ statsModel.getStatsByOperario = function(operarioID, callback) {
     });
 };
 statsModel.getAllStats = function(callback) {
-    db_general.getCollectionSnapshot('stats', (error, snapshot) => {
+    db_general.getCollectionSnapshot(constant.StatsCollection, (error, snapshot) => {
        if (error) callback(error, snapshot);
        else {
             const docs = snapshot._docs();
