@@ -162,7 +162,7 @@ serviceModel.reasignService = function(reasignData, callback) {
 			else if (data.status === 'close')  callback(500, "Este servicio ya está cerrado");
 			else {
 				const old_operari = data.operario;
-				db_general.genericUpdate('servicio', reasignData.service, {operario: reasignData.newOperario}, (error, result) => {
+				db_general.genericUpdate('servicio', reasignData.service, {operario: reasignData.newOperario, motivoAnulacion: reasignData.motivoAnulacion}, (error, result) => {
 					if (error) callback(error, result);
 					else {
 						if (reasignData.newOperario !== "nulloperari") {
@@ -316,7 +316,7 @@ serviceModel.setBudget = (serviceId, budgetData, callback) => {
 				const updateData = {
 					total_price: budgetData.total_price,
 					costs_price: budgetData.costs_price,
-					isBudget: false
+					isBudget: 0
 				};
 				db_general.genericUpdateByReference(doc, updateData, (error, result) => {
 					if (error) callback(error, result);

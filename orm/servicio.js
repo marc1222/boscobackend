@@ -93,7 +93,7 @@ ORMservicioModel.getServicesWithNames = function(callback) {
                 const data =  doc.data();
                 allServices[doc.id] = {};
                 allServices[doc.id] = data;
-                if (data.operario !== "nulloperario" && data.operario !== "nuloperario" && data.operario !== undefined) {
+                if (data.operario !== "nulloperari" && data.operario !== "nulloperario" && data.operario !== "nuloperario" && data.operario !== undefined) {
                     let operario = db.collection('operario').doc(data.operario);
                     allOperario.push(operario);
                 }
