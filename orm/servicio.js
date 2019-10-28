@@ -9,7 +9,8 @@ ORMservicioModel.getStatusServices = function(status, operarioUID, callback) {
     var allServices = [];
     db.collection('servicio').where('status', '==', status).where('operario', '==', operarioUID).get()
         .then( snapshot => {
-            for (const doc in snapshot) {
+            const docs = snapshot._docs();
+            for (const doc of docs) {
                 allServices.push({id: doc.id, data: doc.data()});
             }
             callback(null, allServices);

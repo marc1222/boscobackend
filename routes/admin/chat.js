@@ -6,8 +6,6 @@ const api = config.getExpress();
 const chatModel = require('../../core/chat');
 const middleware = require('../../middlewares/admin_auth');
 
-const pushMessaging = require('../../utils/PushNotifications/PushUtils');
-
 const multipart = require('connect-multiparty');
 const md_upload = multipart({uploadDir: './uploads/chat'});
 
