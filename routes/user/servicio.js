@@ -89,7 +89,7 @@ api.put('/serviceAccept',  middleware.ensureAuth, function(req, res) {
 			else res.status(error).send({success:false, result: result});
 		});
 	} else  {
-		res.status(500).send({success: false, result: "No service"});
+		res.status(500).send({success: false, result: "Bad request"});
 	}
 });
 

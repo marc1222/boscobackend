@@ -106,7 +106,7 @@ chatModel.sendChatMsgToAdmin = (msg, image, operarioUID, callback) => {
     });
     const promises = [promise1, promise2];
     Promise.all(promises)
-        .then(() => {
+        .then((result) => {
             const messageData = {
                 admin: false,
                 date: now,
@@ -115,7 +115,7 @@ chatModel.sendChatMsgToAdmin = (msg, image, operarioUID, callback) => {
             };
             db_chat.addChatEntry(operarioUID, messageData);
             //SEND PUSH MESSAGE VIA FCM -> to admin (adminChatToken , ChatPayload)
-            pushFCM.sendPushNotificationFCM(promises[1].chatToken, promises[0].ChatPayload);
+            pushFCM.sendPushNotificationFCM(result[1].chatToken, result[0].ChatPayload);
             callback(null, "all went ok");
         }).catch( (err) => {
             callback(500, "Error happened: "+err);

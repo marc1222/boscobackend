@@ -27,7 +27,7 @@ const user_service_route = require('./routes/user/servicio');
 const user_chat_route = require('./routes/user/chat');
 const user_cliente_route = require('./routes/user/cliente');
 const user_operario_route = require('./routes/user/operario');
-
+const user_stats_route = require('./routes/user/stats');
 
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(bodyParser.json({limit: '50mb', extended: true}));
@@ -55,5 +55,6 @@ app.use('/api', user_service_route);
 app.use('/api', user_chat_route);
 app.use('/api', user_cliente_route);
 app.use('/api', user_operario_route);
+app.use('/api', user_stats_route);
 
 module.exports = app;

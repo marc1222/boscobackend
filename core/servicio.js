@@ -196,7 +196,7 @@ serviceModel.serviceAccept = (serviceData, callback) => {
 				db_general.genericUpdate('servicio', serviceData.service, {status: 'open', start_date: now}, (error, result) => {
 					if (error) callback(error, result);
 					else {
-						stats.addServicioStat({event: 'accept', date: now, operario: data.operario});
+						stats.addServicioStat( {event: 'accept', date: now, operario: data.operario});
 						serviceModel.sendPushToAdmin(serviceData.service, serviceData.uid, "Servicio aceptado");
 						callback(null, "accepted ok");
 					}
@@ -245,7 +245,6 @@ serviceModel.serviceEnd = (serviceData, callback) => {
 			else if (data.status === 'close') callback(500, "Service already closed");
 			else if (data.status === 'noaccept') callback(500, "Service is not accepted yet");
 			else {
-				stats.addServicioStat({event: 'end', date: data.start_date, operario: data.operario});
 				const actWeek = weekIdentifier(new Date());
 				const updateData = {status: 'close', period: actWeek, nota: serviceData.nota};
 				db_general.genericUpdate('servicio', serviceData.service, updateData, (error, result) => {
@@ -283,6 +282,7 @@ serviceModel.serviceEnd = (serviceData, callback) => {
 								}
 								promise.then( () => {
 									serviceModel.sendPushToAdmin(serviceData.service, serviceData.uid, "Servicio finalizado");
+									stats.addServicioStat( {event: 'end', date: data.start_date, operario: data.operario});
 									stats.addFacturaStat({total: data.total_price, material: data.costs_price, date: data.start_date, operario: data.operario});
 									callback(null, {
 										cliente: data.cliente,
@@ -372,7 +372,7 @@ serviceModel.sendPushToAdmin = (serviceID, operarioUID, type) => {
 						type: type,
 						service: serviceID,
 						operario: operarioUID,
-						name: doc.data().nombre
+						name: doc.nombre
 					}
 				};
 				resolve({servicePayload: ServicePayload});
@@ -387,9 +387,9 @@ serviceModel.sendPushToAdmin = (serviceID, operarioUID, type) => {
 	});
 	const promises = [promise1, promise2];
 	Promise.all(promises)
-		.then(() => {
+		.then((result) => {
 			//SEND PUSH MESSAGE VIA FCM -> to admin (adminChatToken , ServicePayload)
-			pushFCM.sendPushNotificationFCM(promises[1].chatToken, promises[0].servicePayload);
+			pushFCM.sendPushNotificationFCM(result[1].chatToken, result[0].servicePayload);
 		}).catch( (err) => {
 			console.log("Error sending push to admin: "+err);
 		});
