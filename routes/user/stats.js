@@ -14,6 +14,4 @@ api.get('/MyStats', middleware.ensureAuth, function(req, res) {
     });
 });
 
-
-
 module.exports = api;

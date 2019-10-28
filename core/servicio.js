@@ -152,14 +152,13 @@ serviceModel.addService = (serviceData, callback) => {
 
 /**
  *
- * @param reasignData
+ * @param reasignData -> .service & .newOperario
  * @param callback
  */
 serviceModel.reasignService = function(reasignData, callback) {
-	db_general.getGenericDoc('servicio', reasignData.service, (error, service) => {
-		if (error) callback(error, service);
+	db_general.getGenericDoc('servicio', reasignData.service, (error, data) => {
+		if (error) callback(error, data);
 		else {
-			const data = service;
 			if (data.operario === reasignData.newOperario) callback(500, "Este operario ya tiene asignado este servicio");
 			else if (data.status === 'close')  callback(500, "Este servicio ya está cerrado");
 			else {
@@ -170,7 +169,9 @@ serviceModel.reasignService = function(reasignData, callback) {
 						if (old_operari !== "nulloperari") {
 							serviceModel.sendPushToOperario(old_operari, reasignData.service, "Servicio retirado por admin", "service denied");
 						}
-						serviceModel.sendPushToOperario(reasignData.newOperario, reasignData.service, "Nuevo servicio disponible", "new service");
+						if (reasignData.newOperario !== "nulloperari") {
+							serviceModel.sendPushToOperario(reasignData.newOperario, reasignData.service, "Nuevo servicio disponible", "new service");
+						}
 						callback(null, "service reasinged ok");
 					}
 				});
@@ -212,10 +213,9 @@ serviceModel.serviceAccept = (serviceData, callback) => {
  * @param callback
  */
 serviceModel.serviceDeny = (serviceData, callback) => {
-	db_general.getGenericDoc('servicio', serviceData.service, (error, service) => {
-		if (error) callback(error, service);
+	db_general.getGenericDoc('servicio', serviceData.service, (error, data) => {
+		if (error) callback(error, data);
 		else {
-			const data = service;
 			if (data.operario !== serviceData.uid) callback(500, "No tienes permisos sobre este documento");
 			else {
 				const updateData = {status: 'noaccept', operario: 'nulloperario'};
@@ -246,7 +246,7 @@ serviceModel.serviceEnd = (serviceData, callback) => {
 			else if (data.status === 'noaccept') callback(500, "Service is not accepted yet");
 			else {
 				const actWeek = weekIdentifier(new Date());
-				const updateData = {status: 'close', period: actWeek, nota: serviceData.nota};
+				const updateData = {status: 'close', period: actWeek, noteOperario: serviceData.noteOperario};
 				db_general.genericUpdate('servicio', serviceData.service, updateData, (error, result) => {
 					if (error) callback(error, result);
 					else {

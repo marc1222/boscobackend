@@ -81,7 +81,7 @@ api.post('/service',  middleware.ensureAuth, function(req, res) {
 			coordY: params.coordY,
 			budget: params.budget,
 			cliente: params.cliente,
-			note: params.note,
+			noteAdmin: params.noteAdmin,
 			priority: params.priority,
 			title: params.title,
 			type: params.type,

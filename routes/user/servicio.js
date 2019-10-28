@@ -121,11 +121,12 @@ api.put('/serviceDeny', middleware.ensureAuth, function(req, res) {
  */
 api.put('/serviceEnd', middleware.ensureAuth, function(req, res) {
 	const service = req.body.service;
-	if (service !== undefined && req.body.nota !== undefined) {
+	const note = req.body.noteOperario;
+	if (service !== undefined &&  note !== undefined) {
 		const params = {
 			service: service,
 			uid: req.uid,
-			nota: req.body.nota
+			noteOperario: note
 		};
 		serviceModel.serviceEnd(params, (error, result ) => {
 			if (error === null) {
@@ -189,4 +190,17 @@ api.put('/uploadServiceOperario', [middleware.ensureAuth, md_upload], function (
 	} else res.status(400).send({success: false, result: "Bad request"});
 });
 
+api.put('/rejectService', middleware.ensureAuth, (error, res) => {
+	const service = req.body.service;
+	if (service !== undefined) {
+		const reasignData = {
+			service: service,
+			newOperario: 'nulloperari'
+		};
+		serviceModel.reasignService(reasignData, (error, result) => {
+			if (error === null) res.status(200).send({success: true, result: result});
+			else res.status(error).send({success: false, result: result});
+		});
+	} else res.status(400).send({success: false, result: "Bad request"});
+});
 module.exports = api;

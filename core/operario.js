@@ -93,13 +93,14 @@ operarioModel.getOnlineOperaris = (callback) => {
            const docs = snapshot._docs();
            let lastPosition;
            let limitime;
-           for (let i = 0; i < docs.length; ++i) {
-               const data = docs[i].data();
+           const now = Date.now();
+           for (const doc of docs) {
+               const data = doc.data();
                lastPosition = data.lastPositionData;
                if (lastPosition !== undefined && data.chatToken !== 'null') {
                    limitime = Number(lastPosition[2]) + Number(5*3600*1000);
-                   if (limitime > Date.now()) { //aun no han pasado 5 horas des de la ultima conextion
-                       allOnline.push({id: docs[i].id, data: docs[i].data()});
+                   if (limitime > now) { //aun no han pasado 5 horas des de la ultima conextion
+                       allOnline.push({id: doc.id, data: data});
                    }
                }
            }

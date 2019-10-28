@@ -3,7 +3,7 @@
 const config = require('../../config');
 const api = config.getExpress();
 
-const middleware = require('../../middlewares/admin_auth');
+const middleware = require('../../middlewares/user_auth');
 const operarioModel = require('../../core/operario');
 
 /**
