@@ -71,20 +71,18 @@ api.get('/downloadServiceAdmin', middleware.ensureAuth, function (req, res) {
  */
 api.post('/service',  middleware.ensureAuth, function(req, res) {
 	const params = req.body;
-	if (params.address !== undefined && params.budget !== undefined && params.cliente !== undefined && params.note !== undefined && params.priority !== undefined
-		&& params.title !== undefined && params.coordX !== undefined && params.coordY !== undefined && params.type !== undefined && params.operario !== undefined && params.isBudget !== undefined) {
+	if (params.address !== undefined && params.cliente !== undefined && params.priority !== undefined
+		&& params.title !== undefined && params.operario !== undefined && params.isBudget !== undefined) {
 		let scheduled_date = '';
 		if (params.scheduled_date !== undefined) scheduled_date = params.scheduled_date;
 		const serviceData = {
 			address: params.address,
 			coordX: params.coordX,
 			coordY: params.coordY,
-			budget: params.budget,
 			cliente: params.cliente,
 			noteAdmin: params.noteAdmin,
 			priority: params.priority,
 			title: params.title,
-			type: params.type,
 			operario: params.operario,
 			scheduled_date: scheduled_date,
 			isBudget: params.isBudget
@@ -128,6 +126,17 @@ api.put('payPeriod', middleware.ensureAuth, function(req, res) {
 		serviceModel.payPeriod(periodData, (error, result) => {
 			if (error === null) res.status(200).send({success: true, result: result});
 			else res.status(error).send({success: false, result: result});
+		});
+	} else res.status(400).send({success: false, result: "Bad request"});
+});
+
+api.put('/confirmBudget', middleware.ensureAuth, (req, res) => {
+	const action = req.body.action;
+	const service = req.body.service;
+	if (action !== undefined && service !== undefined) {
+		serviceModel.confirmBudget(action, service, req.uid, (error, result) => {
+			if (error) res.status(error).send({success: false, result: result});
+			else res.status(200).send({success: true, result: result});
 		});
 	} else res.status(400).send({success: false, result: "Bad request"});
 });

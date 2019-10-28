@@ -190,7 +190,7 @@ api.put('/uploadServiceOperario', [middleware.ensureAuth, md_upload], function (
 	} else res.status(400).send({success: false, result: "Bad request"});
 });
 
-api.put('/rejectService', middleware.ensureAuth, (error, res) => {
+api.put('/rejectService', middleware.ensureAuth, (req, res) => {
 	const service = req.body.service;
 	if (service !== undefined) {
 		const reasignData = {

@@ -125,10 +125,9 @@ serviceModel.addService = (serviceData, callback) => {
 		coordY: serviceData.coordY,
 		budget: serviceData.budget,
 		cliente: serviceData.cliente,
-		note: serviceData.note,
+		noteAdmin: serviceData.noteAdmin,
 		priority: serviceData.priority,
 		title: serviceData.title,
-		type: serviceData.type,
 		operario: serviceData.operario,
 		status: 'noaccept',
 		created_at: Date.now(),
@@ -159,19 +158,19 @@ serviceModel.reasignService = function(reasignData, callback) {
 	db_general.getGenericDoc('servicio', reasignData.service, (error, data) => {
 		if (error) callback(error, data);
 		else {
-			if (data.operario === reasignData.newOperario) callback(500, "Este operario ya tiene asignado este servicio");
+			if (reasignData.newOperario !== 'nulloperari' && data.operario === reasignData.newOperario) callback(500, "Este operario ya tiene asignado este servicio");
 			else if (data.status === 'close')  callback(500, "Este servicio ya está cerrado");
 			else {
 				const old_operari = data.operario;
 				db_general.genericUpdate('servicio', reasignData.service, {operario: reasignData.newOperario}, (error, result) => {
 					if (error) callback(error, result);
 					else {
-						if (old_operari !== "nulloperari") {
-							serviceModel.sendPushToOperario(old_operari, reasignData.service, "Servicio retirado por admin", "service denied");
-						}
 						if (reasignData.newOperario !== "nulloperari") {
+							if (old_operari !== "nulloperari") {
+								serviceModel.sendPushToOperario(old_operari, reasignData.service, "Servicio retirado por admin", "service denied");
+							}
 							serviceModel.sendPushToOperario(reasignData.newOperario, reasignData.service, "Nuevo servicio disponible", "new service");
-						}
+						} else serviceModel.sendPushToAdmin(reasignData.service, old_operari, "Servicio denegado");
 						callback(null, "service reasinged ok");
 					}
 				});
@@ -322,7 +321,7 @@ serviceModel.setBudget = (serviceId, budgetData, callback) => {
 				db_general.genericUpdateByReference(doc, updateData, (error, result) => {
 					if (error) callback(error, result);
 					else {
-						serviceModel.sendPushToAdmin(serviceId, budgetData.uid, "Presupuesto actualizado");
+						serviceModel.sendPushToAdmin(serviceId, budgetData.uid, "Presupuesto registrado");
 						callback(null, result);
 					}
 				});
@@ -352,6 +351,27 @@ serviceModel.payPeriod = (periodData, callback) => {
 			}
 		}
 	});
+};
+
+/**
+ *
+ * @param action -> true if budgeta ccepted by admin, no otherwise
+ * @param service
+ * @param uid
+ * @param callback
+ */
+serviceModel.confirmBudget = function(action, service, uid, callback) {
+	if (action) { //Budget accepted
+		db_general.genericUpdate('servicio', service, {isBudget: 2}, (error, result) => {
+			if (error) callback(error, result);
+			else {
+				serviceModel.sendPushToAdmin(service, uid, "Presupuesto confirmado");
+			}
+		});
+	} else { //budget rejected
+		serviceModel.sendPushToAdmin(service, uid, "Pressupuesto denegado");
+	}
+	callback(null, "confirmed ok");
 };
 
 //--------------------------------------------------------------------------//
