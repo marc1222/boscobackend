@@ -24,6 +24,7 @@
     "moment": "^2.24.0",
     "random-hex": "^1.0.2",
     "random-string": "^0.2.0",
+    "request": "^2.88.0",
     "week-identifier": "^1.0.2"
   }
 }
