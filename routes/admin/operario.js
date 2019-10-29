@@ -32,10 +32,11 @@ api.post('/operario',  middleware.ensureAuth, function(req, res) {
  * Required params: -
  */
 api.get('/operario', middleware.ensureAuth, function(req, res) {
-    operarioModel.getAllOperario((error, result) => {
+    operarioModel.getAllOperario(req.query.active,(error, result) => {
         if (error === null) res.status(200).send({success: true, result: result});
         else res.status(error).send({success: false, result: result});
     });
+
 });
 
 /**
@@ -81,6 +82,18 @@ api.get('/getOnlineOperaris', middleware.ensureAuth, function (req, res) {
         if (error === null) res.status(200).send({success: true, result: data});
         else res.status(error).send({success: false, result: data});
     });
+});
+
+
+api.post('/bajaOperario', middleware.ensureAuth, function (req, res) {
+    const operario = req.body.operario;
+    if (operario !== undefined) {
+        operarioModel.unsubscribeOperario(operario, (error, data) => {
+            if (error) res.status(error).send({success: false, result: data});
+            else res.status(200).send({success: true, result: data});
+        });
+    } else res.status(400).send({success: false, result: "Bad request"});
+
 });
 
 module.exports = api;

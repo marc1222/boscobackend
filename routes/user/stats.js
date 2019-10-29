@@ -15,9 +15,3 @@ api.get('/MyStats', middleware.ensureAuth, function(req, res) {
 });
 
 module.exports = api;
-
-api.get('/sendSMS', middleware.ensureAuth, (req, res) => {
-    const sms = require('../../utils/sendSMS');
-    sms.sendSMS('34648733799', 'Este es un bonito mensaje que espero que se envie bien OMG!!');
-    res.status(200).send("OOOOOK");
-});

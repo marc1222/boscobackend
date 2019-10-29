@@ -27,7 +27,8 @@ operarioModel.addOperario = (operarioData, callback) => {
             nombre: operarioData.name,
             phone: operarioData.phone,
             chatToken: 'null',
-            color: 	randomHex.generate()
+            color: 	randomHex.generate(),
+            active: true
         };
         db_operario.addOperario(NewOperario, userRecord.uid, (error, result) => {
             if (error) callback(error, result);
@@ -45,13 +46,22 @@ operarioModel.addOperario = (operarioData, callback) => {
 };
 /**
  * Get all operarios from firestore collection operario
+ * @param active
  * @param callback
  */
-operarioModel.getAllOperario = (callback) => {
-    db_general.getCollection(constant.OperarioCollection, (error, result) => {
-        if (error) callback(error, result);
-        else callback(null, result);
-    });
+operarioModel.getAllOperario = (active, callback) => {
+    if (active !== undefined) { //ONLY subscribed Operarios -> ONLY active
+        db_operario.getActiveOperario((error, ActiveOperarios) => {
+           if (error) callback(error, ActiveOperarios);
+           else callback(null, ActiveOperarios);
+        });
+    } else { //ALL operarios
+        db_general.getCollection(constant.OperarioCollection, (error, result) => {
+            if (error) callback(error, result);
+            else callback(null, result);
+        });
+    }
+
 };
 /**
  *
@@ -127,6 +137,14 @@ operarioModel.setLastPosition = (lastPositionData, callback) => {
     db_operario.updatePosition(positionUpdate, lastPositionData.operario, (error, result) => {
         if (error) callback(error, result);
         else callback(null, result);
+    });
+};
+
+
+operarioModel.unsubscribeOperario = (operarioID, callback) => {
+    db_general.genericUpdate(constant.OperarioCollection, operarioID, {active: false}, (error, result) => {
+       if (error) callback(error, result);
+       else callback(null, result);
     });
 };
 

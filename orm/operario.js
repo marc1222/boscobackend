@@ -25,5 +25,19 @@ ORMoperarioModel.updatePosition = function(lastPosition, docID, callback) {
     });
 };
 
+ORMoperarioModel.getActiveOperario = function(callback) {
+    var allActiveOperarios =  [];
+    db.collection(constant.OperarioCollection).where('active', '==', true).get()
+      .then(snapshot => {
+          const docs = snapshot._docs();
+          for (let doc of docs) {
+              allActiveOperarios.push({id: doc.id, data: doc.data()});
+          }
+          callback(null, allActiveOperarios);
+      }).catch(err => {
+            callback(err.code, err);
+      });
+};
+
 
 module.exports = ORMoperarioModel;
