@@ -4,7 +4,7 @@ const config = require('../../config');
 const api = config.getExpress();
 const serviceModel = require('../../core/servicio');
 
-const middleware = require('../../middlewares/user_auth');
+const middleware = require('../../middlewares/admin_auth');
 //const facturaModel = require('../../core/factura');
 
 //--------------------------------------------------------------------------//

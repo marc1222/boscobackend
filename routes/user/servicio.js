@@ -7,6 +7,8 @@ const middleware = require('../../middlewares/user_auth');
 const serviceModel = require('../../core/servicio');
 const facturaModel = require('../../core/factura');
 
+const constant = require('../../utils/define');
+
 const multipart = require('connect-multiparty');
 const md_upload = multipart({uploadDir: './uploads/service'});
 
@@ -120,13 +122,14 @@ api.put('/serviceDeny', middleware.ensureAuth, function(req, res) {
  *	Required params: service UID, nota
  */
 api.put('/serviceEnd', middleware.ensureAuth, function(req, res) {
-	const service = req.body.service;
-	const note = req.body.noteOperario;
-	if (service !== undefined &&  note !== undefined) {
+	const body = req.body;
+	if (body.service !== undefined &&  body.total_price !== undefined && body.costs_price !== undefined) {
 		const params = {
-			service: service,
+			service: body.service,
 			uid: req.uid,
-			noteOperario: note
+			noteOperario: body.noteOperario,
+			total_price: body.total_price,
+			costs_price: body.costs_price
 		};
 		serviceModel.serviceEnd(params, (error, result ) => {
 			if (error === null) {
@@ -195,7 +198,7 @@ api.put('/rejectService', middleware.ensureAuth, (req, res) => {
 	if (service !== undefined) {
 		const reasignData = {
 			service: service,
-			newOperario: 'nulloperari',
+			newOperario: constant.NullOperario,
 			motivoAnulacion: req.body.motivoAnulacion
 		};
 		serviceModel.reasignService(reasignData, (error, result) => {

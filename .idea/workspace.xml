@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed79abe9-e12f-46ab-a771-37d00527b6da" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/core/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/chat.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/cliente.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/cliente.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/factura.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/factura.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/operario.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/operario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/servicio.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/servicio.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/stats.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/stats.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orm/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/orm/chat.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/orm/general_model.js" beforeDir="false" afterPath="$PROJECT_DIR$/orm/general_model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orm/operario.js" beforeDir="false" afterPath="$PROJECT_DIR$/orm/operario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orm/servicio.js" beforeDir="false" afterPath="$PROJECT_DIR$/orm/servicio.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orm/stats.js" beforeDir="false" afterPath="$PROJECT_DIR$/orm/stats.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/define.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/define.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/admin/servicio.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin/servicio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/user/servicio.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/user/servicio.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,38 +19,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/stats.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="42" column="34" lean-forward="true" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/orm/general_model.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-850">
-              <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/orm/servicio.js">
+        <entry file="file://$PROJECT_DIR$/core/servicio.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="101" column="72" selection-start-line="101" selection-start-column="72" selection-end-line="101" selection-end-column="72" />
+            <state relative-caret-position="469">
+              <caret line="304" column="67" selection-start-line="304" selection-start-column="67" selection-end-line="304" selection-end-column="67" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/define.js">
+        <entry file="file://$PROJECT_DIR$/routes/user/servicio.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="34" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="34" />
+            <state relative-caret-position="390">
+              <caret line="147" column="18" lean-forward="true" selection-start-line="147" selection-start-column="18" selection-end-line="147" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -74,16 +48,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>genericSetByReference</find>
-      <find>accept</find>
-      <find>docs()</find>
-      <find>.ref</find>
-      <find>params</find>
-      <find>doc.id</find>
-      <find>sendToDer</find>
-      <find>sendTo</find>
-      <find>sendMsg</find>
-      <find>sendPushNotificationFCM</find>
       <find>serviceaccept</find>
       <find>addDoc2</find>
       <find>operario: data.operario</find>
@@ -98,12 +62,22 @@
       <find>getOnlineOperaris</find>
       <find>getOnline</find>
       <find>registerB</find>
-      <find>serviceEnd</find>
       <find>register</find>
       <find>addService</find>
       <find>sendPushtoadmin</find>
       <find>isBudget</find>
       <find>reasign</find>
+      <find>nulloperario</find>
+      <find>/reasignService</find>
+      <find>motivoAN</find>
+      <find>registerBudge</find>
+      <find>console.log(&quot;op</find>
+      <find>setBudget</find>
+      <find>budget</find>
+      <find>genericUpdateByReference</find>
+      <find>registerBudget</find>
+      <find>serviceEnd</find>
+      <find>noteOperario</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -137,7 +111,6 @@
         <option value="$PROJECT_DIR$/orm/chat" />
         <option value="$PROJECT_DIR$/core/chat2.js" />
         <option value="$PROJECT_DIR$/core/service.js" />
-        <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/config.js" />
         <option value="$PROJECT_DIR$/routes/user/chat.js" />
         <option value="$PROJECT_DIR$/routes/admin/stats.js" />
@@ -148,21 +121,22 @@
         <option value="$PROJECT_DIR$/routes/user/stats.js" />
         <option value="$PROJECT_DIR$/routes/admin/operario.js" />
         <option value="$PROJECT_DIR$/routes/user/operario.js" />
-        <option value="$PROJECT_DIR$/routes/admin/servicio.js" />
-        <option value="$PROJECT_DIR$/routes/user/servicio.js" />
-        <option value="$PROJECT_DIR$/orm/general_model.js" />
         <option value="$PROJECT_DIR$/orm/stats.js" />
         <option value="$PROJECT_DIR$/core/auth.js" />
         <option value="$PROJECT_DIR$/core/chat.js" />
         <option value="$PROJECT_DIR$/core/cliente.js" />
         <option value="$PROJECT_DIR$/core/factura.js" />
         <option value="$PROJECT_DIR$/core/operario.js" />
-        <option value="$PROJECT_DIR$/core/servicio.js" />
         <option value="$PROJECT_DIR$/core/stats.js" />
         <option value="$PROJECT_DIR$/orm/chat.js" />
         <option value="$PROJECT_DIR$/orm/operario.js" />
         <option value="$PROJECT_DIR$/utils/define.js" />
         <option value="$PROJECT_DIR$/orm/servicio.js" />
+        <option value="$PROJECT_DIR$/routes/admin/servicio.js" />
+        <option value="$PROJECT_DIR$/orm/general_model.js" />
+        <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/routes/user/servicio.js" />
+        <option value="$PROJECT_DIR$/core/servicio.js" />
       </list>
     </option>
   </component>
@@ -178,7 +152,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -234,12 +207,13 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1572266828867" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1572371043607" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.3.1" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -335,12 +309,13 @@
       <workItem from="1571831648065" duration="2097000" />
       <workItem from="1571834077340" duration="3447000" />
       <workItem from="1572015074264" duration="5651000" />
-      <workItem from="1572251381089" duration="13693000" />
+      <workItem from="1572251381089" duration="14941000" />
+      <workItem from="1572364845710" duration="5322000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="251009000" />
+    <option name="totallyTimeSpent" value="257579000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -355,7 +330,7 @@
     <frame x="1432" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5934959" visible="true" weight="0.29584223" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5934959" visible="true" weight="0.29904053" />
       <window_info id="Image Layers" order="1" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -365,14 +340,14 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32934928" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.45816734" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997344" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.30546623" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32934928" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49928367" visible="true" weight="0.2561629" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49928367" visible="true" weight="0.25080386" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5007163" side_tool="true" weight="0.4236388" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -423,7 +398,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/models/storage.js" />
     <entry file="file://$PROJECT_DIR$/models/factura.js" />
     <entry file="file://$PROJECT_DIR$/models/operario.js" />
     <entry file="file://$PROJECT_DIR$/routes/service.js" />
@@ -464,13 +438,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="2" lean-forward="true" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -537,59 +504,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/user/servicio.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="200" column="24" lean-forward="true" selection-start-line="200" selection-start-column="24" selection-end-line="200" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orm/stats.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/admin/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="40" lean-forward="true" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/admin/chat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-952">
-          <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/admin/cliente.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="80" column="73" lean-forward="true" selection-start-line="80" selection-start-column="73" selection-end-line="80" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/admin/factura.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="32" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/admin/operario.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-595">
-          <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/admin/servicio.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="83" column="38" selection-start-line="83" selection-start-column="38" selection-end-line="83" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -628,20 +546,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/servicio.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-337">
-          <caret line="453" column="18" lean-forward="true" selection-start-line="453" selection-start-column="18" selection-end-line="453" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/admin/stats.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="21" lean-forward="true" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orm/chat.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -656,6 +560,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/stats.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/utils/define.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -663,24 +574,94 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/stats.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/express/lib/router/route.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="42" column="34" lean-forward="true" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
+        <state relative-caret-position="224">
+          <caret line="136" column="12" selection-start-line="136" selection-start-column="12" selection-end-line="136" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/admin/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="40" lean-forward="true" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/admin/chat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/admin/cliente.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1360">
+          <caret line="80" column="73" lean-forward="true" selection-start-line="80" selection-start-column="73" selection-end-line="80" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/admin/factura.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="32" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/admin/operario.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/admin/servicio.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="51" selection-start-line="6" selection-start-column="51" selection-end-line="6" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/admin/stats.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="21" lean-forward="true" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/orm/general_model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-850">
-          <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
+        <state relative-caret-position="-4">
+          <caret line="40" column="27" lean-forward="true" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/orm/servicio.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="101" column="72" selection-start-line="101" selection-start-column="72" selection-end-line="101" selection-end-column="72" />
+        <state relative-caret-position="1380">
+          <caret line="131" selection-start-line="131" selection-end-line="131" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/user/servicio.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="147" column="18" lean-forward="true" selection-start-line="147" selection-start-column="18" selection-end-line="147" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/servicio.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="304" column="67" selection-start-line="304" selection-start-column="67" selection-end-line="304" selection-end-column="67" />
         </state>
       </provider>
     </entry>

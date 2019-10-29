@@ -16,6 +16,16 @@ generalQueryModel.getGenericDoc = function(collection, docID, callback) {
       });
 };
 
+generalQueryModel.getGenericDocReference = function(collection, docID, callback) {
+    db.collection(collection).doc(docID).get()
+        .then( doc => {
+            if (!doc.exists) callback(500, "No existe este documento");
+            else callback(null, doc);
+        }).catch(err => {
+        callback(err.code, err);
+    });
+};
+
 generalQueryModel.addGenericDoc = function(collection, docData, callback) {
   db.collection(collection).add(docData)
   .then( (result) => {

@@ -124,7 +124,6 @@ serviceModel.addService = (serviceData, callback) => {
 		address: serviceData.address,
 		coordX: serviceData.coordX,
 		coordY: serviceData.coordY,
-		budget: serviceData.budget,
 		cliente: serviceData.cliente,
 		noteAdmin: serviceData.noteAdmin,
 		priority: serviceData.priority,
@@ -163,7 +162,9 @@ serviceModel.reasignService = function(reasignData, callback) {
 			else if (data.status === constant.ServiceClose)  callback(500, "Este servicio ya está cerrado");
 			else {
 				const old_operari = data.operario;
-				db_general.genericUpdate(constant.ServicioCollection, reasignData.service, {operario: reasignData.newOperario, motivoAnulacion: reasignData.motivoAnulacion}, (error, result) => {
+				var updateData = {operario: reasignData.newOperario};
+				if (reasignData.newOperario === constant.NullOperario && reasignData.hasOwnProperty('motivoAnulacion')) updateData.motivoAnulacion = reasignData.motivoAnulacion
+				db_general.genericUpdate(constant.ServicioCollection, reasignData.service, updateData, (error, result) => {
 					if (error) callback(error, result);
 					else {
 						if (reasignData.newOperario !== constant.NullOperario) {
@@ -246,7 +247,7 @@ serviceModel.serviceEnd = (serviceData, callback) => {
 			else if (data.status === constant.ServiceNoAccept) callback(500, "Service is not accepted yet");
 			else {
 				const actWeek = weekIdentifier(new Date());
-				const updateData = {status: constant.ServiceClose, period: actWeek, noteOperario: serviceData.noteOperario};
+				const updateData = {status: constant.ServiceClose, period: actWeek, noteOperario: serviceData.noteOperario, total_price: serviceData.total_price, costs_price: serviceData.costs_price };
 				db_general.genericUpdate(constant.ServicioCollection, serviceData.service, updateData, (error, result) => {
 					if (error) callback(error, result);
 					else {
@@ -282,14 +283,30 @@ serviceModel.serviceEnd = (serviceData, callback) => {
 								}
 								promise.then( () => {
 									serviceModel.sendPushToAdmin(serviceData.service, serviceData.uid, "Servicio finalizado");
-									stats.addServicioStat( {event: constant.EndEvent, date: data.start_date, operario: data.operario});
-									stats.addFacturaStat({total: data.total_price, material: data.costs_price, date: data.start_date, operario: data.operario});
-									callback(null, {
-										cliente: data.cliente,
-										operario: data.operario,
-										total_price: data.total_price,
-										costs_price: data.costs_price
+									db_general.getGenericDoc(constant.ServicioCollection, serviceData.service, (error, result) => {
+										if (error) callback(error, result);
+										else {
+											stats.addServicioStat({
+												event: constant.EndEvent,
+												date: result.start_date,
+												operario: result.operario
+											});
+
+											stats.addFacturaStat({
+												total: result.total_price,
+												material: result.costs_price,
+												date: result.start_date,
+												operario: result.operario
+											});
+											callback(null, {
+												cliente: result.cliente,
+												operario: result.operario,
+												total_price: result.total_price,
+												costs_price: result.costs_price
+											});
+										}
 									});
+
 								}).catch( err => {
 									callback(err.code, err);
 								});
@@ -309,10 +326,11 @@ serviceModel.serviceEnd = (serviceData, callback) => {
  * @param callback
  */
 serviceModel.setBudget = (serviceId, budgetData, callback) => {
-	db_general.getGenericDoc(constant.ServicioCollection, serviceId, (error, doc) => {
+	db_general.getGenericDocReference(constant.ServicioCollection, serviceId, (error, doc) => {
 		if (error) callback(error, doc);
 		else {
-			if (doc.operario !== budgetData.uid) callback(500, "No permissions on this document");
+			const data = doc.data();
+			if (data.operario !== budgetData.uid) callback(500, "No permissions on this document");
 			else {
 				const updateData = {
 					total_price: budgetData.total_price,
@@ -320,7 +338,9 @@ serviceModel.setBudget = (serviceId, budgetData, callback) => {
 					isBudget: 0
 				};
 				db_general.genericUpdateByReference(doc, updateData, (error, result) => {
-					if (error) callback(error, result);
+					if (error) {
+						callback(error, result);
+					}
 					else {
 						serviceModel.sendPushToAdmin(serviceId, budgetData.uid, "Presupuesto registrado");
 						callback(null, result);
