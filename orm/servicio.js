@@ -129,7 +129,7 @@ ORMservicioModel.getServicesWithNames = function(callback) {
                         reject(err);
                     });
             });
-s
+
             let promises = [clientPromise, operarioPromise];
             Promise.all(promises)
             .then(resolved => {

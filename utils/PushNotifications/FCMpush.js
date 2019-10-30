@@ -25,7 +25,7 @@ exports.sendPushNotificationFCM = function (chatToken, payload) {
                 console.log("message not received for app",error);
             });
     }
-    else {
-       console.log("Not FCM messaging initializated");
+else {
+        console.log("Not FCM messaging initializated");
     }
 };
