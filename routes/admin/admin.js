@@ -1,7 +1,7 @@
 const config = require('../../config');
 const api = config.getExpress();
 
-const middleware = require('../../middlewares/user_auth');
+const middleware = require('../../middlewares/admin_auth');
 const admin = require('firebase-admin');
 const db_general = require('../../orm/general_model');
 const constant = require('../../utils/define');
