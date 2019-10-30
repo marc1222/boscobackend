@@ -3,6 +3,8 @@
 var authModel = {};
 var admin = require('firebase-admin');
 const constant = require("../utils/define");
+
+const db_general = require('../orm/general_model');
 /**
  * Valida que l'admin sigui ell, i ho retonra
  * @param token
@@ -11,12 +13,18 @@ const constant = require("../utils/define");
 authModel.validateAdmin = (token, callback) => {
 	const idToken = token;
 	admin.auth().verifyIdToken(idToken).then((decodedToken) => {
-		const admin_uid = constant.FULLADMINID;
-		const uid = decodedToken.uid;
-		if (uid === admin_uid) {
-			callback(null, uid);
-		}
-		else callback(500, "You are not granted as admin user");
+		db_general.getCollectionSnapshot(constant.AdminCollection, (error, adminSnapshot) => {
+			if (error) callback(error, adminSnapshot);
+			else {
+				const admins = adminSnapshot._docs();
+				for (let admin of admins) {
+					if (admin.id === decodedToken.uid) {
+						return callback(null, decodedToken.uid);
+					}
+				}
+				callback(500, "You are not granted as admin user");
+			}
+		});
 	}).catch(function(error) {
 		callback(500, error.message);
 	});

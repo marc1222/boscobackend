@@ -62,7 +62,15 @@ api.get('/downloadServiceAdmin', middleware.ensureAuth, function (req, res) {
 		});
 	} else res.status(400).send({success: false, result: "Bad request"});
 });
-
+/**
+ * Admin call to retrieve number of open services on each registered operario
+ */
+api.get('/servicesOpenCount', middleware.ensureAuth, function(req, res) {
+	serviceModel.getOperarioOpenServicesCount((error, data) => {
+		if (error) res.status(error).send({success: false, result: data});
+		else res.status(200).send({success: true, result: data});
+	});
+});
 //--------------------------------------------------------------------------//
 
 /**
@@ -95,6 +103,31 @@ api.post('/service',  middleware.ensureAuth, function(req, res) {
 });
 
 //--------------------------------------------------------------------------//
+
+api.post('/service',  middleware.ensureAuth, function(req, res) {
+	const params = req.body;
+	if (params.service !== undefined && params.address !== undefined && params.cliente !== undefined && params.priority !== undefined
+		&& params.title !== undefined && params.operario !== undefined && params.isBudget !== undefined) {
+		let scheduled_date = '';
+		if (params.scheduled_date !== undefined) scheduled_date = params.scheduled_date;
+		const serviceData = {
+			address: params.address,
+			coordX: params.coordX,
+			coordY: params.coordY,
+			cliente: params.cliente,
+			noteAdmin: params.noteAdmin,
+			priority: params.priority,
+			title: params.title,
+			operario: params.operario,
+			scheduled_date: scheduled_date,
+			isBudget: params.isBudget
+		};
+		serviceModel.updateService(params.service, serviceData, (error, result) => {
+			if (error === null) res.status(200).send({success: true, result: result});
+			else res.status(error).send({success: true, result: result});
+		});
+	} else res.status(400).send({success: false, result: "Bad request"});
+});
 
 /**
  * Admin call to Reasign service to another operario
@@ -130,6 +163,9 @@ api.put('payPeriod', middleware.ensureAuth, function(req, res) {
 	} else res.status(400).send({success: false, result: "Bad request"});
 });
 
+/**
+ * action -> 1 -> acceptado 0 -> denegado
+ */
 api.put('/confirmBudget', middleware.ensureAuth, (req, res) => {
 	const action = req.body.action;
 	const service = req.body.service;

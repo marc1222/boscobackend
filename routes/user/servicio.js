@@ -163,11 +163,13 @@ api.put('/serviceEnd', middleware.ensureAuth, function(req, res) {
  */
 api.put('/registerBudget', middleware.ensureAuth, function(req, res) {
 	const params = req.body;
-	if (params.total_price !== undefined && params.costs_price !== undefined && params.service !== undefined) {
+	if (params.total_price !== undefined && params.costs_price !== undefined && params.service !== undefined && params.aux_date !== undefined) {
 		const budgetData = {
 			uid: req.uid,
 			total_price: params.total_price,
 			costs_price: params.costs_price,
+			aux_date: params.aux_date,
+			noteBudget: params.noteBudget
 		};
 		serviceModel.setBudget(params.service, budgetData, (error, result) => {
 				if (error === null) res.status(200).send({success: true, result: result});

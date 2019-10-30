@@ -147,6 +147,25 @@ serviceModel.addService = (serviceData, callback) => {
 	});
 };
 
+serviceModel.updateService = function (serviceId, serviceData, callback) {
+	const newDataService = {
+		address: serviceData.address,
+		coordX: serviceData.coordX,
+		coordY: serviceData.coordY,
+		cliente: serviceData.cliente,
+		noteAdmin: serviceData.noteAdmin,
+		priority: serviceData.priority,
+		title: serviceData.title,
+		operario: serviceData.operario,
+		scheduled_date: serviceData.scheduled_date,
+		isBudget: serviceData.isBudget
+	};
+	db_general.genericUpdate(constant.ServicioCollection, serviceId, newDataService, (error, result) => {
+		if (error) callback(error, result);
+		else callback(null, result);
+	});
+};
+
 //--------------------------------------------------------------------------//
 
 /**
@@ -335,7 +354,9 @@ serviceModel.setBudget = (serviceId, budgetData, callback) => {
 				const updateData = {
 					total_price: budgetData.total_price,
 					costs_price: budgetData.costs_price,
-					isBudget: 0
+					isBudget: 2,
+					aux_date: budgetData.aux_date,
+					noteBudget: budgetData.noteBudget
 				};
 				db_general.genericUpdateByReference(doc, updateData, (error, result) => {
 					if (error) {
@@ -382,17 +403,56 @@ serviceModel.payPeriod = (periodData, callback) => {
  * @param callback
  */
 serviceModel.confirmBudget = function(action, service, uid, callback) {
-	if (action) { //Budget accepted
-		db_general.genericUpdate(constant.ServicioCollection, service, {isBudget: 2}, (error, result) => {
-			if (error) callback(error, result);
-			else {
-				serviceModel.sendPushToAdmin(service, uid, "Presupuesto confirmado");
-			}
-		});
-	} else { //budget rejected
-		serviceModel.sendPushToAdmin(service, uid, "Pressupuesto denegado");
+	var updateData = {};
+	var body;
+	var type;
+	if (action==1) {
+		updateData.isBudget = 0;
+		body = "Presupuesto confirmado";
+		type = "budget confirmed";
+	} else {
+		updateData.isBudget = 1;
+		body = "Presupuesto denegado";
+		type = "budget rejected";
+		updateData.costs_price = -1;
+		updateData.total_price = -1;
 	}
-	callback(null, "confirmed ok");
+	db_general.getGenericDocReference(constant.ServicioCollection, service, (error, serviceDoc) => {
+		if (error) callback(error, serviceDoc);
+		else {
+			const data = serviceDoc.data();
+			if (action==1) updateData.scheduled_date = data.aux_date;
+			db_general.genericUpdateByReference(serviceDoc, updateData, (error, result) => {
+				if (error) callback(error, result);
+				else {
+					serviceModel.sendPushToOperario(data.operario, service, body, type);
+					callback(null, "confirmed ok");
+				}
+			});
+		}
+	});
+};
+
+serviceModel.getOperarioOpenServicesCount = function(callback) {
+	db_general.getCollectionSnapshot(constant.ServicioCollection, (error, serviceSnapshot) => {
+		if (error) callback(error, serviceSnapshot);
+		else {
+			var countOperarios = {};
+			const docs = serviceSnapshot._docs();
+			for (let doc of docs) {
+				const data = doc.data();
+				if (data.status === constant.ServiceOpen) { //service has OPEN status
+					const operario = data.operario;
+					if (operario !== constant.NullOperario) {
+						if (countOperarios.hasOwnProperty(operario)) {
+							countOperarios[operario] += 1;
+						} else countOperarios[operario] = 1;
+					}
+				}
+			}
+			callback(null, countOperarios);
+		}
+	});
 };
 
 //--------------------------------------------------------------------------//

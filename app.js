@@ -21,6 +21,7 @@ const admin_cliente_route = require('./routes/admin/cliente');
 const admin_operario_route = require('./routes/admin/operario');
 const admin_factura_route = require('./routes/admin/factura');
 const admin_stats_route = require('./routes/admin/stats');
+const admin_admin_route = require('./routes/admin/admin');
 
 //USER ROUTES FILES
 const user_service_route = require('./routes/user/servicio');
@@ -50,6 +51,8 @@ app.use('/api', admin_cliente_route);
 app.use('/api', admin_operario_route);
 app.use('/api', admin_factura_route);
 app.use('/api', admin_stats_route);
+app.use('/api', admin_admin_route);
+
 
 app.use('/api', user_service_route);
 app.use('/api', user_chat_route);
