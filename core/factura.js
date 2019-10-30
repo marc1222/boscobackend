@@ -19,10 +19,11 @@ facturaModel.addFactura = (facturaData, callback) => {
 		service: facturaData.service,
 		created_at: Date.now(),
 		total: facturaData.total,
+		materialCosts: facturaData.materialCosts,
 		pay: facturaData.pay,
 		comision: facturaData.comision
 	};
-	db_general.addGenericDoc(constant.FacturaCollection, NewFactura, (error, result) => {
+	db_general.addGenericDocWithId(constant.FacturaCollection, facturaData.facturaID, NewFactura, (error, result) => {
 		if (error) callback(error, result);
 		else callback(null, "added doc id: "+result);
 	});

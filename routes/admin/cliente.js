@@ -21,8 +21,8 @@ api.get('/cliente', middleware.ensureAuth, function(req, res) {
 
 /**
  * Admin call to get client by UID
- * Required params: client UID
- */
+* Required params: client UID
+*/
 api.get('/clienteById', middleware.ensureAuth, function(req, res) {
     if (req.query.cliente !== undefined) {
         clienteModel.getClienteById(req.query.cliente, (error, result) => {

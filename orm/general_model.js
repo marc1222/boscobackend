@@ -91,6 +91,15 @@ generalQueryModel.genericSetByReference = function(doc, setData, callback) {
 };
 
 
+generalQueryModel.addGenericDocWithId = function(collection, id, docData, callback) {
+    db.collection(collection).doc(id).set(docData)
+        .then(  () => {
+            callback(null, id);
+        }).catch(err => {
+        callback(err.code, err);
+    });
+};
+
 
 
 module.exports = generalQueryModel;

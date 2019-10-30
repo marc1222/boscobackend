@@ -144,7 +144,8 @@ api.put('/serviceEnd', middleware.ensureAuth, function(req, res) {
 					total: result.total_price,
 					pay: clean*(1-comisionpart),
 					comision: clean*comisionpart,
-					facturaID: service
+					facturaID: body.service,
+					materialCosts: result.costs_price
 				};
 				facturaModel.addFactura(facturaData, (error, result) => {
 					if (error === null) res.status(200).send({success: true, result: result});
