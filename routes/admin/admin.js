@@ -7,17 +7,14 @@ const db_general = require('../../orm/general_model');
 const constant = require('../../utils/define');
 
 
-api.post('/admin', middleware.ensureAuth, (req, res) => {
-    const body = req.body;
-    if (body.email !== undefined && body.pass !== undefined) {
-        createAdmin(body.email, body.pass, (error, result) => {
-           if (error) res.status(error).send({success: false, result: result});
-           else res.status(200).send({success: true, result: "added admin ok"});
-        });
-    } else res.status(400).send({success: false, result: "Bad request"});
+api.get('/admin', middleware.ensureAuth, (req, res) => {
+   db_general.getCollection(constant.AdminCollection, (error, result) => {
+      if (error) res.status(error).send({success: false, result: result});
+      else res.status(200).send({success: true, result: result});
+   });
 });
 
-function createAdmin(email, pass, callback) {
+function createAdmin(email, pass, name, callback) {
 
     admin.auth().createUser({
         email: email,
@@ -25,7 +22,8 @@ function createAdmin(email, pass, callback) {
     }).then(function(userRecord) {
         const NewAdmin = {
             email: email,
-            lastRead: Date.now()
+            lastRead: Date.now(),
+            nombre: name
         };
         db_general.addGenericDocWithId(constant.AdminCollection, userRecord.uid, NewAdmin,(error, result) => {
             if (error) callback(error, result);
@@ -35,5 +33,15 @@ function createAdmin(email, pass, callback) {
         callback(error.code, "Error creating new user:"+error);
     });
 }
+
+api.post('/admin', middleware.ensureAuth, (req, res) => {
+    const body = req.body;
+    if (body.email !== undefined && body.pass !== undefined && body.name !== undefined) {
+        createAdmin(body.email, body.pass, body.name,(error, result) => {
+            if (error) res.status(error).send({success: false, result: result});
+            else res.status(200).send({success: true, result: "added admin ok"});
+        });
+    } else res.status(400).send({success: false, result: "Bad request"});
+});
 
 module.exports = api;
