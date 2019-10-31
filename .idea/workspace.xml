@@ -3,16 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ed79abe9-e12f-46ab-a771-37d00527b6da" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/chat.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/servicio.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/servicio.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin/admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin/chat.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin/cliente.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin/cliente.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin/operario.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin/operario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin/servicio.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin/servicio.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/user/servicio.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/user/servicio.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/PushNotifications/FCMpush.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/PushNotifications/FCMpush.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/define.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/define.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,20 +34,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/admin/servicio.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="172" column="92" selection-start-line="172" selection-start-column="92" selection-end-line="172" selection-end-column="92" />
+            <state relative-caret-position="459">
+              <caret line="174" column="13" lean-forward="true" selection-start-line="174" selection-start-column="13" selection-end-line="174" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/servicio.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="375" selection-start-line="375" selection-end-line="375" />
+            <state relative-caret-position="183">
+              <caret line="408" column="20" lean-forward="true" selection-start-line="408" selection-start-column="20" selection-end-line="408" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -81,8 +72,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>register</find>
-      <find>addService</find>
       <find>sendPushtoadmin</find>
       <find>isBudget</find>
       <find>reasign</find>
@@ -111,6 +100,8 @@
       <find>updateToken</find>
       <find>chatToken:º</find>
       <find>sendPushNotificationFCM</find>
+      <find>reasignSer</find>
+      <find>presupuesto</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -162,7 +153,6 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/user/servicio.js" />
         <option value="$PROJECT_DIR$/utils/define.js" />
-        <option value="$PROJECT_DIR$/core/servicio.js" />
         <option value="$PROJECT_DIR$/core/chat.js" />
         <option value="$PROJECT_DIR$/utils/PushNotifications/FCMpush.js" />
         <option value="$PROJECT_DIR$/routes/admin/admin.js" />
@@ -170,6 +160,7 @@
         <option value="$PROJECT_DIR$/routes/admin/chat.js" />
         <option value="$PROJECT_DIR$/routes/admin/operario.js" />
         <option value="$PROJECT_DIR$/routes/admin/servicio.js" />
+        <option value="$PROJECT_DIR$/core/servicio.js" />
       </list>
     </option>
   </component>
@@ -246,7 +237,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1572534036683" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1572534488109" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.3.1" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -345,12 +336,12 @@
       <workItem from="1572251381089" duration="14941000" />
       <workItem from="1572364845710" duration="10025000" />
       <workItem from="1572431475529" duration="16361000" />
-      <workItem from="1572526938523" duration="7048000" />
+      <workItem from="1572526938523" duration="7539000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="285691000" />
+    <option name="totallyTimeSpent" value="286182000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -363,9 +354,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1432" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5934959" visible="true" weight="0.3054371" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5934959" visible="true" weight="0.3054371" />
       <window_info id="Image Layers" order="1" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -382,7 +372,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49928367" visible="true" weight="0.25080386" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49928367" visible="true" weight="0.25080386" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5007163" side_tool="true" weight="0.4236388" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -698,17 +688,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/servicio.js">
+    <entry file="file://$PROJECT_DIR$/routes/admin/servicio.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="375" selection-start-line="375" selection-end-line="375" />
+        <state relative-caret-position="459">
+          <caret line="174" column="13" lean-forward="true" selection-start-line="174" selection-start-column="13" selection-end-line="174" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/admin/servicio.js">
+    <entry file="file://$PROJECT_DIR$/core/servicio.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="172" column="92" selection-start-line="172" selection-start-column="92" selection-end-line="172" selection-end-column="92" />
+        <state relative-caret-position="183">
+          <caret line="408" column="20" lean-forward="true" selection-start-line="408" selection-start-column="20" selection-end-line="408" selection-end-column="20" />
         </state>
       </provider>
     </entry>

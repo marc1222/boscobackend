@@ -182,7 +182,7 @@ serviceModel.reasignService = function(reasignData, callback) {
 			else {
 				const old_operari = data.operario;
 				var updateData = {operario: reasignData.newOperario, status: constant.ServiceNoAccept};
-				if (reasignData.newOperario === constant.NullOperario && reasignData.hasOwnProperty('motivoAnulacion')) updateData.motivoAnulacion = reasignData.motivoAnulacion
+				if (reasignData.newOperario === constant.NullOperario && reasignData.hasOwnProperty('motivoAnulacion')) updateData.motivoAnulacion = reasignData.motivoAnulacion;
 				db_general.genericUpdate(constant.ServicioCollection, reasignData.service, updateData, (error, result) => {
 					if (error) callback(error, result);
 					else {
@@ -191,7 +191,7 @@ serviceModel.reasignService = function(reasignData, callback) {
 								serviceModel.sendPushToOperario(old_operari, reasignData.service, "Servicio retirado por admin", "service denied");
 							}
 							serviceModel.sendPushToOperario(reasignData.newOperario, reasignData.service, "Nuevo servicio disponible", "new service");
-						} else serviceModel.sendPushToAdmin(reasignData.service, old_operari, "Servicio denegado");
+						} else serviceModel.sendPushToAdmin(reasignData.service, old_operari, "Servicio denegado por operario");
 						callback(null, "service reasinged ok");
 					}
 				});
