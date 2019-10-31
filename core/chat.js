@@ -52,10 +52,30 @@ chatModel.getAdminLastRead = function (uid, callback) {
  * @param callback
  */
 chatModel.updateToken = (collection, chatData, callback) => {
-    db_chat.updateChatToken(collection, chatData.uid, chatData.chatToken, (error, data) => {
-        if (error) callback(error, data);
-        else callback(null, data);
-    });
+    if (collection === constant.AdminCollection) {
+        db_general.getGenericDoc(collection, chatData.uid, (error, adminData) => {
+           if (error) callback(error, adminData);
+           else {
+               const registrationToken = adminData.chatToken;
+               db_chat.updateChatToken(collection, chatData.uid, chatData.chatToken, (error, data) => {
+                   if (error) callback(error, data);
+                   else {
+                       if (registrationToken != 'null' && registrationToken != '') {
+                           pushFCM.topicUnsubscribe(registrationToken, constant.pushNotificationsTopic);
+                       }
+                       pushFCM.topicSubscribe(registrationToken, constant.pushNotificationsTopic);
+                       callback(null, data);
+                   }
+               });
+           }
+        });
+    } else {
+        db_chat.updateChatToken(collection, chatData.uid, chatData.chatToken, (error, data) => {
+            if (error) callback(error, data);
+            else callback(null, data);
+        });
+    }
+
 };
 
 /**
@@ -79,10 +99,11 @@ chatModel.setAdminlastRead = function (uid, callback){
  * @param msg
  * @param image
  * @param operarioUID
+ * @param callback
  */
 chatModel.sendChatMsgToAdmin = (msg, image, operarioUID, callback) => {
     const now = Date.now();
-    let promise1 = new Promise ( (resolve, reject) => {
+    return new Promise ( (resolve, reject) => {
         db_general.getGenericDoc(constant.OperarioCollection, operarioUID, (error, doc) => {
             if (error) reject(error);
             else {
@@ -94,34 +115,40 @@ chatModel.sendChatMsgToAdmin = (msg, image, operarioUID, callback) => {
                         date: String(now),
                         image: image,
                         name: doc.nombre
-                    }
+                    },
+                    topic: constant.pushNotificationsTopic
                 };
-                resolve({ChatPayload: ChatPayload});
+                resolve(ChatPayload);
             }
         });
+    }).then(message => {
+        pushFCM.sendPushNotificationFCM(message);
+        callback(null, "all went ok");
+    }).catch( err => {
+        callback(500, "Error happened: "+err);
     });
-    let promise2 = new Promise ( (resolve, reject) => {
-        pushMessaging.adminChatToken((error, adminChatToken) => {
-            if (error) reject(error);
-            else resolve({chatToken: adminChatToken});
-        });
-    });
-    const promises = [promise1, promise2];
-    Promise.all(promises)
-        .then((result) => {
-            const messageData = {
-                admin: false,
-                date: now,
-                message: msg,
-                image: image
-            };
-            db_chat.addChatEntry(operarioUID, messageData);
-            //SEND PUSH MESSAGE VIA FCM -> to admin (adminChatToken , ChatPayload)
-            pushFCM.sendPushNotificationFCM(result[1].chatToken, result[0].ChatPayload);
-            callback(null, "all went ok");
-        }).catch( (err) => {
-            callback(500, "Error happened: "+err);
-        });
+    // let promise2 = new Promise ( (resolve, reject) => {
+    //     pushMessaging.adminChatToken((error, adminChatToken) => {
+    //         if (error) reject(error);
+    //         else resolve({chatToken: adminChatToken});
+    //     });
+    // });
+    // const promises = [promise1, promise2];
+    // Promise.all(promises)
+    //     .then((result) => {
+    //         const messageData = {
+    //             admin: false,
+    //             date: now,
+    //             message: msg,
+    //             image: image
+    //         };
+    //         db_chat.addChatEntry(operarioUID, messageData);
+    //         //SEND PUSH MESSAGE VIA FCM -> to admin (adminChatToken , ChatPayload)
+    //         pushFCM.sendPushNotificationFCM(result[1].chatToken, result[0].ChatPayload);
+    //         callback(null, "all went ok");
+    //     }).catch( (err) => {
+    //         callback(500, "Error happened: "+err);
+    //     });
 };
 
 /**

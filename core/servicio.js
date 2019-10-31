@@ -181,7 +181,7 @@ serviceModel.reasignService = function(reasignData, callback) {
 			else if (data.status === constant.ServiceClose)  callback(500, "Este servicio ya está cerrado");
 			else {
 				const old_operari = data.operario;
-				var updateData = {operario: reasignData.newOperario};
+				var updateData = {operario: reasignData.newOperario, status: constant.ServiceNoAccept};
 				if (reasignData.newOperario === constant.NullOperario && reasignData.hasOwnProperty('motivoAnulacion')) updateData.motivoAnulacion = reasignData.motivoAnulacion
 				db_general.genericUpdate(constant.ServicioCollection, reasignData.service, updateData, (error, result) => {
 					if (error) callback(error, result);
@@ -293,7 +293,7 @@ serviceModel.serviceEnd = (serviceData, callback) => {
 											serviceList = datafact.services;
 											serviceList.push(serviceData.service);
 											updatedata = {services: serviceList};
-											db_general.genericUpdateByReference(fact, updateData, (error, result) => {
+											db_general.genericUpdateByReference(fact, updatedata, (error, result) => {
 												if (error) reject(result);
 												else resolve(result);
 											});
@@ -464,7 +464,7 @@ serviceModel.getOperarioOpenServicesCount = function(callback) {
  * @param type
  */
 serviceModel.sendPushToAdmin = (serviceID, operarioUID, type) => {
-	let promise1 = new Promise ( (resolve, reject) => {
+	return new Promise ( (resolve, reject) => {
 		db_general.getGenericDoc(constant.OperarioCollection, operarioUID, (error, doc) => {
 			if (error) reject(error);
 			else {
@@ -474,26 +474,31 @@ serviceModel.sendPushToAdmin = (serviceID, operarioUID, type) => {
 						service: serviceID,
 						operario: operarioUID,
 						name: doc.nombre
-					}
+					},
+					topic: constant.pushNotificationsTopic
 				};
-				resolve({servicePayload: ServicePayload});
+				resolve(ServicePayload);
 			}
 		});
+	}).then(message => {
+		pushFCM.sendPushNotificationFCM(message);
+	}).catch(err => {
+		console.log("Error sending push to admin: "+err);
 	});
-	let promise2 = new Promise ( (resolve, reject) => {
-		pushMessaging.adminChatToken((error, adminChatToken) => {
-			if (error) reject(error);
-			else resolve({chatToken: adminChatToken});
-		});
-	});
-	const promises = [promise1, promise2];
-	Promise.all(promises)
-		.then((result) => {
-			//SEND PUSH MESSAGE VIA FCM -> to admin (adminChatToken , ServicePayload)
-			pushFCM.sendPushNotificationFCM(result[1].chatToken, result[0].servicePayload);
-		}).catch( (err) => {
-			console.log("Error sending push to admin: "+err);
-		});
+	// let promise2 = new Promise ( (resolve, reject) => {
+	// 	pushMessaging.adminChatToken((error, adminChatToken) => {
+	// 		if (error) reject(error);
+	// 		else resolve({chatToken: adminChatToken});
+	// 	});
+	// });
+	// const promises = [promise1, promise2];
+	// Promise.all(promises)
+	// 	.then((result) => {
+	// 		//SEND PUSH MESSAGE VIA FCM -> to admin (adminChatToken , ServicePayload)
+	// 		pushFCM.sendPushNotificationFCM(result[1].chatToken, result[0].servicePayload);
+	// 	}).catch( (err) => {
+	// 		console.log("Error sending push to admin: "+err);
+	// 	});
 };
 
 /**

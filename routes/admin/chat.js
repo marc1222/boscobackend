@@ -6,6 +6,10 @@ const api = config.getExpress();
 const chatModel = require('../../core/chat');
 const middleware = require('../../middlewares/admin_auth');
 
+const constant = require('../../utils/define');
+const pushFCM = require('../../utils/PushNotifications/FCMpush');
+
+
 const multipart = require('connect-multiparty');
 const md_upload = multipart({uploadDir: './uploads/chat'});
 
@@ -63,7 +67,10 @@ api.get('/lastReadMsg', middleware.ensureAuth, function (req, res) {
 api.post('/uploadChatAdmin', [middleware.ensureAuth, md_upload], function (req, res) {
     if (req.files.imagen && req.body.operario !== undefined) {
         chatModel.uploadToChatGCS(req.files.imagen, req.body.operario, false, (error, data) => {
-            if (error === null) res.status(200).send({success: true, result: data});
+            if (error === null) {
+                pushFCM.propagateEventsBetweenAdmins(req.uid, constant.ChatCollection, 'null');
+                res.status(200).send({success: true, result: data});
+            }
             else res.status(error).send({success: false, result: data});
         });
     } else res.status(400).send({success: false, result: "Bad request"});
@@ -80,7 +87,10 @@ api.post('/sendChatMsgToAdmin', middleware.ensureAuth, function(req, res) {
     if (Operario !== undefined && msg !== undefined) {
         chatModel.sendChatMsgToOperario(msg, "false", Operario, (error, data) => {
             if (error) res.status(error).send({success: false, result: data});
-            else res.status(200).send({success: true, result: data});
+            else {
+                pushFCM.propagateEventsBetweenAdmins(req.uid, constant.ChatCollection, 'null');
+                res.status(200).send({success: true, result: data});
+            }
         });
     } else res.status(400).send({success: false, result: "Bad request"});
 });
@@ -98,7 +108,7 @@ api.put('/chatAdminToken', middleware.ensureAuth, function(req, res) {
             chatToken: chatToken,
             uid: req.uid
         };
-        chatModel.updateToken('admin', params, (error, result) => {
+        chatModel.updateToken(constant.AdminCollection, params, (error, result) => {
             if (error === null) {
                 res.status(200).send({success: true, result: result});
             } else res.status(error).send({success: false, result: result});

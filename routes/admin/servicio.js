@@ -4,6 +4,9 @@ const config = require('../../config');
 const api = config.getExpress();
 const serviceModel = require('../../core/servicio');
 
+const constant = require('../../utils/define');
+const pushFCM = require('../../utils/PushNotifications/FCMpush');
+
 const middleware = require('../../middlewares/admin_auth');
 //const facturaModel = require('../../core/factura');
 
@@ -96,7 +99,10 @@ api.post('/service',  middleware.ensureAuth, function(req, res) {
 			isBudget: params.isBudget
 		};
 		serviceModel.addService(serviceData, (error, result) => {
-			if (error === null) res.status(200).send({success: true, result: result});
+			if (error === null) {
+				pushFCM.propagateEventsBetweenAdmins(req.uid, constant.ServicioCollection, result.service);
+				res.status(200).send({success: true, result: result});
+			}
 			else res.status(error).send({success: true, result: result});
 		});
 	} else res.status(400).send({success: false, result: "Bad request"});
@@ -104,7 +110,7 @@ api.post('/service',  middleware.ensureAuth, function(req, res) {
 
 //--------------------------------------------------------------------------//
 
-api.post('/service',  middleware.ensureAuth, function(req, res) {
+api.put('/service',  middleware.ensureAuth, function(req, res) {
 	const params = req.body;
 	if (params.service !== undefined && params.address !== undefined && params.cliente !== undefined && params.priority !== undefined
 		&& params.title !== undefined && params.operario !== undefined && params.isBudget !== undefined) {
@@ -123,7 +129,10 @@ api.post('/service',  middleware.ensureAuth, function(req, res) {
 			isBudget: params.isBudget
 		};
 		serviceModel.updateService(params.service, serviceData, (error, result) => {
-			if (error === null) res.status(200).send({success: true, result: result});
+			if (error === null) {
+				pushFCM.propagateEventsBetweenAdmins(req.uid, constant.ServicioCollection, params.service);
+				res.status(200).send({success: true, result: result});
+			}
 			else res.status(error).send({success: true, result: result});
 		});
 	} else res.status(400).send({success: false, result: "Bad request"});
@@ -140,7 +149,10 @@ api.put('/reasignService', middleware.ensureAuth, function (req, res) {
             newOperario: req.body.operario
         };
         serviceModel.reasignService(reasignData, (error, result) => {
-            if (error === null) res.status(200).send({success: true, result: result});
+            if (error === null) {
+				pushFCM.propagateEventsBetweenAdmins(req.uid, constant.ServicioCollection, reasignData.service);
+				res.status(200).send({success: true, result: result});
+			}
             else res.status(error).send({success: false, result: result});
         });
    } else res.status(400).send({success: false, result: "Bad request"});
@@ -150,14 +162,17 @@ api.put('/reasignService', middleware.ensureAuth, function (req, res) {
  * Admin call to mark that an operario has payed a period
  * Required params: period ID to pay, operario UID
  */
-api.put('payPeriod', middleware.ensureAuth, function(req, res) {
+api.put('/payPeriod', middleware.ensureAuth, function(req, res) {
 	if (req.body.periode !== undefined && req.body.operario !== undefined) {
 		const periodData = {
 			periode: req.body.periode,
 			operario: req.body.operario
 		};
 		serviceModel.payPeriod(periodData, (error, result) => {
-			if (error === null) res.status(200).send({success: true, result: result});
+			if (error === null) {
+				pushFCM.propagateEventsBetweenAdmins(req.uid, constant.FacturacionCollection, periodData.operario);
+				res.status(200).send({success: true, result: result});
+			}
 			else res.status(error).send({success: false, result: result});
 		});
 	} else res.status(400).send({success: false, result: "Bad request"});
@@ -172,7 +187,10 @@ api.put('/confirmBudget', middleware.ensureAuth, (req, res) => {
 	if (action !== undefined && service !== undefined) {
 		serviceModel.confirmBudget(action, service, req.uid, (error, result) => {
 			if (error) res.status(error).send({success: false, result: result});
-			else res.status(200).send({success: true, result: result});
+			else {
+				pushFCM.propagateEventsBetweenAdmins(req.uid, constant.ServicioCollection, service);
+				res.status(200).send({success: true, result: result});
+			}
 		});
 	} else res.status(400).send({success: false, result: "Bad request"});
 });

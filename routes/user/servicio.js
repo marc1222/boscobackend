@@ -202,7 +202,7 @@ api.put('/rejectService', middleware.ensureAuth, (req, res) => {
 		const reasignData = {
 			service: service,
 			newOperario: constant.NullOperario,
-			motivoAnulacion: req.body.motivoAnulacion
+			motivoAnulacion: req.body.motivoAnulacion?req.body.motivoAnulacion:''
 		};
 		serviceModel.reasignService(reasignData, (error, result) => {
 			if (error === null) res.status(200).send({success: true, result: result});

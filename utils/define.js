@@ -20,4 +20,6 @@ defineConsts.FULLADMINID = 'CVvefgI67mZVUAXmcoLNBZuWRwF3';
 defineConsts.AcceptEvent = 'accept';
 defineConsts.EndEvent = 'end';
 
+defineConsts.pushNotificationsTopic = 'updateBosco';
+
 module.exports = defineConsts;

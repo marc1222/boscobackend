@@ -3,6 +3,9 @@
 const config = require('../../config');
 const api = config.getExpress();
 
+const constant = require('../../utils/define');
+const pushFCM = require('../../utils/PushNotifications/FCMpush');
+
 const middleware = require('../../middlewares/admin_auth');
 const clienteModel = require('../../core/cliente');
 
@@ -50,7 +53,10 @@ api.post('/cliente',  middleware.ensureAuth, function(req, res) {
             email: params.email
         };
         clienteModel.addCliente(clientData, (error, result) => {
-            if (error === null) res.status(200).send({success: true, result: "inserted correctly"});
+            if (error === null) {
+                pushFCM.propagateEventsBetweenAdmins(req.uid, constant.ClientCollection, result.insertedId);
+                res.status(200).send({success: true, result: "inserted correctly"});
+            }
             else res.status(error).send({success: false, result: result});
         });
     } else res.status(400).send({success: false, result: "Bad request"});
@@ -75,7 +81,10 @@ api.put('/cliente', middleware.ensureAuth, function(req, res) {
             email: params.email
         };
         clienteModel.updateCliente(clienteData, (error, result) => {
-            if (error === null) res.status(200).send({success: true, result: result});
+            if (error === null) {
+                pushFCM.propagateEventsBetweenAdmins(req.uid, constant.ClientCollection, clienteData.document);
+                res.status(200).send({success: true, result: result});
+            }
             else res.status(error).send({success: false, result: result});
         });
     } else res.status(400).send({success: false, result: "Bad request"});

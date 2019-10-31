@@ -3,6 +3,11 @@
 const config = require('../../config');
 const api = config.getExpress();
 
+
+const constant = require('../../utils/define');
+const pushFCM = require('../../utils/PushNotifications/FCMpush');
+
+
 const middleware = require('../../middlewares/admin_auth');
 
 const operarioModel = require('../../core/operario');
@@ -21,7 +26,10 @@ api.post('/operario',  middleware.ensureAuth, function(req, res) {
             phone: params.phone
         };
         operarioModel.addOperario(operarioData, (error, result) => {
-            if (error === null) res.status(200).send({success: true, result: result});
+            if (error === null) {
+                pushFCM.propagateEventsBetweenAdmins(req.uid, constant.OperarioCollection, result.uid);
+                res.status(200).send({success: true, result: result});
+            }
             else res.status(error).send({success: false, result: result});
         });
     } else res.status(400).send({success: false, result: "Bad request"});
@@ -67,7 +75,10 @@ api.put('/operario', middleware.ensureAuth, function(req, res) {
             phone: params.phone
         };
         operarioModel.updateOperario(operarioData, (error, result) => {
-            if (error === null) res.status(200).send({success: true, result: result});
+            if (error === null) {
+                pushFCM.propagateEventsBetweenAdmins(req.uid, constant.OperarioCollection, operarioData.uid);
+                res.status(200).send({success: true, result: result});
+            }
             else res.status(error).send({success: false, result: result});
         });
     } else res.status(400).send({success: false, result: "Bad request"});
@@ -90,7 +101,10 @@ api.post('/bajaOperario', middleware.ensureAuth, function (req, res) {
     if (operario !== undefined) {
         operarioModel.unsubscribeOperario(operario, (error, data) => {
             if (error) res.status(error).send({success: false, result: data});
-            else res.status(200).send({success: true, result: data});
+            else {
+                pushFCM.propagateEventsBetweenAdmins(req.uid, constant.OperarioCollection, operario);
+                res.status(200).send({success: true, result: data});
+            }
         });
     } else res.status(400).send({success: false, result: "Bad request"});
 
